@@ -12,16 +12,47 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'nailsvibe2026';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'nailsvibe_editorial_secret_2026_key';
 
 // Соль для хэширования паролей
-const PASSWORD_SALT = 'nailsvibe_editorial_salt_2026_key';
+const PASSWORD_SALT = process.env.PASSWORD_SALT || 'nailsvibe_editorial_salt_2026_key';
 
 // Настройка middleware
-app.use(cors());
+// Настройка CORS с ограничением доверенных доменов
+const allowedOrigins = [
+    'https://android4002.github.io',
+    'http://localhost:3005',
+    'http://127.0.0.1:3005'
+];
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            return callback(new Error('CORS policy does not allow access from this origin.'), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Перехват запроса к site_data.json для автоматического фонового импорта
 app.get('/data/site_data.json', (req, res, next) => {
     autoImportDikidiReviews().catch(err => console.error('[Auto-Import] Ошибка в фоне:', err));
+    next();
+});
+
+// Блокировка доступа к чувствительным файлам при раздаче из корня
+app.use((req, res, next) => {
+    const forbiddenPatterns = [
+        /^\/data\/users\.json/,
+        /^\/\.env/,
+        /^\/server\.js/,
+        /^\/package\.json/,
+        /^\/package-lock\.json/,
+        /^\/\.git/
+    ];
+    if (forbiddenPatterns.some(pattern => pattern.test(req.path))) {
+        return res.status(403).json({ error: 'Доступ к данному ресурсу заблокирован по соображениям безопасности.' });
+    }
     next();
 });
 
@@ -315,7 +346,7 @@ app.post('/api/login', (req, res) => {
             // Устанавливаем куку
             res.cookie('nails_session', token, {
                 httpOnly: true,
-                secure: false, // В локальном окружении false
+                secure: process.env.NODE_ENV === 'production', // true в продакшене (требуется HTTPS)
                 sameSite: 'strict',
                 maxAge: 7 * 24 * 60 * 60 * 1000 // 7 дней
             });
