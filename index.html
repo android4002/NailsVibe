@@ -37,7 +37,7 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     
     <!-- NailsVibe Main Logic -->
-    <script defer src="/src/main.js?v=2.6.0"></script>
+    <script defer src="src/main.js?v=2.6.0"></script>
     
     <!-- Alpine.js Plugins -->
     <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
@@ -793,7 +793,7 @@
             
             <!-- View More Portfolio Button -->
             <div class="w-full flex justify-center mt-12" x-show="filteredPortfolio.length > 6">
-                <a href="/portfolio.html" class="px-8 py-3.5 bg-transparent border border-brand-rose text-brand-rose hover:bg-brand-rose hover:text-white transition-all text-xs font-bold tracking-widest uppercase rounded-full cursor-pointer shadow-sm hover:shadow-md inline-block">
+                <a href="portfolio.html" class="px-8 py-3.5 bg-transparent border border-brand-rose text-brand-rose hover:bg-brand-rose hover:text-white transition-all text-xs font-bold tracking-widest uppercase rounded-full cursor-pointer shadow-sm hover:shadow-md inline-block">
                     Смотреть все работы →
                 </a>
             </div>
@@ -1144,7 +1144,7 @@
             <!-- New Premium Links Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-12 border-b border-white/10">
                 <!-- FAQ Card -->
-                <a href="/faq.html" class="group block p-8 bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-rose transition-all duration-500 rounded-2xl space-y-4">
+                <a href="faq.html" class="group block p-8 bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-rose transition-all duration-500 rounded-2xl space-y-4">
                     <div class="flex justify-end">
                         <span class="text-white/40 group-hover:text-brand-rose transition-colors duration-500 text-lg">→</span>
                     </div>
@@ -1153,7 +1153,7 @@
                 </a>
                 
                 <!-- Tips Card -->
-                <a href="/tips.html" class="group block p-8 bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-gold transition-all duration-500 rounded-2xl space-y-4">
+                <a href="tips.html" class="group block p-8 bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-gold transition-all duration-500 rounded-2xl space-y-4">
                     <div class="flex justify-end">
                         <span class="text-white/40 group-hover:text-brand-gold transition-colors duration-500 text-lg">→</span>
                     </div>
@@ -1170,9 +1170,9 @@
                     <p class="font-bold text-white/60" x-show="!hiddenElements.footerBlock_legalName" x-text="contacts.legalName"></p>
                     <p x-show="!hiddenElements.footerBlock_inn" x-text="'ИНН: ' + contacts.inn"></p>
                     <div class="flex gap-4 justify-center md:justify-end text-[8px] text-white/30 lowercase mt-1">
-                        <a href="/privacy-policy.html" class="hover:text-white transition-colors underline">Политика конфиденциальности</a>
+                        <a href="privacy-policy.html" class="hover:text-white transition-colors underline">Политика конфиденциальности</a>
                         <span>|</span>
-                        <a href="/personal-data-agreement.html" class="hover:text-white transition-colors underline">Согласие на обработку ПД</a>
+                        <a href="personal-data-agreement.html" class="hover:text-white transition-colors underline">Согласие на обработку ПД</a>
                     </div>
                     <p class="text-[7px] text-white/20 tracking-wider text-center md:text-right uppercase mt-1">Информация на сайте не является публичной офертой (ст. 437 ГК РФ)</p>
                 </div>
@@ -1648,7 +1648,7 @@
          style="display: none;">
         <div class="text-[11px] text-brand-charcoal/80 dark:text-white/80 leading-relaxed font-light font-sans">
             Мы используем файлы cookie для улучшения работы сайта. Продолжая работу, вы соглашаетесь с нашей 
-            <a href="/privacy-policy.html" class="text-brand-rose hover:underline font-normal">Политикой конфиденциальности</a>.
+            <a href="privacy-policy.html" class="text-brand-rose hover:underline font-normal">Политикой конфиденциальности</a>.
         </div>
         <button @click="accept()" class="w-full py-2 bg-brand-charcoal hover:bg-brand-rose dark:bg-brand-rose dark:hover:bg-white text-white dark:text-brand-charcoal dark:hover:text-brand-charcoal transition-all duration-300 text-[9px] font-bold tracking-widest uppercase cursor-pointer text-center rounded-lg shadow-sm">
             Принять

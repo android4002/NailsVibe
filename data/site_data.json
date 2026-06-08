@@ -123,7 +123,7 @@
     "title": "Лофт-кабинет Марины",
     "heading": "Пространство уединенного ухода",
     "description": "Убежище спокойствия в бурлящем ритме мегаполиса. Каждый сеанс маникюра спроектирован как сеанс любви к себе: в вашем полном распоряжении свежий итальянский кофе, ароматный листовой чай и тишина приватного лофта.",
-    "image": "/public/images/marina_cozy.webp",
+    "image": "public/images/marina_cozy.webp",
     "features": [
       "Абсолютное уединение и индивидуальная забота",
       "Кофе-бар класса спешелти для каждого гостя",
@@ -198,9 +198,9 @@
       "price": 1500,
       "duration": "45 мин",
       "description": "Ювелирная обработка кутикулы аппаратом и ножницами, придание правильной архитектурной формы свободному краю, нанесение питательного масла с легким массажем.",
-      "image": "/public/images/work_hygiene_manicure.png",
+      "image": "public/images/work_hygiene_manicure.png",
       "images": [
-        "/public/images/work_hygiene_manicure.png"
+        "public/images/work_hygiene_manicure.png"
       ],
       "pullPortfolioImages": true
     },
@@ -211,13 +211,13 @@
       "duration": "90 мин",
       "description": "Бережное снятие старого материала фрезой, комбинированный маникюр, выравнивание ногтевой пластины базой Luxio и покрытие цветом премиум-гель-лака встык к кутикуле.",
       "popular": true,
-      "image": "/public/images/work_red_luxury.webp",
+      "image": "public/images/work_red_luxury.webp",
       "images": [
-        "/public/images/work_red_luxury.webp",
-        "/public/images/work_nude_chic_new.png"
+        "public/images/work_red_luxury.webp",
+        "public/images/work_nude_chic_new.png"
       ],
-      "before": "/public/images/demo_before.png",
-      "after": "/public/images/demo_after.png",
+      "before": "public/images/demo_before.png",
+      "after": "public/images/demo_after.png",
       "beforeText": "До",
       "afterText": "После",
       "pullPortfolioImages": true
@@ -228,9 +228,9 @@
       "price": 2200,
       "duration": "60 мин",
       "description": "Глянцевание ногтевой пластины минеральной пастой и диатомовой пудрой на основе пчелиного воска. Восстанавливает тонкие и ломкие ногти, придает стойкий зеркальный блеск.",
-      "image": "/public/images/work_japanese_manicure.png",
+      "image": "public/images/work_japanese_manicure.png",
       "images": [
-        "/public/images/work_japanese_manicure.png"
+        "public/images/work_japanese_manicure.png"
       ],
       "pullPortfolioImages": true
     },
@@ -240,9 +240,9 @@
       "price": 600,
       "duration": "20 мин",
       "description": "Создание армирующего каркаса на тонких ногтях полигелем или акриловой пудрой. Гарантирует безупречную носку покрытия без трещин и сколов более 4 недель.",
-      "image": "/public/images/work_nail_strengthening.png",
+      "image": "public/images/work_nail_strengthening.png",
       "images": [
-        "/public/images/work_nail_strengthening.png"
+        "public/images/work_nail_strengthening.png"
       ],
       "pullPortfolioImages": true
     },
@@ -253,9 +253,9 @@
       "duration": "150 мин",
       "description": "Моделирование ногтей полигелем или классическим гелем на нижние/верхние формы. Включает комбинированный маникюр, выравнивание архитектуры и покрытие премиум-гель-лаком.",
       "popular": true,
-      "image": "/public/images/work_extensions_gel.png",
+      "image": "public/images/work_extensions_gel.png",
       "images": [
-        "/public/images/work_extensions_gel.png"
+        "public/images/work_extensions_gel.png"
       ],
       "pullPortfolioImages": true
     },
@@ -265,9 +265,9 @@
       "price": 3000,
       "duration": "120 мин",
       "description": "Снятие старого материала, маникюр, поднятие клюющих ногтей, укрепление стрессовой зоны и перекрытие новым цветом.",
-      "image": "/public/images/work_extensions_correction.png",
+      "image": "public/images/work_extensions_correction.png",
       "images": [
-        "/public/images/work_extensions_correction.png"
+        "public/images/work_extensions_correction.png"
       ],
       "pullPortfolioImages": true
     },
@@ -277,9 +277,9 @@
       "price": 1000,
       "duration": "40 мин",
       "description": "Деликатное спиливание искусственного материала фрезой с сохранением здоровья натурального ногтя, шлифовка, придание формы и покрытие восстанавливающим лаком.",
-      "image": "/public/images/work_extensions_removal.png",
+      "image": "public/images/work_extensions_removal.png",
       "images": [
-        "/public/images/work_extensions_removal.png"
+        "public/images/work_extensions_removal.png"
       ],
       "pullPortfolioImages": true
     },
@@ -289,9 +289,9 @@
       "price": 2800,
       "duration": "60 мин",
       "description": "Аппаратная обработка стопы запатентованными Smart-дисками с использованием молекулярного масла, полировка трещин до эффекта зеркальной кожи и уход за кутикулой пальчиков.",
-      "image": "/public/images/work_pedicure_clean.png",
+      "image": "public/images/work_pedicure_clean.png",
       "images": [
-        "/public/images/work_pedicure_clean.png"
+        "public/images/work_pedicure_clean.png"
       ],
       "pullPortfolioImages": true
     },
@@ -302,9 +302,9 @@
       "duration": "90 мин",
       "description": "Полный педикюр Smart-дисками, обработка кутикулы и покрытие пальчиков ног гель-лаком Luxio. Включает нанесение увлажняющего крема-свечи с массажем.",
       "popular": true,
-      "image": "/public/images/work_pedicure_spa.webp",
+      "image": "public/images/work_pedicure_spa.webp",
       "images": [
-        "/public/images/work_pedicure_spa.webp"
+        "public/images/work_pedicure_spa.webp"
       ],
       "pullPortfolioImages": true
     },
@@ -314,9 +314,9 @@
       "price": 2600,
       "duration": "60 мин",
       "description": "Обработка кутикулы и придание формы ногтям на пальцах ног, обезжиривание и покрытие гель-лаком Luxio (без обработки кожи стоп).",
-      "image": "/public/images/work_express_pedicure.png",
+      "image": "public/images/work_express_pedicure.png",
       "images": [
-        "/public/images/work_express_pedicure.png"
+        "public/images/work_express_pedicure.png"
       ],
       "pullPortfolioImages": true
     },
@@ -327,13 +327,13 @@
       "duration": "20 мин",
       "description": "Идеально прорисованная классическая французская улыбка на всех ногтях.",
       "popular": true,
-      "image": "/public/images/work_french_white.webp",
+      "image": "public/images/work_french_white.webp",
       "images": [
-        "/public/images/work_french_white.webp",
-        "/public/images/work_french_red.webp"
+        "public/images/work_french_white.webp",
+        "public/images/work_french_red.webp"
       ],
-      "before": "/public/images/upload-1780408181077-125033936.jpg",
-      "after": "/public/images/work_french_white.webp",
+      "before": "public/images/upload-1780408181077-125033936.jpg",
+      "after": "public/images/work_french_white.webp",
       "beforeText": "До",
       "afterText": "После",
       "pullPortfolioImages": true
@@ -344,9 +344,9 @@
       "price": 200,
       "duration": "10 мин",
       "description": "Ручная роспись (абстракция, геометрия, акварель), стемпинг повышенной сложности, градиент или инкрустация кристаллами Swarovski.",
-      "image": "/public/images/work_author_design.png",
+      "image": "public/images/work_author_design.png",
       "images": [
-        "/public/images/work_author_design.png"
+        "public/images/work_author_design.png"
       ],
       "pullPortfolioImages": true
     },
@@ -356,9 +356,9 @@
       "price": 800,
       "duration": "20 мин",
       "description": "Питательная маска с натуральными маслами и погружение рук в теплую парафиновую ванночку. Мгновенно смягчает, устраняет шелушение и сухость кожи.",
-      "image": "/public/images/work_paraffin_spa.png",
+      "image": "public/images/work_paraffin_spa.png",
       "images": [
-        "/public/images/work_paraffin_spa.png"
+        "public/images/work_paraffin_spa.png"
       ],
       "pullPortfolioImages": true
     },
@@ -368,9 +368,9 @@
       "price": 200,
       "duration": "10 мин",
       "description": "Ремонт глубокой трещины с использованием шелка и полигеля, достраивание сломанного угла ногтя или восстановление длины.",
-      "image": "/public/images/work_nail_repair.png",
+      "image": "public/images/work_nail_repair.png",
       "images": [
-        "/public/images/work_nail_repair.png"
+        "public/images/work_nail_repair.png"
       ],
       "pullPortfolioImages": true
     }
@@ -403,99 +403,99 @@
     {
       "title": "Минималистичный нюд с ровным бликом",
       "category": "manicure",
-      "image": "/public/images/work_nude_chic_new.png",
+      "image": "public/images/work_nude_chic_new.png",
       "images": [
-        "/public/images/work_nude_chic_new.png"
+        "public/images/work_nude_chic_new.png"
       ],
       "service": "Маникюр с однотонным покрытием Luxio"
     },
     {
       "title": "Идеальный классический красный френч",
       "category": "design",
-      "image": "/public/images/work_french_red.webp",
+      "image": "public/images/work_french_red.webp",
       "images": [
-        "/public/images/work_french_red.webp"
+        "public/images/work_french_red.webp"
       ],
       "service": "Дизайн «Френч» / «Лунный»"
     },
     {
       "title": "Глянцевый вишневый Luxio на миндале",
       "category": "manicure",
-      "image": "/public/images/work_red_luxury.webp",
+      "image": "public/images/work_red_luxury.webp",
       "images": [
-        "/public/images/work_red_luxury.webp"
+        "public/images/work_red_luxury.webp"
       ],
       "service": "Маникюр с однотонным покрытием Luxio"
     },
     {
       "title": "Smart-педикюр с покрытием Luxio",
       "category": "pedicure",
-      "image": "/public/images/work_pedicure_spa.webp",
+      "image": "public/images/work_pedicure_spa.webp",
       "images": [
-        "/public/images/work_pedicure_spa.webp"
+        "public/images/work_pedicure_spa.webp"
       ],
       "service": "Smart-педикюр с покрытием Luxio"
     },
     {
       "title": "Классический белый френч на миндале",
       "category": "design",
-      "image": "/public/images/work_french_white.webp",
+      "image": "public/images/work_french_white.webp",
       "images": [
-        "/public/images/work_french_white.webp"
+        "public/images/work_french_white.webp"
       ],
       "service": "Дизайн «Френч» / «Лунный»"
     },
     {
       "title": "Моделирование длинных ногтей гелем",
       "category": "extensions",
-      "image": "/public/images/work_extensions_gel.png",
+      "image": "public/images/work_extensions_gel.png",
       "images": [
-        "/public/images/work_extensions_gel.png"
+        "public/images/work_extensions_gel.png"
       ],
       "service": "Наращивание ногтей (до размера 3)"
     },
     {
       "title": "Коррекция формы и архитектуры ногтей",
       "category": "extensions",
-      "image": "/public/images/work_extensions_correction.png",
+      "image": "public/images/work_extensions_correction.png",
       "images": [
-        "/public/images/work_extensions_correction.png"
+        "public/images/work_extensions_correction.png"
       ],
       "service": "Коррекция наращенных ногтей"
     },
     {
       "title": "Smart-педикюр с глубоким очищением кожи",
       "category": "pedicure",
-      "image": "/public/images/work_pedicure_clean.png",
+      "image": "public/images/work_pedicure_clean.png",
       "images": [
-        "/public/images/work_pedicure_clean.png"
+        "public/images/work_pedicure_clean.png"
       ],
       "service": "Smart-педикюр (обработка стопы и пальцев без покрытия)"
     },
     {
       "title": "Японский эко-маникюр P.Shine",
       "category": "manicure",
-      "image": "/public/images/work_japanese_manicure.png",
+      "image": "public/images/work_japanese_manicure.png",
       "images": [
-        "/public/images/work_japanese_manicure.png"
+        "public/images/work_japanese_manicure.png"
       ],
       "service": "Японский эко-маникюр P.Shine"
     },
     {
       "title": "Парафинотерапия и SPA-уход для рук",
       "category": "design",
-      "image": "/public/images/work_paraffin_spa.png",
+      "image": "public/images/work_paraffin_spa.png",
       "images": [
-        "/public/images/work_paraffin_spa.png"
+        "public/images/work_paraffin_spa.png"
       ],
       "service": "Парафинотерапия рук (SPA-уход)"
     },
     {
       "title": "Авторская роспись с золотым акцентом",
       "category": "design",
-      "image": "/public/images/work_author_design.png",
+      "image": "public/images/work_author_design.png",
       "images": [
-        "/public/images/work_author_design.png"
+        "public/images/work_author_design.png"
       ],
       "service": "Авторский дизайн (1 ноготь)"
     }

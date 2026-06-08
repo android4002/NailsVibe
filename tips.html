@@ -111,7 +111,7 @@
     <div class="max-w-3xl w-full mx-auto space-y-12 px-2 sm:px-0 relative z-10">
         <!-- Header -->
         <header class="border-b border-brand-sand dark:border-brand-sand/10 pb-8 text-center space-y-4">
-            <a href="/" class="inline-block text-sm font-bold tracking-[0.2em] text-brand-rose uppercase hover:text-brand-charcoal dark:hover:text-white transition-colors">
+            <a href="./" class="inline-block text-sm font-bold tracking-[0.2em] text-brand-rose uppercase hover:text-brand-charcoal dark:hover:text-white transition-colors">
                 ← На главную
             </a>
             <h1 class="text-3xl sm:text-4xl md:text-6xl font-light font-serif tracking-tight text-brand-charcoal dark:text-white uppercase mt-4">
@@ -183,7 +183,7 @@
         </main>
         
         <footer class="text-center pt-8 border-t border-brand-sand dark:border-brand-sand/10 text-[10px] tracking-[0.2em] uppercase text-brand-charcoal/40 dark:text-white/30">
-            <a href="/" class="hover:text-brand-rose transition-colors">NailsVibe Studio</a>
+            <a href="./" class="hover:text-brand-rose transition-colors">NailsVibe Studio</a>
         </footer>
     </div>
 
@@ -199,7 +199,7 @@
                 init() {
                     this.isDark = document.documentElement.classList.contains('dark');
                     
-                    fetch('/data/site_data.json')
+                    fetch('data/site_data.json')
                         .then(res => res.json())
                         .then(data => {
                             this.tips = (data.tips || []).filter(item => !item.hidden);
@@ -277,7 +277,7 @@
          style="display: none;">
         <div class="text-[11px] text-brand-charcoal/80 dark:text-white/80 leading-relaxed font-light font-sans">
             Мы используем файлы cookie для улучшения работы сайта. Продолжая работу, вы соглашаетесь с нашей 
-            <a href="/privacy-policy.html" class="text-brand-rose hover:underline font-normal">Политикой конфиденциальности</a>.
+            <a href="privacy-policy.html" class="text-brand-rose hover:underline font-normal">Политикой конфиденциальности</a>.
         </div>
         <button @click="accept()" class="w-full py-2 bg-brand-charcoal hover:bg-brand-rose dark:bg-brand-rose dark:hover:bg-white text-white dark:text-brand-charcoal dark:hover:text-brand-charcoal transition-all duration-300 text-[9px] font-bold tracking-widest uppercase cursor-pointer text-center rounded-lg shadow-sm">
             Принять

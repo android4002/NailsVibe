@@ -90,7 +90,7 @@ document.addEventListener('alpine:init', () => {
                     document.documentElement.classList.remove('dark');
                 }
 
-                const response = await fetch('/data/site_data.json?v=' + new Date().getTime());
+                const response = await fetch('data/site_data.json?v=' + new Date().getTime());
                 const data = await response.json();
                 
                 // Присваиваем данные из JSON

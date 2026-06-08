@@ -163,7 +163,7 @@
         <header class="border-b border-brand-sand/50 dark:border-brand-sand/10 pb-8 relative">
             <!-- Top Navigation Bar (Back and Theme Toggle) -->
             <div class="flex justify-between items-center mb-6">
-                <a href="/" class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-brand-rose uppercase hover:text-brand-charcoal dark:hover:text-white transition-colors">
+                <a href="./" class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-brand-rose uppercase hover:text-brand-charcoal dark:hover:text-white transition-colors">
                     ← На главную
                 </a>
                 
@@ -278,7 +278,7 @@
         </main>
 
         <footer class="text-center pt-8 border-t border-brand-sand dark:border-brand-sand/10 text-[10px] tracking-[0.2em] uppercase text-brand-charcoal/40 dark:text-white/30">
-            <a href="/" class="hover:text-brand-rose transition-colors">NailsVibe Studio</a>
+            <a href="./" class="hover:text-brand-rose transition-colors">NailsVibe Studio</a>
         </footer>
     </div>
 
@@ -303,7 +303,7 @@
                         sessionStorage.setItem('scrollPosition', window.scrollY);
                     });
                     
-                    fetch('/data/site_data.json')
+                    fetch('data/site_data.json')
                         .then(res => res.json())
                         .then(data => {
                             this.portfolio = data.portfolio || [];
