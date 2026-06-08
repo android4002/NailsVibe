@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth select-none overflow-x-hidden w-full max-w-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>Часто задаваемые вопросы (FAQ) — NailsVibe</title>
+    <meta name="description" content="Ответы на популярные вопросы о покрытии гель-лаком, стерилизации инструментов, гарантии и услугах студии NailsVibe.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    
+    <!-- Alpine.js Plugins -->
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js CDN -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        :root {
+            --color-brand-cream: #FDFBF7;
+            --color-brand-sand: #F5EFEB;
+            --color-brand-rose: #D59C8C;
+            --color-brand-rose-dark: #B57F71;
+            --color-brand-gold: #C5A282;
+            --color-brand-charcoal: #1C1615;
+            --color-brand-lightrose: #F9F1ED;
+        }
+
+        .dark {
+            --color-brand-cream: #120E0D;
+            --color-brand-lightrose: #1A1413;
+            --color-brand-sand: #29201E;
+            --color-brand-charcoal: #FDFBF7;
+            --color-brand-rose: #E5A899;
+            --color-brand-gold: #D8B697;
+        }
+
+        @theme {
+            --color-brand-cream: var(--color-brand-cream);
+            --color-brand-sand: var(--color-brand-sand);
+            --color-brand-rose: var(--color-brand-rose);
+            --color-brand-rose-dark: var(--color-brand-rose-dark);
+            --color-brand-gold: var(--color-brand-gold);
+            --color-brand-charcoal: var(--color-brand-charcoal);
+            --color-brand-lightrose: var(--color-brand-lightrose);
+            
+            --font-serif: "Cormorant Garamond", Georgia, serif;
+            --font-sans: "Outfit", sans-serif;
+        }
+
+        body {
+            background-color: var(--color-brand-cream);
+            color: var(--color-brand-charcoal);
+            font-family: var(--font-sans);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, .font-serif-custom {
+            font-family: var(--font-serif);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-brand-cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-brand-gold);
+            border-radius: 9999px;
+        }
+    </style>
+
+    <!-- Auto Theme Switcher -->
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body x-data="faqApp" class="relative min-h-screen overflow-x-hidden w-full max-w-full py-12 px-4 sm:px-8">
+
+    <!-- Theme Toggle Button -->
+    <button @click="toggleTheme()" 
+            class="fixed top-6 right-6 z-40 w-10 h-10 rounded-full bg-white/80 dark:bg-brand-sand/50 text-brand-charcoal dark:text-white border border-brand-sand dark:border-brand-sand/20 flex items-center justify-center transition-all duration-300 hover:border-brand-rose shadow-md cursor-pointer focus:outline-none"
+            title="Переключить тему">
+        <!-- Sun Icon -->
+        <svg x-show="isDark" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+        </svg>
+        <!-- Moon Icon -->
+        <svg x-show="!isDark" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+    </button>
+
+    <!-- Grain Overlay -->
+    <div class="fixed inset-0 z-50 pointer-events-none opacity-[0.045] dark:opacity-[0.012]" 
+         style="background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');">
+    </div>
+
+    <div class="max-w-3xl w-full mx-auto space-y-12 px-2 sm:px-0 relative z-10">
+        <!-- Header -->
+        <header class="border-b border-brand-sand dark:border-brand-sand/10 pb-8 text-center space-y-4">
+            <a href="/" class="inline-block text-sm font-bold tracking-[0.2em] text-brand-rose uppercase hover:text-brand-charcoal dark:hover:text-white transition-colors">
+                ← На главную
+            </a>
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-light font-serif tracking-tight text-brand-charcoal dark:text-white uppercase mt-4">
+                Вопросы и Ответы
+            </h1>
+            <p class="text-xs uppercase tracking-widest text-brand-gold dark:text-brand-gold font-bold">
+                FAQ о процедурах, стерилизации и качестве услуг
+            </p>
+        </header>
+
+        <!-- Content -->
+        <main class="space-y-6">
+            <template x-if="faq.length === 0">
+                <div class="text-center py-12 border border-brand-sand dark:border-brand-sand/10 p-8">
+                    <p class="text-brand-charcoal/50 dark:text-white/40 font-light italic">Список вопросов временно пуст...</p>
+                </div>
+            </template>
+            
+            <div class="space-y-4">
+                <template x-for="(item, idx) in faq" :key="item.id || idx">
+                    <div class="border border-brand-sand dark:border-brand-sand/10 bg-white/40 dark:bg-white/[0.01] backdrop-blur-sm transition-all duration-300 hover:border-brand-rose rounded-xl overflow-hidden">
+                        <button @click="toggle(item.id || idx)" 
+                                class="w-full flex justify-between items-center text-left py-5 px-6 focus:outline-none cursor-pointer"
+                                :aria-expanded="activeFaqId === (item.id || idx)">
+                            <span class="font-serif text-lg sm:text-xl md:text-2xl text-brand-charcoal dark:text-white" x-text="item.question"></span>
+                            <span class="ml-4 flex-shrink-0 text-brand-rose transition-transform duration-300"
+                                  :class="activeFaqId === (item.id || idx) ? 'rotate-180' : ''">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div x-show="activeFaqId === (item.id || idx)" 
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 max-h-0"
+                             x-transition:enter-end="opacity-100 max-h-[600px]"
+                             x-transition:leave="transition ease-in duration-200"
+                             x-transition:leave-start="opacity-100 max-h-[600px]"
+                             x-transition:leave-end="opacity-0 max-h-0"
+                             class="overflow-hidden">
+                            <div class="pb-6 px-6 text-sm sm:text-base text-brand-charcoal/80 dark:text-white/70 leading-relaxed font-light font-sans" x-text="item.answer"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </main>
+        
+        <footer class="text-center pt-8 border-t border-brand-sand dark:border-brand-sand/10 text-[10px] tracking-[0.2em] uppercase text-brand-charcoal/40 dark:text-white/30">
+            <a href="/" class="hover:text-brand-rose transition-colors">NailsVibe Studio</a>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('faqApp', () => ({
+                faq: [],
+                activeFaqId: null,
+                isDark: false,
+                yandexMetrikaId: '',
+                init() {
+                    this.isDark = document.documentElement.classList.contains('dark');
+                    
+                    fetch('/data/site_data.json')
+                        .then(res => res.json())
+                        .then(data => {
+                            this.faq = (data.faq || []).filter(item => !item.hidden);
+                            this.yandexMetrikaId = data.yandexMetrikaId || '';
+                            if (this.yandexMetrikaId) {
+                                this.initYandexMetrika(this.yandexMetrikaId);
+                            }
+                        })
+                        .catch(err => console.error('Ошибка загрузки FAQ:', err));
+                },
+                initYandexMetrika(id) {
+                    if (!id || window.ym) return;
+                    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                    m[i].l=1*new Date();
+                    for (var j = 0; j < e.scripts.length; j++) {if (e.scripts[j].src === r) { return; }}
+                    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+                    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+                    ym(id, "init", {
+                         clickmap:true,
+                         trackLinks:true,
+                         accurateTrackBounce:true,
+                         webvisor:true
+                    });
+                },
+                toggleTheme() {
+                    this.isDark = !this.isDark;
+                    if (this.isDark) {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                    }
+                },
+                toggle(id) {
+                    this.activeFaqId = this.activeFaqId === id ? null : id;
+                }
+            }));
+        });
+    </script>
+    <!-- Cookie Consent Banner -->
+    <div x-data="{ 
+             showCookie: false,
+             init() {
+                 if (!localStorage.getItem('cookieAccepted')) {
+                     setTimeout(() => { this.showCookie = true; }, 1200);
+                 }
+             },
+             accept() {
+                 localStorage.setItem('cookieAccepted', 'true');
+                 this.showCookie = false;
+             }
+         }"
+         x-show="showCookie"
+         x-transition:enter="transition ease-out duration-500 transform"
+         x-transition:enter-start="translate-y-12 opacity-0"
+         x-transition:enter-end="translate-y-0 opacity-100"
+         x-transition:leave="transition ease-in duration-300 transform"
+         x-transition:leave-start="translate-y-0 opacity-100"
+         x-transition:leave-end="translate-y-12 opacity-0"
+         class="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:max-w-xs z-50 p-5 bg-white/90 dark:bg-brand-sand/95 backdrop-blur-md border border-brand-sand dark:border-brand-sand/15 shadow-2xl rounded-2xl flex flex-col gap-3.5 text-left"
+         style="display: none;">
+        <div class="text-[11px] text-brand-charcoal/80 dark:text-white/80 leading-relaxed font-light font-sans">
+            Мы используем файлы cookie для улучшения работы сайта. Продолжая работу, вы соглашаетесь с нашей 
+            <a href="/privacy-policy.html" class="text-brand-rose hover:underline font-normal">Политикой конфиденциальности</a>.
+        </div>
+        <button @click="accept()" class="w-full py-2 bg-brand-charcoal hover:bg-brand-rose dark:bg-brand-rose dark:hover:bg-white text-white dark:text-brand-charcoal dark:hover:text-brand-charcoal transition-all duration-300 text-[9px] font-bold tracking-widest uppercase cursor-pointer text-center rounded-lg shadow-sm">
+            Принять
+        </button>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,640 @@
+{
+  "salonName": "Nails",
+  "masterName": "Марина",
+  "tagline": "Искусство формы, безупречной чистоты и стойкости ваших ногтей",
+  "bio": "Добро пожаловать в NailsVibe. Меня зовут Марина, и для меня маникюр — это не просто процедура, а тихий манифест вашей индивидуальности и глубокой заботы о себе. За годы непрерывного совершенствования я выработала уникальный авторский метод чистейшего комбинированного маникюра и бережного укрепления, который гарантирует безупречную носку премиального покрытия Luxio более четырех недель. В моем уединенном лофт-кабинете в Иваново вас ждет атмосфера истинного умиротворения, изысканный свежесваренный кофе и безукоризненное внимание к мельчайшим деталям.",
+  "bookingUrl": "https://dkd.su/1433946",
+  "bookingUrlApp": "https://dkd.su/1433946",
+  "dikidiId": "1433946",
+  "yandexMetrikaId": "",
+  "yandexMapsIframe": "https://yandex.ru/map-widget/v1/?text=Иваново,+ул.+Лежневская,+д.+46&mode=search&ol=geo&z=16",
+  "contacts": {
+    "address": "г. Иваново, ул. Лежневская, д. 46, офис 3",
+    "yandexMapsUrl": "https://yandex.ru/maps/?text=Иваново,+ул.+Лежневская,+д.+46",
+    "mapCoordinates": [
+      56.986669,
+      40.98133
+    ],
+    "phone": "+7 (999) 123-45-67",
+    "phoneFormatted": "79991234567",
+    "telegram": "https://t.me/marina_nails",
+    "vk": "https://vk.com/marina_nailsvibe",
+    "whatsapp": "https://wa.me/79991234567",
+    "workingHours": "Ежедневно с 10:00 до 21:00",
+    "workingHoursStart": "10:00",
+    "workingHoursEnd": "21:00",
+    "inn": "770912345678",
+    "legalName": "Самозанятая Иванова Марина Сергеевна"
+  },
+  "blocksVisibility": {
+    "hero": true,
+    "about": true,
+    "benefits": true,
+    "portfolio": true,
+    "price": true,
+    "cozyCabinet": true,
+    "reviews": true,
+    "contacts": true
+  },
+  "blocksOrder": [
+    "hero",
+    "about",
+    "benefits",
+    "portfolio",
+    "price",
+    "cozyCabinet",
+    "reviews",
+    "contacts"
+  ],
+  "cabinetVideosBlock": {
+    "badge": "Эфир из кабинета",
+    "heading": "Атмосфера лофт-кабинета",
+    "description": "Погрузитесь в эстетику нашего пространства через короткие видео: процесс создания безупречного покрытия, ароматный спешелти-кофе и детали интерьера."
+  },
+  "cabinetVideos": [
+    {
+      "id": "vid_default_1",
+      "title": "Макросъемка покрытия Luxio",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-girl-in-a-beauty-salon-doing-manicure-40348-large.mp4",
+      "coverUrl": "",
+      "hidden": false
+    },
+    {
+      "id": "vid_default_2",
+      "title": "Спешелти-кофе для гостей",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-pouring-hot-coffee-into-a-cup-42337-large.mp4",
+      "coverUrl": "",
+      "hidden": false
+    },
+    {
+      "id": "vid_default_3",
+      "title": "Уютная атмосфера лофта",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-burning-candle-in-a-glass-jar-42358-large.mp4",
+      "coverUrl": "",
+      "hidden": false
+    }
+  ],
+  "heroBlock": {
+    "taglineBadge": "Vibe",
+    "titleLine1": "Искусство",
+    "titleLine2": "совершенства",
+    "button1Text": "Записаться в клик",
+    "button2Text": "Меню услуг",
+    "feature1": "100% Стерильность (СанПиН)",
+    "feature2": "Премиум бренды (Luxio)",
+    "posterVol": "",
+    "posterMark": "R",
+    "posterTitleLine1": "Форма.",
+    "posterTitleLine2": "Чистота.",
+    "posterTitleLine3": "эстетика.",
+    "posterDescription": "Философия бережного ухода и совершенной архитектуры ногтей в уединенной атмосфере.",
+    "posterBadge1": "✦ Лежневская, 46",
+    "posterBadge2": "✦ СанПиН Стерильность",
+    "posterBadge3": "✦ Люкс База Luxio",
+    "posterStatus": "Запись ограничена"
+  },
+  "aboutBlock": {
+    "badge": "Философия",
+    "quote": "«Я создаю не просто покрытие, а форму тактильного самовыражения»"
+  },
+  "benefitsBlock": {
+    "badge": "Превосходство",
+    "heading": "Качество вне времени",
+    "description": "Уважение к деталям, высочайшие медицинские стандарты СанПиН и только люксовые европейские материалы."
+  },
+  "beforeAfterBlock": {
+    "badge": "Преображение",
+    "heading": "Трансформация совершенства",
+    "description": "Проведите ползунком для детального изучения ювелирной проработки кутикулы и формы.",
+    "beforeText": "До",
+    "afterText": "После"
+  },
+  "portfolioBlock": {
+    "badge": "Вдохновение & Работы",
+    "heading": "Портфолио & Эстетика",
+    "description": "Коллекция утонченных работ и мгновений чистой красоты из жизни студии."
+  },
+  "priceBlock": {
+    "badge": "Цены & Услуги",
+    "heading": "Меню услуг",
+    "description": "Услуги высочайшего эстетического класса для ваших рук и стоп."
+  },
+  "cozyCabinet": {
+    "title": "Лофт-кабинет Марины",
+    "heading": "Пространство уединенного ухода",
+    "description": "Убежище спокойствия в бурлящем ритме мегаполиса. Каждый сеанс маникюра спроектирован как сеанс любви к себе: в вашем полном распоряжении свежий итальянский кофе, ароматный листовой чай и тишина приватного лофта.",
+    "image": "/public/images/marina_cozy.webp",
+    "features": [
+      "Абсолютное уединение и индивидуальная забота",
+      "Кофе-бар класса спешелти для каждого гостя",
+      "Эксклюзивная палитра редких оттенков Luxio",
+      "Локация в тихом центре города с паркингом"
+    ]
+  },
+  "contactsBlock": {
+    "badge": "Локация & Контакты",
+    "heading": "Контакты и Локация",
+    "description": "Мой уединенный лофт-кабинет расположен в Иваново. Вы сможете с легкостью добраться к нему на любом транспорте.",
+    "chatHeading": "Прямая связь",
+    "chatDescription": "Если у вас есть особые пожелания к процедуре или вы хотите обсудить индивидуальное время, свяжитесь со мной напрямую в мессенджерах."
+  },
+  "footerBlock": {
+    "text": "Искусство чистого маникюра и эксклюзивного ухода.",
+    "copyright": "© 2026 NailsVibe by Marina. Private Nail Studio. All rights reserved."
+  },
+  "stickyCtaText": "Записаться онлайн ✨",
+  "benefits": [
+    {
+      "id": "sterility",
+      "title": "100% Стерильность",
+      "description": "Трехэтапная обработка инструментов по СанПиН. Крафт-пакет вскрывается исключительно при вас.",
+      "icon": "heart"
+    },
+    {
+      "id": "materials",
+      "title": "Премиум материалы",
+      "description": "Работаю на проверенных гипоаллергенных базах и премиальных брендах гель-лаков (Luxio, Uno, NeoNail).",
+      "icon": "shield-check"
+    },
+    {
+      "id": "guarantee",
+      "title": "Гарантия 14 дней",
+      "description": "Я полностью уверена в прочности покрытия и даю честную гарантию на 2 недели. Любой ремонт — бесплатно.",
+      "icon": "badge-check"
+    },
+    {
+      "id": "comfort",
+      "title": "Уютная атмосфера",
+      "description": "Ароматный свежесваренный кофе, авторский чай, сладости и просмотр любимого фильма во время процедуры.",
+      "icon": "heart"
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "name": "Все услуги"
+    },
+    {
+      "id": "manicure",
+      "name": "Маникюр"
+    },
+    {
+      "id": "extensions",
+      "name": "Наращивание"
+    },
+    {
+      "id": "pedicure",
+      "name": "Педикюр"
+    },
+    {
+      "id": "design",
+      "name": "Дизайн и уход"
+    }
+  ],
+  "services": [
+    {
+      "category": "manicure",
+      "name": "Комбинированный маникюр",
+      "price": 1500,
+      "duration": "45 мин",
+      "description": "Ювелирная обработка кутикулы аппаратом и ножницами, придание правильной архитектурной формы свободному краю, нанесение питательного масла с легким массажем.",
+      "image": "/public/images/work_hygiene_manicure.png",
+      "images": [
+        "/public/images/work_hygiene_manicure.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "manicure",
+      "name": "Маникюр с однотонным покрытием Luxio",
+      "price": 2500,
+      "duration": "90 мин",
+      "description": "Бережное снятие старого материала фрезой, комбинированный маникюр, выравнивание ногтевой пластины базой Luxio и покрытие цветом премиум-гель-лака встык к кутикуле.",
+      "popular": true,
+      "image": "/public/images/work_red_luxury.webp",
+      "images": [
+        "/public/images/work_red_luxury.webp",
+        "/public/images/work_nude_chic_new.png"
+      ],
+      "before": "/public/images/demo_before.png",
+      "after": "/public/images/demo_after.png",
+      "beforeText": "До",
+      "afterText": "После",
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "manicure",
+      "name": "Японский эко-маникюр P.Shine",
+      "price": 2200,
+      "duration": "60 мин",
+      "description": "Глянцевание ногтевой пластины минеральной пастой и диатомовой пудрой на основе пчелиного воска. Восстанавливает тонкие и ломкие ногти, придает стойкий зеркальный блеск.",
+      "image": "/public/images/work_japanese_manicure.png",
+      "images": [
+        "/public/images/work_japanese_manicure.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "manicure",
+      "name": "Укрепление ногтей полигелем / акрилом",
+      "price": 600,
+      "duration": "20 мин",
+      "description": "Создание армирующего каркаса на тонких ногтях полигелем или акриловой пудрой. Гарантирует безупречную носку покрытия без трещин и сколов более 4 недель.",
+      "image": "/public/images/work_nail_strengthening.png",
+      "images": [
+        "/public/images/work_nail_strengthening.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "extensions",
+      "name": "Наращивание ногтей (до размера 3)",
+      "price": 3800,
+      "duration": "150 мин",
+      "description": "Моделирование ногтей полигелем или классическим гелем на нижние/верхние формы. Включает комбинированный маникюр, выравнивание архитектуры и покрытие премиум-гель-лаком.",
+      "popular": true,
+      "image": "/public/images/work_extensions_gel.png",
+      "images": [
+        "/public/images/work_extensions_gel.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "extensions",
+      "name": "Коррекция наращенных ногтей",
+      "price": 3000,
+      "duration": "120 мин",
+      "description": "Снятие старого материала, маникюр, поднятие клюющих ногтей, укрепление стрессовой зоны и перекрытие новым цветом.",
+      "image": "/public/images/work_extensions_correction.png",
+      "images": [
+        "/public/images/work_extensions_correction.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "extensions",
+      "name": "Снятие наращенных ногтей с уходом",
+      "price": 1000,
+      "duration": "40 мин",
+      "description": "Деликатное спиливание искусственного материала фрезой с сохранением здоровья натурального ногтя, шлифовка, придание формы и покрытие восстанавливающим лаком.",
+      "image": "/public/images/work_extensions_removal.png",
+      "images": [
+        "/public/images/work_extensions_removal.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "pedicure",
+      "name": "Smart-педикюр (обработка стопы и пальцев без покрытия)",
+      "price": 2800,
+      "duration": "60 мин",
+      "description": "Аппаратная обработка стопы запатентованными Smart-дисками с использованием молекулярного масла, полировка трещин до эффекта зеркальной кожи и уход за кутикулой пальчиков.",
+      "image": "/public/images/work_pedicure_clean.png",
+      "images": [
+        "/public/images/work_pedicure_clean.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "pedicure",
+      "name": "Smart-педикюр с покрытием Luxio",
+      "price": 3800,
+      "duration": "90 мин",
+      "description": "Полный педикюр Smart-дисками, обработка кутикулы и покрытие пальчиков ног гель-лаком Luxio. Включает нанесение увлажняющего крема-свечи с массажем.",
+      "popular": true,
+      "image": "/public/images/work_pedicure_spa.webp",
+      "images": [
+        "/public/images/work_pedicure_spa.webp"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "pedicure",
+      "name": "Экспресс-педикюр (только пальчики с покрытием)",
+      "price": 2600,
+      "duration": "60 мин",
+      "description": "Обработка кутикулы и придание формы ногтям на пальцах ног, обезжиривание и покрытие гель-лаком Luxio (без обработки кожи стоп).",
+      "image": "/public/images/work_express_pedicure.png",
+      "images": [
+        "/public/images/work_express_pedicure.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "design",
+      "name": "Дизайн «Френч» / «Лунный»",
+      "price": 500,
+      "duration": "20 мин",
+      "description": "Идеально прорисованная классическая французская улыбка на всех ногтях.",
+      "popular": true,
+      "image": "/public/images/work_french_white.webp",
+      "images": [
+        "/public/images/work_french_white.webp",
+        "/public/images/work_french_red.webp"
+      ],
+      "before": "/public/images/upload-1780408181077-125033936.jpg",
+      "after": "/public/images/work_french_white.webp",
+      "beforeText": "До",
+      "afterText": "После",
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "design",
+      "name": "Авторский дизайн (1 ноготь)",
+      "price": 200,
+      "duration": "10 мин",
+      "description": "Ручная роспись (абстракция, геометрия, акварель), стемпинг повышенной сложности, градиент или инкрустация кристаллами Swarovski.",
+      "image": "/public/images/work_author_design.png",
+      "images": [
+        "/public/images/work_author_design.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "design",
+      "name": "Парафинотерапия рук (SPA-уход)",
+      "price": 800,
+      "duration": "20 мин",
+      "description": "Питательная маска с натуральными маслами и погружение рук в теплую парафиновую ванночку. Мгновенно смягчает, устраняет шелушение и сухость кожи.",
+      "image": "/public/images/work_paraffin_spa.png",
+      "images": [
+        "/public/images/work_paraffin_spa.png"
+      ],
+      "pullPortfolioImages": true
+    },
+    {
+      "category": "design",
+      "name": "Ремонт / Реставрация одного ногтя",
+      "price": 200,
+      "duration": "10 мин",
+      "description": "Ремонт глубокой трещины с использованием шелка и полигеля, достраивание сломанного угла ногтя или восстановление длины.",
+      "image": "/public/images/work_nail_repair.png",
+      "images": [
+        "/public/images/work_nail_repair.png"
+      ],
+      "pullPortfolioImages": true
+    }
+  ],
+  "beforeAfter": [],
+  "socials": [
+    {
+      "id": "telegram",
+      "name": "Telegram",
+      "url": "https://t.me/marina_nails",
+      "icon": "telegram",
+      "hidden": false
+    },
+    {
+      "id": "whatsapp",
+      "name": "WhatsApp",
+      "url": "https://wa.me/79991234567",
+      "icon": "whatsapp",
+      "hidden": false
+    },
+    {
+      "id": "vk",
+      "name": "ВКонтакте",
+      "url": "https://vk.com/marina_nailsvibe",
+      "icon": "vk",
+      "hidden": false
+    }
+  ],
+  "portfolio": [
+    {
+      "title": "Минималистичный нюд с ровным бликом",
+      "category": "manicure",
+      "image": "/public/images/work_nude_chic_new.png",
+      "images": [
+        "/public/images/work_nude_chic_new.png"
+      ],
+      "service": "Маникюр с однотонным покрытием Luxio"
+    },
+    {
+      "title": "Идеальный классический красный френч",
+      "category": "design",
+      "image": "/public/images/work_french_red.webp",
+      "images": [
+        "/public/images/work_french_red.webp"
+      ],
+      "service": "Дизайн «Френч» / «Лунный»"
+    },
+    {
+      "title": "Глянцевый вишневый Luxio на миндале",
+      "category": "manicure",
+      "image": "/public/images/work_red_luxury.webp",
+      "images": [
+        "/public/images/work_red_luxury.webp"
+      ],
+      "service": "Маникюр с однотонным покрытием Luxio"
+    },
+    {
+      "title": "Smart-педикюр с покрытием Luxio",
+      "category": "pedicure",
+      "image": "/public/images/work_pedicure_spa.webp",
+      "images": [
+        "/public/images/work_pedicure_spa.webp"
+      ],
+      "service": "Smart-педикюр с покрытием Luxio"
+    },
+    {
+      "title": "Классический белый френч на миндале",
+      "category": "design",
+      "image": "/public/images/work_french_white.webp",
+      "images": [
+        "/public/images/work_french_white.webp"
+      ],
+      "service": "Дизайн «Френч» / «Лунный»"
+    },
+    {
+      "title": "Моделирование длинных ногтей гелем",
+      "category": "extensions",
+      "image": "/public/images/work_extensions_gel.png",
+      "images": [
+        "/public/images/work_extensions_gel.png"
+      ],
+      "service": "Наращивание ногтей (до размера 3)"
+    },
+    {
+      "title": "Коррекция формы и архитектуры ногтей",
+      "category": "extensions",
+      "image": "/public/images/work_extensions_correction.png",
+      "images": [
+        "/public/images/work_extensions_correction.png"
+      ],
+      "service": "Коррекция наращенных ногтей"
+    },
+    {
+      "title": "Smart-педикюр с глубоким очищением кожи",
+      "category": "pedicure",
+      "image": "/public/images/work_pedicure_clean.png",
+      "images": [
+        "/public/images/work_pedicure_clean.png"
+      ],
+      "service": "Smart-педикюр (обработка стопы и пальцев без покрытия)"
+    },
+    {
+      "title": "Японский эко-маникюр P.Shine",
+      "category": "manicure",
+      "image": "/public/images/work_japanese_manicure.png",
+      "images": [
+        "/public/images/work_japanese_manicure.png"
+      ],
+      "service": "Японский эко-маникюр P.Shine"
+    },
+    {
+      "title": "Парафинотерапия и SPA-уход для рук",
+      "category": "design",
+      "image": "/public/images/work_paraffin_spa.png",
+      "images": [
+        "/public/images/work_paraffin_spa.png"
+      ],
+      "service": "Парафинотерапия рук (SPA-уход)"
+    },
+    {
+      "title": "Авторская роспись с золотым акцентом",
+      "category": "design",
+      "image": "/public/images/work_author_design.png",
+      "images": [
+        "/public/images/work_author_design.png"
+      ],
+      "service": "Авторский дизайн (1 ноготь)"
+    }
+  ],
+  "reviewsBlock": {
+    "badge": "Отзывы гостей",
+    "heading": "Ваши впечатления",
+    "description": "Искренние отзывы гостей моего лофт-кабинета о качестве и атмосфере процедур."
+  },
+  "yandexWidgetId": "",
+  "reviews": [
+    {
+      "id": "imported_dkd_jtc0z08by",
+      "name": "Алёна Ткаченко",
+      "text": "Мариночка, спасибо огромное за твою работу! Всегда все качественно, красиво и крепко💋",
+      "rating": 5,
+      "date": "2025-11-09",
+      "source": "dikidi",
+      "hidden": false
+    },
+    {
+      "id": "imported_dkd_ay5i633mp",
+      "name": "Залина",
+      "text": "Супер-мастер! Мариночка работает очень профессионально. Действительно, по времени маникюр занимает больше 2-х часов, но зато всё будет идеально.",
+      "rating": 5,
+      "date": "2025-12-17",
+      "source": "dikidi",
+      "hidden": false
+    },
+    {
+      "id": "imported_dkd_lsif0uw2f",
+      "name": "Яна",
+      "text": "🥰",
+      "rating": 5,
+      "date": "2026-02-11",
+      "source": "dikidi",
+      "hidden": false
+    },
+    {
+      "id": "imported_dkd_s6bj29l5h",
+      "name": "Шарапова Диана",
+      "text": "Замечательный мастер,миллион раз спасибо за маникюр,ни разу не пожалела,что пошла именно к Марине!",
+      "rating": 5,
+      "date": "2026-02-28",
+      "source": "dikidi",
+      "hidden": false
+    },
+    {
+      "id": "imported_dkd_7ghqbslb2",
+      "name": "Дина",
+      "text": "Самая лучшая Марина 🤍",
+      "rating": 5,
+      "date": "2026-05-12",
+      "source": "dikidi",
+      "hidden": false
+    },
+    {
+      "id": "rev_default_1",
+      "name": "Алина",
+      "text": "Марина — лучший мастер маникюра в Иваново! Чистота кутикулы просто ювелирная, а покрытие Luxio держится больше 4 недель без единого скола. В кабинете всегда очень уютно, вкусный кофе и приятные фильмы.",
+      "rating": 5,
+      "date": "2026-05-20",
+      "source": "dikidi",
+      "hidden": false
+    },
+    {
+      "name": "Екатерина",
+      "text": "Очень нравится уединенная атмосфера лофт-кабинета. Никакой суеты салонов, только ты и мастер. Маникюр всегда идеальный, инструменты вскрываются при мне. Хожу уже полгода и очень довольна!",
+      "rating": 5,
+      "date": "2026-05-15",
+      "source": "yandex",
+      "hidden": false
+    }
+  ],
+  "hiddenElements": {
+    "beforeAfterBlock_slider": false,
+    "heroBlock_posterVol": true
+  },
+  "priceHelper": {
+    "bookingUrl": "",
+    "modalTitle": "Услуги скопированы",
+    "modalDescription": "Список выбранных процедур успешно скопирован в буфер обмена:",
+    "modalHelpText": "В открывшемся виджете DIKIDI выберите эти услуги вручную для подтверждения времени и деталей процедуры.",
+    "modalButtonText": "Перейти к онлайн-записи"
+  },
+  "faq": [
+    {
+      "id": "faq_default_1",
+      "question": "Сколько держится покрытие гель-лаком?",
+      "answer": "Благодаря использованию премиальных баз и строгому соблюдению технологии подготовки ногтевой пластины, покрытие Luxio стабильно держится более 4 недель без сколов и отслоек. Однако из соображений здоровья ногтей мы рекомендуем делать коррекцию каждые 3-4 недели.",
+      "hidden": false
+    },
+    {
+      "id": "faq_default_2",
+      "question": "Как проходит стерилизация инструментов?",
+      "answer": "Безопасность гостей — наш абсолютный приоритет. Все инструменты проходят 3-этапную обработку по стандартам СанПиН: 1) дезинфекция в специальном растворе, 2) ультразвуковая и ручная очистка, 3) стерилизация в сертифицированном сухожаровом шкафу ГП-10 при температуре 180°C. Крафт-пакет с индикатором стерильности вскрывается исключительно при вас.",
+      "hidden": false
+    },
+    {
+      "id": "faq_default_3",
+      "question": "Что делать, если покрытие случайно повредилось?",
+      "answer": "Мы уверены в качестве своей работы, поэтому предоставляем честную 14-дневную гарантию на покрытие. Если в течение этого срока появится скол или трещина, мы выполним ремонт поврежденного ногтя абсолютно бесплатно. Просто напишите нам в мессенджеры.",
+      "hidden": false
+    },
+    {
+      "id": "faq_default_4",
+      "question": "Можно ли делать педикюр при наличии проблем с ногтями?",
+      "answer": "Мы выполняем эстетический педикюр. При наличии грибковых поражений ногтей, глубоких трещин или вросших ногтей в воспаленной стадии мы рекомендуем сначала обратиться к профильному специалисту — подологу. Безопасность и здоровье ваших стоп важнее всего.",
+      "hidden": false
+    }
+  ],
+  "tips": [
+    {
+      "id": "tip_default_1",
+      "title": "Как продлить жизнь покрытию гель-лаком",
+      "content": "В первые 48 часов после процедуры избегайте длительного контакта с горячей водой (сауна, баня, горячая ванна). Используйте резиновые перчатки при домашней уборке с бытовой химией.",
+      "category": "Уход за покрытием",
+      "hidden": false
+    },
+    {
+      "id": "tip_default_2",
+      "title": "Как избавиться от сухости кутикулы",
+      "content": "Наносите специальное масло для кутикулы каждый вечер перед сном. Это не только увлажняет кожу, но и делает само покрытие более гибким, предотвращая отслойки.",
+      "category": "Увлажнение",
+      "hidden": false
+    },
+    {
+      "id": "tip_default_3",
+      "title": "Почему нельзя самостоятельно снимать гель-лак",
+      "content": "Сдирание покрытия «всухую» травмирует верхний слой ногтевой пластины, делая её тонкой и слоящейся. Безопасное снятие фрезой занимает всего 10 минут и сохраняет здоровье ногтей.",
+      "category": "Безопасность",
+      "hidden": false
+    },
+    {
+      "id": "tip_default_4",
+      "title": "Секрет идеальной формы ногтей",
+      "content": "При подпиливании ногтей дома держите пилочку под углом 90 градусов к торцу и двигайтесь в одном направлении, чтобы избежать расслоения торцов ногтевой пластины.",
+      "category": "Лайфхак",
+      "hidden": false
+    }
+  ]
+}

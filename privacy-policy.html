@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth select-none overflow-x-hidden w-full max-w-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>Политика конфиденциальности — NailsVibe</title>
+    <meta name="description" content="Политика в отношении обработки персональных данных студии NailsVibe. Соответствие ФЗ-152 РФ.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    
+    <style type="text/tailwindcss">
+        @theme {
+            --color-brand-cream: #FDFBF7;
+            --color-brand-sand: #F5EFEB;
+            --color-brand-rose: #D59C8C;
+            --color-brand-rose-dark: #B57F71;
+            --color-brand-gold: #C5A282;
+            --color-brand-charcoal: #1C1615;
+            --color-brand-lightrose: #F9F1ED;
+            
+            --font-serif: "Cormorant Garamond", Georgia, serif;
+            --font-sans: "Outfit", sans-serif;
+        }
+
+        body {
+            background-color: var(--color-brand-cream);
+            color: var(--color-brand-charcoal);
+            font-family: var(--font-sans);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        html.dark {
+            --color-brand-cream: #120E0D;
+            --color-brand-lightrose: #1A1413;
+            --color-brand-sand: #29201E;
+            --color-brand-charcoal: #FDFBF7;
+            --color-brand-rose: #E5A899;
+            --color-brand-gold: #D8B697;
+        }
+
+        h1, h2, h3, .font-serif-custom {
+            font-family: var(--font-serif);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-brand-cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-brand-gold);
+            border-radius: 9999px;
+        }
+    </style>
+
+    <!-- Auto Theme Switcher -->
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="relative min-h-screen overflow-x-hidden w-full max-w-full py-12 px-4 sm:px-8">
+
+    <div class="fixed inset-0 z-50 pointer-events-none opacity-[0.045]" 
+         style="background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');">
+    </div>
+
+    <div class="max-w-3xl w-full mx-auto space-y-12 px-2 sm:px-0">
+        <!-- Header -->
+        <header class="border-b border-brand-sand dark:border-brand-sand/10 pb-8 text-center space-y-4">
+            <a href="/" class="inline-block text-sm font-bold tracking-[0.2em] text-brand-rose uppercase hover:text-brand-charcoal transition-colors">
+                ← На главную
+            </a>
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-light font-serif tracking-tight text-brand-charcoal dark:text-white uppercase mt-4">
+                Политика конфиденциальности
+            </h1>
+            <p class="text-xs uppercase tracking-widest text-brand-gold dark:text-brand-gold font-bold">
+                В отношении обработки персональных данных (ФЗ № 152-ФЗ)
+            </p>
+        </header>
+
+        <!-- Content -->
+        <main class="space-y-8 text-sm text-brand-charcoal/80 leading-relaxed font-light tracking-wide">
+            <section class="space-y-4">
+                <h2 class="text-xl sm:text-2xl font-light font-serif text-brand-charcoal dark:text-white uppercase">1. Общие положения</h2>
+                <p>Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые студией <strong>NailsVibe</strong> (далее — Оператор).</p>
+                <p>1.1. Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.</p>
+                <p>1.2. Настоящая Политика Оператора в отношении обработки персональных данных применяется ко всей информации, которую Оператор может получить о посетителях веб-сайта.</p>
+            </section>
+
+            <section class="space-y-4">
+                <h2 class="text-xl sm:text-2xl font-light font-serif text-brand-charcoal dark:text-white uppercase">2. Основные понятия, используемые в Политике</h2>
+                <p>2.1. Автоматизированная обработка персональных данных — обработка персональных данных с помощью средств вычислительной техники.</p>
+                <p>2.2. Блокирование персональных данных — временное прекращение обработки персональных данных (за исключением случаев, если обработка необходима для уточнения персональных данных).</p>
+                <p>2.3. Персональные данные — любая информация, относящаяся прямо или косвенно к определенному или определяемому физическому лицу (субъекту персональных данных).</p>
+                <p>2.4. Пользователь — любой посетитель веб-сайта NailsVibe.</p>
+                <p>2.5. Предоставление персональных данных — действия, направленные на раскрытие персональных данных определенному лицу или определенному кругу лиц.</p>
+            </section>
+
+            <section class="space-y-4">
+                <h2 class="text-xl sm:text-2xl font-light font-serif text-brand-charcoal dark:text-white uppercase">3. Какие персональные данные мы обрабатываем</h2>
+                <p>Оператор может обрабатывать следующие персональные данные Пользователя:</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Фамилия, имя, отчество;</li>
+                    <li>Номер телефона;</li>
+                    <li>Адрес электронной почты;</li>
+                    <li>Данные об онлайн-записи и выбранных услугах.</li>
+                </ul>
+                <p>Также на сайте происходит сбор и обработка обезличенных данных о посетителях (в т.ч. файлов «cookie») с помощью сервисов интернет-статистики (Яндекс Метрика и др.).</p>
+            </section>
+
+            <section class="space-y-4">
+                <h2 class="text-xl sm:text-2xl font-light font-serif text-brand-charcoal dark:text-white uppercase">4. Цели обработки персональных данных</h2>
+                <p>4.1. Цель обработки персональных данных Пользователя — предоставление доступа Пользователю к сервисам онлайн-записи (в том числе DIKIDI Online), информирование о деталях записи, подтверждение времени визита и оказание услуг маникюра/ухода.</p>
+                <p>4.2. Также Оператор имеет право направлять Пользователю уведомления о новых услугах, специальных предложениях и различных событиях. Пользователь всегда может отказаться от получения информационных сообщений.</p>
+            </section>
+
+            <section class="space-y-4">
+                <h2 class="text-xl sm:text-2xl font-light font-serif text-brand-charcoal dark:text-white uppercase">5. Правовые основания обработки персональных данных</h2>
+                <p>5.1. Персональные данные Пользователя обрабатываются только в случае их заполнения и/или отправки Пользователем самостоятельно через специальные формы на сайте или при записи через интегрированный виджет DIKIDI.</p>
+                <p>5.2. Отправляя свои персональные данные Оператору, Пользователь выражает свое согласие с данной Политикой.</p>
+                <p>5.3. Оператор обрабатывает обезличенные данные о Пользователе в случае, если это разрешено в настройках браузера Пользователя (включено сохранение файлов «cookie» и использование технологии JavaScript).</p>
+            </section>
+
+            <section class="space-y-4">
+                <h2 class="text-xl sm:text-2xl font-light font-serif text-brand-charcoal dark:text-white uppercase">6. Порядок сбора, хранения, передачи и других видов обработки персональных данных</h2>
+                <p>Безопасность персональных данных, которые обрабатываются Оператором, обеспечивается путем реализации правовых, организационных и технических мер, необходимых для выполнения в полном объеме требований действующего законодательства в области защиты персональных данных.</p>
+                <p>6.1. Оператор обеспечивает сохранность персональных данных и принимает все возможные меры, исключающие доступ к персональным данным неуполномоченных лиц.</p>
+                <p>6.2. Персональные данные Пользователя никогда, ни при каких условиях не будут переданы третьим лицам, за исключением случаев, связанных с исполнением действующего законодательства либо в целях обеспечения записи через сервис DIKIDI.</p>
+                <p>6.3. Срок обработки персональных данных является неограниченным. Пользователь может в любой момент отозвать свое согласие на обработку персональных данных, направив Оператору уведомление посредством электронной почты или мессенджеров.</p>
+            </section>
+
+            <section class="space-y-4">
+                <h2 class="text-xl sm:text-2xl font-light font-serif text-brand-charcoal dark:text-white uppercase">7. Заключительные положения</h2>
+                <p>7.1. Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его персональных данных, обратившись к Оператору по указанным на сайте контактам.</p>
+                <p>7.2. В данном документе будут отражены любые изменения политики обработки персональных данных Оператором. Политика действует бессрочно до замены ее новой версией.</p>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-brand-sand dark:border-brand-sand/10 pt-8 text-center">
+            <p class="text-xs text-brand-charcoal/50 dark:text-brand-charcoal/40">
+                NailsVibe Studio • Иваново, Лежневская, 46
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

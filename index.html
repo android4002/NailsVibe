@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="ru" class="select-none overflow-x-hidden max-w-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- SEO Optimization -->
+    <title>NailsVibe — Эксклюзивная эстетика маникюра от Марины</title>
+    <meta name="description" content="Анти-ай-дизайн, высокая эстетика и безупречный стиль ваших ногтей. Профессиональный маникюр в уединенном кабинете в Иваново. Запишитесь онлайн!">
+    <meta name="keywords" content="маникюр иваново, премиум маникюр иваново, дизайн ногтей, люксовый маникюр, мастер марина, лежневская 46, nailsvibe, cormorant manicure">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="NailsVibe — Премиальная эстетика маникюра">
+    <meta property="og:description" content="Уникальный печатный дизайн и безупречный уход за вашими руками в Иваново.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dkd.su/1433946">
+    
+    <!-- Distinctive High-Fashion Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical fonts to prevent FOUT (Flash of Unstyled Text) -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKky2F7i6C.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtMmSqn7B6DxjY.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon bypass to prevent 404 console errors -->
+    <link rel="icon" href="data:,">
+    
+    <!-- Yandex Maps API (v2.1) -->
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    
+    <!-- NailsVibe Main Logic -->
+    <script defer src="/src/main.js?v=2.6.0"></script>
+    
+    <!-- Alpine.js Plugins -->
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js CDN -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- High-End Theme Styles -->
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        @theme {
+            --color-brand-cream: #FDFBF7;
+            --color-brand-sand: #F5EFEB;
+            --color-brand-rose: #D59C8C;
+            --color-brand-rose-dark: #B57F71;
+            --color-brand-gold: #C5A282;
+            --color-brand-charcoal: #1C1615;
+            --color-brand-lightrose: #F9F1ED;
+            
+            --font-serif: "Cormorant Garamond", Georgia, serif;
+            --font-sans: "Outfit", sans-serif;
+        }
+
+        :root {
+            --color-brand-cream: #FDFBF7;
+            --color-brand-sand: #F5EFEB;
+            --color-brand-rose: #D59C8C;
+            --color-brand-rose-dark: #B57F71;
+            --color-brand-gold: #C5A282;
+            --color-brand-charcoal: #1C1615;
+            --color-brand-lightrose: #F9F1ED;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-brand-cream);
+            color: var(--color-brand-charcoal);
+            font-family: var(--font-sans);
+        }
+
+        h1, h2, h3, .font-serif-custom {
+            font-family: var(--font-serif);
+        }
+
+        /* Custom Elegant Page Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-brand-cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-brand-gold);
+            border-radius: 9999px;
+        }
+
+        /* Safe area support for newer iPhones */
+        .safe-bottom {
+            padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        }
+
+        /* Staggered page load reveals */
+        @keyframes revealUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-reveal-up {
+            animation: revealUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Breathing vertical drifting keyframes */
+        @keyframes floatBreath {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-8px) scale(1.01);
+            }
+        }
+
+        .animate-float-breath {
+            animation: floatBreath 8s ease-in-out infinite;
+        }
+
+        /* Clean Yandex Map: hide logo, copyright, and API promo tags */
+        #yandex-map [class*="copyright"], 
+        #yandex-map [class*="promo"],
+        #yandex-map [class*="logo"] {
+            display: none !important;
+        }
+
+        /* Transition-all for theme switching */
+        body, header, main, section, footer, div, p, span, a, button, h1, h2, h3, h4, iframe, img, svg {
+            transition-property: background-color, border-color, text-color, fill, stroke, box-shadow, opacity;
+            transition-duration: 500ms;
+            transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Dark Theme Variables */
+        html.dark {
+            --color-brand-cream: #120E0D;
+            --color-brand-lightrose: #1A1413;
+            --color-brand-sand: #29201E;
+            --color-brand-charcoal: #FDFBF7;
+            --color-brand-rose: #E5A899;
+            --color-brand-gold: #D8B697;
+        }
+
+        /* Specific dark overrides */
+        html.dark body {
+            background-color: var(--color-brand-cream);
+            color: var(--color-brand-charcoal);
+        }
+
+        /* Bento cards, reviews cards, photo cards and modals */
+        html.dark .bg-white {
+            background-color: #1A1413 !important;
+            color: var(--color-brand-charcoal) !important;
+        }
+
+        /* Frosted glass poster / slider adjustments */
+        html.dark .bg-white\/40 {
+            background-color: rgba(26, 20, 19, 0.45) !important;
+        }
+
+        html.dark .border-white\/60 {
+            border-color: rgba(253, 251, 247, 0.15) !important;
+        }
+
+        /* Dropdowns, popup dialogs */
+        html.dark .bg-white\/20 {
+            background-color: rgba(253, 251, 247, 0.08) !important;
+        }
+
+        /* Highlight popular items card */
+        html.dark .bg-white.border-brand-rose\/35 {
+            background-color: #231C1A !important;
+            border-color: rgba(229, 168, 153, 0.5) !important;
+        }
+
+        /* Text colors override for secondary elements */
+        html.dark .text-brand-charcoal\/75 {
+            color: rgba(253, 251, 247, 0.75) !important;
+        }
+        html.dark .text-brand-charcoal\/80 {
+            color: rgba(253, 251, 247, 0.8) !important;
+        }
+        html.dark .text-brand-charcoal\/70 {
+            color: rgba(253, 251, 247, 0.7) !important;
+        }
+        html.dark .text-brand-charcoal\/60 {
+            color: rgba(253, 251, 247, 0.6) !important;
+        }
+        html.dark .text-brand-charcoal\/50 {
+            color: rgba(253, 251, 247, 0.5) !important;
+        }
+        html.dark .text-brand-charcoal\/40 {
+            color: rgba(253, 251, 247, 0.4) !important;
+        }
+        html.dark .text-brand-charcoal\/85 {
+            color: rgba(253, 251, 247, 0.85) !important;
+        }
+
+        /* Inputs / active elements borders */
+        html.dark .border-brand-sand\/40 {
+            border-color: rgba(41, 32, 30, 0.4) !important;
+        }
+        html.dark .border-brand-sand\/50 {
+            border-color: rgba(41, 32, 30, 0.5) !important;
+        }
+        html.dark .border-brand-sand\/60 {
+            border-color: rgba(41, 32, 30, 0.6) !important;
+        }
+
+        /* Dark glassmorphic header capsule */
+        html.dark header.bg-brand-cream\/80 {
+            background-color: rgba(18, 14, 13, 0.8) !important;
+            border-color: rgba(253, 251, 247, 0.1) !important;
+        }
+        html.dark header.bg-brand-cream\/50 {
+            background-color: rgba(18, 14, 13, 0.5) !important;
+            border-color: rgba(253, 251, 247, 0.05) !important;
+        }
+
+        /* Shadows in dark mode */
+        html.dark .shadow-sm, 
+        html.dark .shadow-md, 
+        html.dark .shadow-lg, 
+        html.dark .shadow-2xl {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* Dark mode buttons and hovers override */
+        html.dark .bg-brand-charcoal {
+            background-color: #29201E !important;
+            color: #FDFBF7 !important;
+        }
+
+        /* Guarantee readable text colors for all buttons in dark mode */
+        html.dark button, 
+        html.dark a.button {
+            color: #FDFBF7 !important;
+        }
+
+        /* Active category buttons in dark theme (Portfolio & Services) */
+        html.dark button.bg-brand-charcoal {
+            background-color: var(--color-brand-rose) !important;
+            color: #120E0D !important;
+            border-color: var(--color-brand-rose) !important;
+        }
+
+        /* Non-active category buttons in dark theme (Portfolio & Services) */
+        html.dark button.border-brand-sand,
+        html.dark a.border-brand-sand {
+            background-color: #1A1413 !important;
+            color: rgba(253, 251, 247, 0.7) !important;
+            border-color: #29201E !important;
+        }
+        
+        /* Non-active buttons hover in dark theme */
+        html.dark button.border-brand-sand:hover,
+        html.dark a.border-brand-sand:hover {
+            background-color: var(--color-brand-rose) !important;
+            color: #120E0D !important;
+            border-color: var(--color-brand-rose) !important;
+        }
+        
+        /* Hover overrides to ensure readability on all interactive elements in dark theme */
+        html.dark .hover\:bg-brand-charcoal:hover {
+            background-color: var(--color-brand-rose) !important;
+            color: #120E0D !important;
+            border-color: var(--color-brand-rose) !important;
+        }
+        
+        html.dark .hover\:bg-brand-rose:hover {
+            background-color: var(--color-brand-rose) !important;
+            color: #120E0D !important;
+        }
+        
+        html.dark .hover\:bg-white:hover {
+            background-color: var(--color-brand-rose) !important;
+            color: #120E0D !important;
+        }
+
+        html.dark .hover\:text-brand-charcoal:hover {
+            color: #120E0D !important;
+        }
+        
+        html.dark .hover\:border-brand-charcoal:hover {
+            border-color: var(--color-brand-rose) !important;
+        }
+
+        /* Footer always dark in both themes */
+        footer, html.dark footer {
+            background-color: #120E0D !important;
+            color: rgba(253, 251, 247, 0.5) !important;
+        }
+        footer span, html.dark footer span,
+        footer a, html.dark footer a,
+        footer p, html.dark footer p {
+            color: rgba(253, 251, 247, 0.6) !important;
+        }
+        footer a:hover, html.dark footer a:hover {
+            color: var(--color-brand-rose) !important;
+        }
+        footer .text-white, html.dark footer .text-white {
+            color: #FDFBF7 !important;
+        }
+
+        /* Soften grain intensity in dark theme to remove pixelated/low-res appearance */
+        html.dark #grain-overlay {
+            opacity: 0.012 !important;
+        }
+
+        .before-after-toggle-btn:hover {
+            color: var(--color-brand-charcoal) !important;
+        }
+        html.dark .before-after-toggle-btn:hover {
+            color: #ffffff !important;
+        }
+    </style>
+
+    <style>
+        /* Fallback CSS to override any Tailwind CDN compiling bugs with dark/light themes */
+        :root {
+            --color-brand-cream: #FDFBF7;
+            --color-brand-sand: #F5EFEB;
+            --color-brand-rose: #D59C8C;
+            --color-brand-rose-dark: #B57F71;
+            --color-brand-gold: #C5A282;
+            --color-brand-charcoal: #1C1615;
+            --color-brand-lightrose: #F9F1ED;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .text-brand-charcoal {
+            color: var(--color-brand-charcoal) !important;
+        }
+
+        /* Fallbacks for charcoal opacity text classes in light theme (RGB: 28, 22, 21) */
+        .text-brand-charcoal\/85 { color: rgba(28, 22, 21, 0.85) !important; }
+        .text-brand-charcoal\/80 { color: rgba(28, 22, 21, 0.80) !important; }
+        .text-brand-charcoal\/75 { color: rgba(28, 22, 21, 0.75) !important; }
+        .text-brand-charcoal\/70 { color: rgba(28, 22, 21, 0.70) !important; }
+        .text-brand-charcoal\/60 { color: rgba(28, 22, 21, 0.60) !important; }
+        .text-brand-charcoal\/50 { color: rgba(28, 22, 21, 0.50) !important; }
+        .text-brand-charcoal\/40 { color: rgba(28, 22, 21, 0.40) !important; }
+
+        /* Fallbacks for charcoal opacity text classes in dark theme (RGB: 253, 251, 247) */
+        html.dark .text-brand-charcoal\/85 { color: rgba(253, 251, 247, 0.85) !important; }
+        html.dark .text-brand-charcoal\/80 { color: rgba(253, 251, 247, 0.80) !important; }
+        html.dark .text-brand-charcoal\/75 { color: rgba(253, 251, 247, 0.75) !important; }
+        html.dark .text-brand-charcoal\/70 { color: rgba(253, 251, 247, 0.70) !important; }
+        html.dark .text-brand-charcoal\/60 { color: rgba(253, 251, 247, 0.60) !important; }
+        html.dark .text-brand-charcoal\/50 { color: rgba(253, 251, 247, 0.50) !important; }
+        html.dark .text-brand-charcoal\/40 { color: rgba(253, 251, 247, 0.40) !important; }
+    </style>
+
+
+</head>
+<body x-data="nailsApp" class="relative min-h-screen overflow-x-hidden">
+
+    <div id="grain-overlay" class="fixed inset-0 z-50 pointer-events-none opacity-[0.045]" 
+         style="background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');">
+    </div>
+
+    <!-- Custom Elegant Cursor Elements (Hidden on mobile) -->
+    <!-- Loading Screen (Editorial Transition) -->
+    <div x-show="isLoading" class="fixed inset-0 z-50 flex items-center justify-center bg-brand-cream transition-opacity duration-700">
+        <div class="text-center space-y-4">
+            <h2 class="text-3xl font-light font-serif tracking-widest text-brand-charcoal animate-pulse">Эстетика совершенства</h2>
+            <div class="w-24 h-[1px] bg-brand-gold/40 mx-auto"></div>
+            <p class="text-xs uppercase tracking-widest text-brand-rose font-medium">Загрузка цифрового журнала...</p>
+        </div>
+    </div>
+
+    <!-- Top Luxury Announcement Bar -->
+    <div class="w-full bg-[#1C1615] text-[#FDFBF7] dark:bg-brand-sand dark:text-brand-charcoal py-2.5 px-4 text-center text-[8px] sm:text-[9px] tracking-[0.2em] font-bold uppercase relative z-30 flex justify-center items-center gap-1.5" x-show="contacts.phone">
+        <span>Остались вопросы? Позвоните нам:</span>
+        <a :href="'tel:8' + contacts.phoneFormatted.slice(1)" class="text-brand-rose hover:text-white dark:hover:text-brand-rose transition-colors font-extrabold" x-text="contacts.phone"></a>
+    </div>
+
+    <!-- Floating Navigation Header (Pinterest Glassmorphic Capsule Style) -->
+    <header class="fixed left-1/2 -translate-x-1/2 z-40 transition-all duration-500 w-[92%] max-w-6xl rounded-full bg-brand-cream/85 dark:bg-brand-cream/90 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-md"
+            :class="scrollYOffset > 80 ? 'top-3 py-1.5 px-4 md:top-3 md:py-1.5 md:px-6' : 'top-12 py-1.5 px-4 md:top-14 md:py-3 md:px-8'">
+        <div class="w-full flex items-center justify-between h-14 gap-4">
+            <a href="#" class="flex items-center shrink-0 whitespace-nowrap">
+                <span class="text-xl font-light tracking-[0.2em] text-brand-charcoal font-serif uppercase whitespace-nowrap">
+                    Nails<span class="text-brand-rose italic font-serif lowercase whitespace-nowrap">vibe</span>
+                </span>
+            </a>
+            
+            <div class="flex items-center gap-4 md:gap-6">
+                <nav class="hidden md:flex items-center md:gap-x-2.5 lg:gap-x-4 xl:gap-x-6 text-[9px] lg:text-[10px] xl:text-[11px] font-bold tracking-wider lg:tracking-widest text-brand-charcoal/80 uppercase shrink-0">
+                    <template x-for="blockKey in blocksOrder" :key="blockKey">
+                        <template x-if="blocksVisibility[blockKey]">
+                            <a :href="blockKey === 'beforeAfter' ? '#slider-section' : '#' + blockKey" 
+                               class="hover:text-brand-rose transition-colors duration-300 relative py-1 group">
+                                <span x-text="{
+                                    hero: 'Главная',
+                                    about: 'Обо мне',
+                                    benefits: 'Эстетика',
+                                    beforeAfter: 'Трансформация',
+                                    portfolio: 'Портфолио',
+                                    price: 'Услуги',
+                                    cozyCabinet: 'Кабинет',
+                                    reviews: 'Отзывы',
+                                    contacts: 'Контакты'
+                                }[blockKey]"></span>
+                                <span class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-brand-rose group-hover:w-full transition-all duration-300"></span>
+                            </a>
+                        </template>
+                    </template>
+                </nav>
+
+                <!-- Theme Toggle Button (Luxury Style) -->
+                <button @click="toggleTheme()" 
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-brand-sand/60 hover:border-brand-rose flex items-center justify-center text-brand-charcoal hover:text-brand-rose transition-all duration-500 cursor-pointer focus:outline-none shrink-0 mr-1 md:mr-0 ml-2 md:ml-4"
+                        :title="isDark ? 'Включить Дневной журнал' : 'Включить Ночной лофт'">
+                    <!-- Sun Icon (visible in dark theme) -->
+                    <svg x-show="isDark" class="w-4 h-4 text-brand-rose" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"/>
+                    </svg>
+                    <!-- Moon Icon (visible in light theme) -->
+                    <svg x-show="!isDark" class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                    </svg>
+                </button>
+            </div>
+    </header>
+
+    <main class="relative flex flex-col w-full overflow-x-hidden">
+            
+    <!-- Hero Section (High-Fashion Asymmetric Layout with Grid-Breaking Layering) -->
+    <section id="hero" class="relative pt-28 pb-8 lg:pt-36 lg:pb-12 flex items-center bg-brand-cream z-20" 
+             x-show="blocksVisibility.hero"
+             :style="'order: ' + blocksOrder.indexOf('hero')">
+        <!-- Luxury Dynamic light meshes in background -->
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <div id="glow-sphere-1" class="absolute top-[10%] left-[5%] w-[450px] h-[450px] bg-brand-lightrose rounded-full blur-[140px] opacity-70 transition-transform duration-[3s] ease-out"></div>
+            <div id="glow-sphere-2" class="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-brand-lightrose rounded-full blur-[160px] opacity-60 transition-transform duration-[4s] ease-out"></div>
+        </div>
+        
+        <div class="w-[92%] max-w-7xl mx-auto px-4 z-10 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full z-10">
+                <div class="hidden lg:block lg:col-span-1 border-r border-brand-gold/25 h-72 text-left pr-4"
+                     x-show="!hiddenElements.heroBlock_leftMargin">
+                    <p class="text-[10px] uppercase font-bold tracking-[0.3em] text-brand-gold/70 vertical-text origin-top-left translate-y-72 rotate-[-90deg] whitespace-nowrap">
+                        ЭСТЕТИКА И БЕЗУПРЕЧНЫЙ СТИЛЬ • ПРИВАТНЫЙ КАБИНЕТ
+                    </p>
+                </div>
+                
+                <!-- Hero Content Column (Vogue Cover Title Placement) -->
+                <div class="lg:col-span-6 space-y-8 text-center lg:text-left z-10 relative animate-reveal-up" style="animation-delay: 150ms;">
+                    <div class="inline-flex items-center gap-3 px-0 py-1 border-b border-brand-rose/40 text-brand-rose text-xs font-semibold tracking-[0.25em] uppercase"
+                         x-show="!hiddenElements.heroBlock_taglineBadge"
+                         x-text="heroBlock.taglineBadge || '⭐️ Искусство совершенства'">
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl md:text-8xl font-light tracking-tight text-brand-charcoal leading-[0.9] font-serif uppercase"
+                        x-show="!hiddenElements.heroBlock_title">
+                        <span x-text="heroBlock.titleLine1 || 'Искусство'"></span> <br>
+                        <span class="text-brand-rose italic lowercase font-serif pl-8 md:pl-20" x-text="heroBlock.titleLine2 || 'совершенства'"></span>
+                    </h1>
+                    
+                    <p class="text-base text-brand-charcoal/75 max-w-lg font-light leading-relaxed tracking-wide"
+                       x-show="!hiddenElements.heroBlock_tagline"
+                       x-text="tagline || heroBlock.posterDescription || 'Утонченный авторский маникюр и терапия ухода за ногтями от топ-мастера Марины.'">
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center gap-4 pt-4"
+                         x-show="!hiddenElements.heroBlock_button1 || !hiddenElements.heroBlock_button2">
+                        <a :href="heroBlock.button1Link || bookingUrlApp" target="_blank" @click="reachMetrikaGoal('click_booking')" class="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 bg-brand-rose text-white text-xs font-bold tracking-[0.2em] uppercase transition-all duration-500 hover:bg-brand-charcoal hover:shadow-xl shadow-brand-rose/25 rounded-none"
+                           x-show="!hiddenElements.heroBlock_button1"
+                           x-text="heroBlock.button1Text || 'Записаться в один клик'">
+                        </a>
+                        <a :href="heroBlock.button2Link || '#price'" class="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 border border-brand-charcoal/20 text-brand-charcoal text-xs font-bold tracking-[0.2em] uppercase transition-all duration-500 hover:border-brand-charcoal hover:bg-brand-charcoal hover:text-white rounded-none"
+                           x-show="!hiddenElements.heroBlock_button2"
+                           x-text="heroBlock.button2Text || 'Меню услуг'">
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center justify-center lg:justify-start gap-8 pt-8 border-t border-brand-sand/80 text-xs text-brand-charcoal/50 tracking-wider"
+                         x-show="!hiddenElements.heroBlock_feature1 || !hiddenElements.heroBlock_feature2">
+                        <span class="flex items-center gap-2" x-show="!hiddenElements.heroBlock_feature1">
+                            <span class="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
+                            <span x-text="heroBlock.feature1 || '100% Стерильность (СанПиН)'"></span>
+                        </span>
+                        <span class="flex items-center gap-2" x-show="!hiddenElements.heroBlock_feature2">
+                            <span class="w-1.5 h-1.5 bg-brand-rose rounded-full"></span>
+                            <span x-text="heroBlock.feature2 || 'Премиум бренды (Luxio)'"></span>
+                        </span>
+                    </div>
+                </div>
+
+             <!-- Asymmetric Typographic Art Poster (Minimalist Eye-Catcher) -->
+             <div class="lg:col-span-5 relative w-full lg:min-h-[500px] lg:flex lg:items-center lg:justify-end overflow-visible lg:-ml-6 z-20 animate-reveal-up" style="animation-delay: 400ms;">
+                 <!-- Parallax Container -->
+                 <div class="relative w-full max-w-[440px] aspect-[9/13] mx-auto lg:mx-0 flex flex-col justify-between p-10 bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_50px_rgba(28,22,21,0.06)] rounded-[2.5rem] transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_70px_rgba(28,22,21,0.1)] select-none group"
+                      :style="window.innerWidth >= 1024 ? 'transform: translateY(' + (scrollYOffset * 0.05) + 'px) translateZ(0)' : ''">
+                    
+                    <!-- Tactile Paper Grain Overlay -->
+                    <div class="absolute inset-0 rounded-[2.5rem] opacity-[0.03] pointer-events-none"
+                         style="background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');">
+                    </div>
+
+                    <!-- Top Design details: vintage numbering and logo mark -->
+                    <div class="flex justify-between items-center z-10" x-show="!hiddenElements.heroBlock_posterVol || !hiddenElements.heroBlock_posterMark">
+                        <span class="text-[10px] font-bold tracking-[0.3em] text-brand-gold uppercase" x-show="!hiddenElements.heroBlock_posterVol" x-text="heroBlock.posterVol || 'VOL. 01 / ISSUE 2026'"></span>
+                        <span class="w-8 h-8 rounded-full border border-brand-rose/40 flex items-center justify-center text-[10px] text-brand-rose font-light font-serif" x-show="!hiddenElements.heroBlock_posterMark" x-text="heroBlock.posterMark || 'N'"></span>
+                    </div>
+
+                    <!-- Center typographic visual block -->
+                    <div class="my-auto py-8 space-y-8 z-10" x-show="!hiddenElements.heroBlock_posterTitle || !hiddenElements.heroBlock_posterDescription">
+                        <h2 class="text-4xl sm:text-5xl font-light font-serif tracking-wide leading-[1.1] text-brand-charcoal uppercase" x-show="!hiddenElements.heroBlock_posterTitle">
+                            <span x-text="heroBlock.posterTitleLine1 || 'Форма.'"></span><br>
+                            <span x-text="heroBlock.posterTitleLine2 || 'Чистота.'"></span><br>
+                            <span class="text-brand-rose italic font-serif pl-12 lowercase" x-text="heroBlock.posterTitleLine3 || 'эстетика.'"></span>
+                        </h2>
+                        
+                        <div class="w-20 h-[0.5px] bg-brand-gold/50 group-hover:w-28 transition-all duration-700" x-show="!hiddenElements.heroBlock_posterTitle"></div>
+                        
+                        <p class="text-xs uppercase tracking-[0.25em] leading-relaxed text-brand-charcoal/60 font-semibold max-w-xs"
+                           x-show="!hiddenElements.heroBlock_posterDescription"
+                           x-text="heroBlock.posterDescription || 'Философия бережного ухода и совершенной архитектуры ногтей в уединенной атмосфере.'">
+                        </p>
+                    </div>
+
+                    <!-- Bottom luxury features layout -->
+                    <div class="space-y-6 z-10 border-t border-brand-sand/60 pt-6" x-show="!hiddenElements.heroBlock_posterBadge1 || !hiddenElements.heroBlock_posterBadge2 || !hiddenElements.heroBlock_posterBadge3 || !hiddenElements.heroBlock_posterStatus">
+                        <div class="flex flex-wrap gap-2" x-show="!hiddenElements.heroBlock_posterBadge1 || !hiddenElements.heroBlock_posterBadge2 || !hiddenElements.heroBlock_posterBadge3">
+                            <span class="px-3 py-1.5 bg-brand-cream/80 border border-brand-sand text-[9px] font-bold tracking-widest text-brand-charcoal/70 uppercase"
+                                  x-show="!hiddenElements.heroBlock_posterBadge1"
+                                  x-text="heroBlock.posterBadge1 || '✦ Лежневская, 46'">
+                            </span>
+                            <span class="px-3 py-1.5 bg-brand-cream/80 border border-brand-sand text-[9px] font-bold tracking-widest text-brand-charcoal/70 uppercase"
+                                  x-show="!hiddenElements.heroBlock_posterBadge2"
+                                  x-text="heroBlock.posterBadge2 || '✦ СанПиН Стерильность'">
+                            </span>
+                            <span class="px-3 py-1.5 bg-brand-cream/80 border border-brand-sand text-[9px] font-bold tracking-widest text-brand-charcoal/70 uppercase"
+                                  x-show="!hiddenElements.heroBlock_posterBadge3"
+                                  x-text="heroBlock.posterBadge3 || '✦ Люкс База Luxio'">
+                            </span>
+                        </div>
+
+                        <!-- Mini real-time-like status -->
+                        <div class="flex items-center gap-2 text-[9px] font-bold tracking-[0.15em] text-brand-rose uppercase" x-show="!hiddenElements.heroBlock_posterStatus">
+                            <span class="w-2 h-2 rounded-full bg-brand-rose animate-ping"></span>
+                            <span x-text="heroBlock.posterStatus || 'Запись на эту неделю ограничена'"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Bio / About Section (Luxury Editorial Statement) -->
+    <section id="about" class="pt-4 pb-12 lg:pt-8 lg:pb-24 bg-brand-cream border-t border-brand-sand/50 relative z-10" 
+             x-show="blocksVisibility.about"
+             :style="'order: ' + blocksOrder.indexOf('about')"
+             data-reveal>
+        <div class="max-w-4xl mx-auto px-8 text-center space-y-10" x-show="!hiddenElements.aboutBlock_badge || !hiddenElements.aboutBlock_quote || !hiddenElements.aboutBlock_bio">
+            <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-bold" x-show="!hiddenElements.aboutBlock_badge" x-text="aboutBlock.badge || 'Философия'" data-reveal data-reveal-delay="0"></span>
+            <h2 class="text-4xl md:text-6xl font-light font-serif text-brand-charcoal uppercase leading-tight"
+                x-show="!hiddenElements.aboutBlock_quote"
+                x-text="aboutBlock.quote || '«Я создаю не просто покрытие, а форму тактильного самовыражения»'"
+                data-reveal data-reveal-delay="100">
+            </h2>
+            <div class="w-20 h-[0.5px] bg-brand-rose mx-auto" x-show="!hiddenElements.aboutBlock_quote" data-reveal data-reveal-delay="200"></div>
+            <p class="text-lg md:text-xl font-light font-serif italic text-brand-charcoal/70 leading-relaxed max-w-3xl mx-auto px-4" x-show="!hiddenElements.aboutBlock_bio" x-text="bio" data-reveal data-reveal-delay="300">
+                Загрузка био...
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefits Section (Asymmetric Editorial Grid with Characterful Layout) -->
+    <section id="benefits" class="py-24 bg-brand-lightrose border-y border-brand-sand/50 relative z-20" 
+             x-show="blocksVisibility.benefits"
+             :style="'order: ' + blocksOrder.indexOf('benefits')"
+             data-reveal>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center lg:items-end text-center lg:text-left mb-20 gap-8" x-show="!hiddenElements.benefitsBlock_badge || !hiddenElements.benefitsBlock_heading || !hiddenElements.benefitsBlock_description">
+                <div class="max-w-xl space-y-4 w-full flex flex-col items-center lg:items-start">
+                    <span class="text-xs uppercase tracking-[0.3em] text-brand-rose font-bold" x-show="!hiddenElements.benefitsBlock_badge" x-text="benefitsBlock.badge || 'Превосходство'" data-reveal></span>
+                    <h2 class="text-4xl md:text-5xl font-light font-serif text-brand-charcoal uppercase" x-show="!hiddenElements.benefitsBlock_heading" x-text="benefitsBlock.heading || 'Качество вне времени'" data-reveal data-reveal-delay="100"></h2>
+                </div>
+                <p class="text-sm text-brand-charcoal/60 font-light max-w-sm mx-auto lg:mx-0 tracking-wide"
+                   x-show="!hiddenElements.benefitsBlock_description"
+                   x-text="benefitsBlock.description || 'Уважение к деталям, высочайшие медицинские стандарты СанПиН и только люксовые европейские материалы.'"
+                   data-reveal data-reveal-delay="200">
+                </p>
+            </div>
+            
+            <!-- Beautiful Asymmetric Bento Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Bento Card 1: 100% Стерильность (Double Column on Large) -->
+                <div class="lg:col-span-2 bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden" x-show="benefits[0] && !benefits[0].hidden" data-reveal>
+                    <div class="absolute -right-16 -top-16 w-48 h-48 bg-brand-rose/5 rounded-full blur-3xl group-hover:bg-brand-rose/10 transition-all duration-700"></div>
+                    <div class="space-y-6 z-10">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-brand-gold/60 font-serif">01.</span>
+                            <div x-show="benefits[0]?.icon && benefits[0]?.icon !== 'none'"
+                                 x-html="getBenefitIconSvg(benefits[0]?.icon)"
+                                 class="w-12 h-12 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-light font-serif text-brand-charcoal uppercase text-center lg:text-left" x-text="benefits[0]?.title"></h3>
+                        <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light tracking-wide max-w-xl text-center lg:text-left mx-auto lg:mx-0" x-text="benefits[0]?.description"></p>
+                        
+                        <!-- Extra Aesthetic Sterile Timeline Visual -->
+                        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-brand-sand/40 text-[10px] tracking-wider text-brand-charcoal/60 font-bold uppercase text-center">
+                            <div class="space-y-1 flex flex-col items-center">
+                                <div class="w-2 h-2 rounded-full bg-brand-rose shrink-0"></div>
+                                <p>Дезинфекция</p>
+                            </div>
+                            <div class="space-y-1 flex flex-col items-center">
+                                <div class="w-2 h-2 rounded-full bg-brand-gold shrink-0"></div>
+                                <p>Очистка</p>
+                            </div>
+                            <div class="space-y-1 flex flex-col items-center">
+                                <div class="w-2 h-2 rounded-full bg-brand-charcoal shrink-0"></div>
+                                <p>Сухожар (ГП-10)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bento Card 2: Премиум материалы (Single Column) -->
+                <div class="bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden" x-show="benefits[1] && !benefits[1].hidden" data-reveal data-reveal-delay="100">
+                    <div class="space-y-6 z-10">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-brand-gold/60 font-serif">02.</span>
+                            <div x-show="benefits[1]?.icon && benefits[1]?.icon !== 'none'"
+                                 x-html="getBenefitIconSvg(benefits[1]?.icon)"
+                                 class="w-12 h-12 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-light font-serif text-brand-charcoal uppercase text-center lg:text-left" x-text="benefits[1]?.title"></h3>
+                        <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light tracking-wide text-center lg:text-left mx-auto lg:mx-0" x-text="benefits[1]?.description"></p>
+                    </div>
+                </div>
+                
+                <!-- Bento Card 3: Гарантия 14 дней (Single Column) -->
+                <div class="bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden" x-show="benefits[2] && !benefits[2].hidden" data-reveal data-reveal-delay="200">
+                    <div class="space-y-6 z-10">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-brand-gold/60 font-serif">03.</span>
+                            <div x-show="benefits[2]?.icon && benefits[2]?.icon !== 'none'"
+                                 x-html="getBenefitIconSvg(benefits[2]?.icon)"
+                                 class="w-12 h-12 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-light font-serif text-brand-charcoal uppercase text-center lg:text-left" x-text="benefits[2]?.title"></h3>
+                        <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light tracking-wide text-center lg:text-left mx-auto lg:mx-0" x-text="benefits[2]?.description"></p>
+                    </div>
+                </div>
+                
+                <!-- Bento Card 4: Уютная атмосфера (Double Column on Large) -->
+                <div class="lg:col-span-2 bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden" x-show="benefits[3] && !benefits[3].hidden" data-reveal data-reveal-delay="300">
+                    <div class="absolute -left-16 -bottom-16 w-48 h-48 bg-brand-gold/5 rounded-full blur-3xl group-hover:bg-brand-gold/10 transition-all duration-700"></div>
+                    <div class="space-y-6 z-10">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-brand-gold/60 font-serif">04.</span>
+                            <div x-show="benefits[3]?.icon && benefits[3]?.icon !== 'none'"
+                                 x-html="getBenefitIconSvg(benefits[3]?.icon)"
+                                 class="w-12 h-12 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-light font-serif text-brand-charcoal uppercase text-center lg:text-left" x-text="benefits[3]?.title"></h3>
+                        <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light tracking-wide max-w-xl text-center lg:text-left mx-auto lg:mx-0" x-text="benefits[3]?.description"></p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Pinterest Inspiration Board (Masonry Gallery) -->
+    <section id="portfolio" class="py-24 bg-brand-cream relative z-20" 
+             x-show="blocksVisibility.portfolio"
+             :style="'order: ' + blocksOrder.indexOf('portfolio')"
+             x-data="{ showAllPortfolio: false }"
+             data-reveal>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4" x-show="!hiddenElements.portfolioBlock_badge || !hiddenElements.portfolioBlock_heading || !hiddenElements.portfolioBlock_description">
+                <span class="text-xs uppercase tracking-[0.3em] text-[#9E7A5A] dark:text-brand-gold font-bold" x-show="!hiddenElements.portfolioBlock_badge" x-text="portfolioBlock.badge || 'Вдохновение & Работы'" data-reveal></span>
+                <h2 class="text-4xl md:text-5xl font-light font-serif text-brand-charcoal dark:text-white uppercase" x-show="!hiddenElements.portfolioBlock_heading" x-text="portfolioBlock.heading || 'Портфолио & Эстетика'" data-reveal data-reveal-delay="100"></h2>
+                <div class="w-16 h-[0.5px] bg-brand-rose mx-auto mt-4" x-show="!hiddenElements.portfolioBlock_heading" data-reveal data-reveal-delay="200"></div>
+                <p class="text-sm text-brand-charcoal/70 font-light tracking-wide pt-2"
+                   x-show="!hiddenElements.portfolioBlock_description"
+                   x-text="portfolioBlock.description || 'Коллекция утонченных работ и мгновений чистой красоты из жизни студии.'"
+                   data-reveal data-reveal-delay="250"></p>
+            </div>
+            
+            <!-- Category Tabs for Gallery (Rounded Pill Design) -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12" x-show="!hiddenElements.portfolioBlock_categoryTabs">
+                <button @click="selectedGalleryCategory = 'all'"
+                        class="px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider border transition-all duration-300"
+                        :class="selectedGalleryCategory === 'all' ? 'bg-brand-charcoal text-white border-brand-charcoal shadow-sm' : 'bg-white text-brand-charcoal/80 border-brand-sand hover:border-brand-charcoal hover:text-brand-charcoal'">
+                    Все работы
+                </button>
+                <template x-for="cat in categories.filter(c => c.id !== 'all' && !c.hidden)" :key="cat.id">
+                    <button @click="selectedGalleryCategory = cat.id"
+                            class="px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider border transition-all duration-300"
+                            :class="selectedGalleryCategory === cat.id ? 'bg-brand-charcoal text-white border-brand-charcoal shadow-sm' : 'bg-white text-brand-charcoal/80 border-brand-sand hover:border-brand-charcoal hover:text-brand-charcoal'">
+                        <span x-text="cat.name"></span>
+                    </button>
+                </template>
+            </div>
+            
+            <!-- Pinterest CSS Masonry Columns -->
+            <div class="columns-2 lg:columns-3 gap-3 sm:gap-6 space-y-3 sm:space-y-6 [column-fill:_balance]">
+                <template x-for="(item, index) in filteredPortfolio" :key="index">
+                    <div x-show="!item.hidden && index < 6"
+                         x-data="{ activeIndex: 0 }"
+                         @click="openServiceFromPortfolio(item)"
+                         :data-reveal-delay="(index % 9) * 100"
+                         data-reveal
+                         x-transition:enter="transition ease-out duration-500"
+                         x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+                         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                         class="break-inside-avoid bg-white rounded-3xl border border-brand-sand/40 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5 group mb-6 relative cursor-pointer">
+                        
+                        <!-- Image Container with Zoom -->
+                        <div class="relative overflow-hidden aspect-auto" :style="index % 3 === 0 ? 'aspect-ratio: 3/4' : index % 3 === 1 ? 'aspect-ratio: 4/5' : 'aspect-ratio: 1/1'">
+                            <img :src="(item.images && item.images.length > 0) ? item.images[activeIndex] : item.image" 
+                                 class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-[1.5s] ease-out pointer-events-none" 
+                                 :alt="item.title">
+
+                            <!-- Floating Before/After Badge -->
+                            <template x-if="item.service && services.find(s => s.name === item.service)?.before && services.find(s => s.name === item.service)?.after">
+                                <div class="absolute top-4 right-4 bg-brand-rose/90 backdrop-blur-md text-white border border-white/20 px-3 py-1.5 text-[8px] sm:text-[9px] font-bold tracking-[0.2em] uppercase rounded-full shadow-md z-20">
+                                    ✦ До / После
+                                </div>
+                            </template>
+
+                            <!-- Left Arrow Navigation -->
+                            <template x-if="item.images && item.images.length > 1">
+                                <button @click.stop="activeIndex = (activeIndex === 0) ? item.images.length - 1 : activeIndex - 1"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none cursor-pointer z-20">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                                </button>
+                            </template>
+
+                            <!-- Right Arrow Navigation -->
+                            <template x-if="item.images && item.images.length > 1">
+                                <button @click.stop="activeIndex = (activeIndex === item.images.length - 1) ? 0 : activeIndex + 1"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none cursor-pointer z-20">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </button>
+                            </template>
+
+                            <!-- Dot Indicators -->
+                            <template x-if="item.images && item.images.length > 1">
+                                <div class="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 bg-black/25 backdrop-blur-md px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <template x-for="(img, imgIdx) in item.images" :key="imgIdx">
+                                        <span class="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                                              :class="imgIdx === activeIndex ? 'bg-brand-rose scale-125' : 'bg-white/55'"></span>
+                                    </template>
+                                </div>
+                            </template>
+                            
+                            <!-- Floating Frosted Glass Action Bar -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
+                                <div class="w-full flex items-center justify-between text-white">
+                                    <div class="space-y-1">
+                                        <p class="text-[10px] uppercase tracking-widest text-brand-rose font-bold" x-text="categories.find(c => c.id === item.category)?.name"></p>
+                                        <h4 class="text-sm font-light font-serif tracking-wide" x-text="item.title"></h4>
+                                    </div>
+                                    <a :href="portfolioBlock.buttonLink || bookingUrlApp" target="_blank" @click.stop="" class="hidden md:inline-block px-4 py-2 bg-brand-rose hover:bg-white hover:text-brand-charcoal text-white rounded-full text-[10px] font-bold tracking-widest uppercase transition-all duration-300 shadow-md shadow-brand-rose/25">
+                                        Запись
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <!-- View More Portfolio Button -->
+            <div class="w-full flex justify-center mt-12" x-show="filteredPortfolio.length > 6">
+                <a href="/portfolio.html" class="px-8 py-3.5 bg-transparent border border-brand-rose text-brand-rose hover:bg-brand-rose hover:text-white transition-all text-xs font-bold tracking-widest uppercase rounded-full cursor-pointer shadow-sm hover:shadow-md inline-block">
+                    Смотреть все работы →
+                </a>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Services & Pricing Section (Spa Menu Editorial Styling) -->
+    <section id="price" class="py-24 bg-brand-lightrose border-t border-brand-sand/40 relative z-20" 
+             x-show="blocksVisibility.price"
+             :style="'order: ' + blocksOrder.indexOf('price')"
+             data-reveal>
+        <div class="max-w-5xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-20 space-y-4" x-show="!hiddenElements.priceBlock_badge || !hiddenElements.priceBlock_heading || !hiddenElements.priceBlock_description">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-rose font-bold" x-show="!hiddenElements.priceBlock_badge" x-text="priceBlock.badge || 'Цены & Услуги'" data-reveal></span>
+                <h2 class="text-4xl md:text-5xl font-light font-serif text-brand-charcoal uppercase" x-show="!hiddenElements.priceBlock_heading" x-text="priceBlock.heading || 'Меню услуг'" data-reveal data-reveal-delay="100"></h2>
+                <p class="text-sm text-brand-charcoal/60 font-light tracking-wide pt-2"
+                   x-show="!hiddenElements.priceBlock_description"
+                   x-text="priceBlock.description || 'Услуги высочайшего эстетического класса для ваших рук и стоп.'"
+                   data-reveal data-reveal-delay="200"></p>
+            </div>
+            
+            <!-- Category Tabs (Luxury Border Style) -->
+            <div class="flex flex-wrap justify-center gap-3 mb-16" x-show="!hiddenElements.priceBlock_categoryTabs">
+                <template x-for="cat in categories.filter(c => !c.hidden)" :key="cat.id">
+                    <button @click="selectedCategory = cat.id"
+                            class="px-6 py-3 rounded-none text-xs font-bold tracking-[0.2em] uppercase border transition-all duration-500"
+                            :class="selectedCategory === cat.id ? 
+                                    'bg-brand-charcoal text-white border-brand-charcoal shadow-md' : 
+                                    'bg-brand-cream text-brand-charcoal/80 border-brand-sand hover:border-brand-charcoal hover:text-brand-charcoal'">
+                        <span x-text="cat.name"></span>
+                    </button>
+                </template>
+            </div>
+            
+            <!-- Vintage Spa Menu Layout (Dot Leaders) -->
+            <div class="bg-brand-cream p-3 sm:p-10 md:p-16 border border-brand-sand/50 shadow-xl space-y-8 sm:space-y-12">
+                <div class="grid grid-cols-2 gap-x-2 sm:gap-x-16 gap-y-4 sm:gap-y-10">
+                    <template x-for="(service, idx) in filteredServices" :key="service.name">
+                        <div class="transition-all duration-300 group relative flex flex-col justify-between" 
+                             :data-reveal-delay="(idx % 6) * 100"
+                             data-reveal 
+                             :class="service.popular ? 'p-3 sm:p-6 bg-white border border-brand-rose/35 shadow-md scale-[1.01] z-10' : 'p-1.5 sm:p-2 border border-transparent'"
+                             x-show="!service.hidden">
+                            
+                            <div class="space-y-2 cursor-pointer" @click="selectedServiceDetail = service" title="Нажмите для подробного просмотра услуги">
+                                <template x-if="service.popular">
+                                    <div class="text-[8px] font-bold tracking-[0.25em] text-brand-rose uppercase flex items-center gap-1.5 mb-1.5">
+                                        <span>✦</span>
+                                        <span>Популярный выбор</span>
+                                    </div>
+                                </template>
+                                <template x-if="service.before && service.after">
+                                    <div class="text-[8px] font-bold tracking-[0.25em] text-brand-rose uppercase flex items-center gap-1.5 mb-1.5">
+                                        <span x-show="!service.popular">✦</span>
+                                        <span class="border border-brand-rose/35 px-1.5 py-0.5 rounded-full bg-brand-rose/10 font-bold">Слайдер До/После</span>
+                                    </div>
+                                </template>
+                                
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                                    <h3 class="text-base sm:text-xl font-normal font-serif text-brand-charcoal dark:text-white group-hover:text-brand-rose transition-colors duration-300 uppercase tracking-wide break-words" x-text="service.name"></h3>
+                                    <div class="hidden sm:block flex-1 border-b border-dotted border-brand-gold/30 mx-2"></div>
+                                    <span class="text-xs sm:text-lg font-light font-serif text-brand-rose font-bold shrink-0" x-text="service.price + ' ₽'"></span>
+                                </div>
+                                <p class="hidden sm:block text-xs text-brand-charcoal/60 font-light tracking-wide leading-relaxed" x-text="service.description"></p>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-3 mt-2 border-t border-brand-sand/40 gap-2">
+                                <span class="flex items-center gap-1 text-[8px] sm:text-[10px] text-brand-gold font-bold tracking-widest uppercase">
+                                    <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span x-text="service.duration"></span>
+                                </span>
+                                <div class="flex items-center gap-2 sm:gap-3 justify-between w-full sm:w-auto">
+                                    <!-- Кнопка выбора для калькулятора -->
+                                    <button @click.stop="toggleServiceInCalc(service)" 
+                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-1 px-1.5 py-1 sm:px-2.5 sm:py-1.5 border border-brand-sand/60 hover:border-brand-rose text-[8px] sm:text-[9px] font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer rounded-none shrink-0"
+                                            :class="isServiceSelectedForCalc(service) ? 'bg-brand-rose text-white border-brand-rose shadow-sm font-black' : 'bg-transparent text-brand-charcoal/80 hover:bg-brand-lightrose dark:hover:bg-[#29201E]'">
+                                        <span x-text="isServiceSelectedForCalc(service) ? '✓' : '+ Выбрать'"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cozy Cabinet section (Asymmetric Art Grid) -->
+    <section id="cozyCabinet" class="py-24 bg-brand-cream relative z-20" 
+             x-show="blocksVisibility.cozyCabinet"
+             :style="'order: ' + blocksOrder.indexOf('cozyCabinet')"
+             data-reveal>
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <!-- Cozy Cabinet Header -->
+            <div class="text-center max-w-2xl mx-auto mb-20 space-y-4" x-show="!hiddenElements.cozyCabinet_title || !hiddenElements.cozyCabinet_heading" data-reveal>
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-rose font-bold" x-show="!hiddenElements.cozyCabinet_title" x-text="cozyCabinet.title"></span>
+                <h2 class="text-4xl md:text-5xl font-light font-serif text-brand-charcoal uppercase" x-show="!hiddenElements.cozyCabinet_heading" x-text="cozyCabinet.heading"></h2>
+                <div class="w-16 h-[0.5px] bg-brand-gold/60 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5 flex justify-center order-2 lg:order-1 relative overflow-visible" x-show="!hiddenElements.cozyCabinet_image" data-reveal data-reveal-delay="100">
+                    <!-- Golden glow underneath -->
+                    <div class="absolute inset-0 bg-brand-rose/10 blur-[100px] -z-10 rounded-full scale-75 animate-pulse"></div>
+                    <!-- Fine Art Frame -->
+                    <div class="relative w-full max-w-[380px] aspect-[4/5] overflow-hidden border-8 border-brand-sand shadow-2xl group">
+                        <picture>
+                            <source :srcset="cozyCabinet.image" type="image/webp">
+                            <img :src="cozyCabinet.image" class="w-full h-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105 pointer-events-none" alt="Интерьер кабинета">
+                        </picture>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-7 space-y-8 order-1 lg:order-2 text-center lg:text-left" :class="hiddenElements.cozyCabinet_image ? 'lg:col-span-12' : ''" data-reveal data-reveal-delay="200">
+                    <p class="text-base text-brand-charcoal/70 leading-relaxed font-light tracking-wide" x-show="!hiddenElements.cozyCabinet_description" x-text="cozyCabinet.description"></p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 text-xs tracking-wider max-w-md mx-auto lg:mx-0 lg:max-w-none text-left">
+                        <template x-for="(feat, idx) in cozyCabinet.features" :key="idx">
+                            <div class="flex items-start justify-start gap-4 text-left" x-show="!hiddenElements['cozyCabinet_feature_' + idx]">
+                                <span class="w-2 h-2 rounded-full shrink-0 mt-1.5" :class="idx % 2 === 0 ? 'bg-brand-rose' : 'bg-brand-gold'"></span>
+                                <p class="text-brand-charcoal/80 font-light leading-relaxed" x-text="feat"></p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="reviews" class="py-24 bg-brand-lightrose/20 border-t border-brand-sand/50 relative z-20" 
+             x-show="blocksVisibility.reviews"
+             :style="'order: ' + blocksOrder.indexOf('reviews')"
+             data-reveal>
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
+            
+            <!-- Section Header -->
+            <div class="text-center space-y-6 max-w-3xl mx-auto">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-rose font-bold" x-show="!hiddenElements.reviewsBlock_badge" x-text="reviewsBlock.badge || 'Отзывы гостей'" data-reveal></span>
+                <h2 class="text-4xl md:text-5xl font-light font-serif text-brand-charcoal uppercase leading-tight" x-show="!hiddenElements.reviewsBlock_heading" x-text="reviewsBlock.heading || 'Ваши впечатления'" data-reveal data-reveal-delay="100"></h2>
+                <div class="w-20 h-[0.5px] bg-brand-rose mx-auto" x-show="!hiddenElements.reviewsBlock_heading" data-reveal data-reveal-delay="200"></div>
+                <p class="text-base text-brand-charcoal/70 leading-relaxed font-light tracking-wide" x-show="!hiddenElements.reviewsBlock_description" x-text="reviewsBlock.description || 'Искренние отзывы гостей моего лофт-кабинета о качестве и атмосфере процедур.'" data-reveal data-reveal-delay="250"></p>
+            </div>
+
+            <!-- Bento Masonry Grid -->
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-8" x-show="reviews && reviews.length > 0">
+                <template x-for="(review, idx) in reviews.filter(r => !r.hidden)" :key="review.id || review.name + review.date">
+                    <div x-show="idx < visibleReviewsLimit"
+                         x-transition:enter="transition ease-out duration-500"
+                         x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+                         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                         :data-reveal-delay="(idx % 6) * 100"
+                         data-reveal
+                         class="break-inside-avoid bg-white border border-brand-sand/40 p-8 flex flex-col justify-between space-y-6 mb-8 hover:shadow-[0_15px_35px_rgba(28,22,21,0.06)] hover:border-brand-rose/25 shadow-[0_4px_20px_rgba(28,22,21,0.02)] transition-all duration-500 relative group animate-fade-in rounded-2xl">
+                        
+                        <div class="space-y-4 relative">
+                            <div class="flex items-center justify-between">
+                                <!-- Star Rating -->
+                                <div class="flex items-center gap-0.5">
+                                    <template x-for="star in 5" :key="star">
+                                        <svg class="w-3.5 h-3.5" :class="star <= (review.rating || 5) ? 'text-brand-rose fill-brand-rose' : 'text-brand-charcoal/20'" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                        </svg>
+                                    </template>
+                                </div>
+                                <!-- Source badge -->
+                                <span class="text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 border"
+                                      :class="{
+                                        'bg-emerald-50 text-emerald-700 border-emerald-200/50': review.source === 'dikidi',
+                                        'bg-blue-50 text-blue-700 border-blue-200/50': review.source === 'yandex',
+                                        'bg-purple-50 text-purple-700 border-purple-200/50': review.source === 'telegram',
+                                        'bg-gray-50 text-gray-700 border-gray-200/50': review.source === 'manual' || !review.source
+                                      }[review.source || 'manual']"
+                                      x-text="{
+                                        'dikidi': 'DIKIDI',
+                                        'yandex': 'Яндекс',
+                                        'telegram': 'Мессенджер',
+                                        'manual': 'Отзыв'
+                                      }[review.source || 'manual']">
+                                </span>
+                            </div>
+                            <p class="text-sm text-brand-charcoal/85 leading-relaxed font-light font-sans tracking-wide" x-text="review.text"></p>
+                        </div>
+                        <div class="border-t border-brand-sand/30 pt-4 flex items-center justify-between">
+                            <span class="text-sm font-serif font-medium text-brand-charcoal tracking-wide" x-text="review.name"></span>
+                            <span class="text-[10px] text-brand-charcoal/40 font-light" x-text="review.date"></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Reviews Visibility Buttons -->
+            <div class="text-center pt-2 flex flex-wrap justify-center gap-4">
+                <!-- "Show More" Button -->
+                <button x-show="reviews.filter(r => !r.hidden).length > visibleReviewsLimit && visibleReviewsLimit < 6"
+                        @click="visibleReviewsLimit = 6" 
+                        class="px-8 py-3.5 border border-brand-rose text-brand-rose hover:bg-brand-rose hover:text-white text-xs font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer">
+                    Показать еще отзывы
+                </button>
+                <!-- "Collapse" Button -->
+                <button x-show="visibleReviewsLimit >= 6"
+                        @click="document.getElementById('reviews').scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(() => { visibleReviewsLimit = 3; }, 400)" 
+                        class="px-8 py-3.5 border border-brand-charcoal text-brand-charcoal hover:bg-brand-charcoal hover:text-white text-xs font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer">
+                    Свернуть отзывы
+                </button>
+            </div>
+
+            <!-- Yandex maps iframe widget -->
+            <div x-show="yandexWidgetId" class="max-w-4xl mx-auto border-8 border-brand-sand shadow-lg overflow-hidden relative" style="box-sizing: border-box;">
+                <div class="text-center py-4 bg-brand-cream border-b border-brand-sand">
+                    <span class="text-[9px] font-bold tracking-[0.25em] text-brand-gold uppercase">Отзывы на Яндекс.Картах</span>
+                </div>
+                <iframe :src="yandexWidgetId ? 'https://yandex.ru/maps-reviews-widget/' + yandexWidgetId + '?comments' : 'about:blank'" class="w-full h-[450px] border-none" style="box-sizing: border-box;"></iframe>
+            </div>
+
+            <!-- CTA Buttons to Leave a Review -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 pt-6">
+                <a :href="reviewsBlock.button1Link || bookingUrl" target="_blank" @click="reachMetrikaGoal('click_feedback')" class="px-8 py-3.5 bg-brand-rose hover:bg-brand-charcoal text-white text-xs font-bold tracking-widest uppercase transition-colors duration-300">
+                    Оставить отзыв в DIKIDI
+                </a>
+                <a :href="reviewsBlock.button2Link || contacts.yandexMapsUrl || 'https://yandex.ru/maps/'" target="_blank" class="px-8 py-3.5 border border-brand-charcoal hover:bg-brand-charcoal hover:text-white text-brand-charcoal text-xs font-bold tracking-widest uppercase transition-colors duration-300">
+                    Оставить отзыв на Яндекс
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & Map Section (High-Contrast Glassmorphic Layout) -->
+    <section id="contacts" class="py-24 bg-brand-lightrose border-t border-brand-sand/50 relative z-20" 
+             x-show="blocksVisibility.contacts"
+             :style="'order: ' + blocksOrder.indexOf('contacts')"
+             data-reveal>
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
+            
+            <!-- Section Header -->
+            <div class="text-center space-y-6 max-w-3xl mx-auto">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-rose font-bold" x-show="!hiddenElements.contactsBlock_badge" x-text="contactsBlock.badge || 'Локация & Контакты'" data-reveal></span>
+                <h2 class="text-4xl md:text-5xl font-light font-serif text-brand-charcoal uppercase leading-tight" x-show="!hiddenElements.contactsBlock_heading" x-text="contactsBlock.heading || 'Контакты и Локация'" data-reveal data-reveal-delay="100"></h2>
+                <div class="w-20 h-[0.5px] bg-brand-rose mx-auto" x-show="!hiddenElements.contactsBlock_heading" data-reveal data-reveal-delay="200"></div>
+                <p class="text-base text-brand-charcoal/70 leading-relaxed font-light tracking-wide" x-show="!hiddenElements.contactsBlock_description" x-text="contactsBlock.description || 'Мой уединенный лофт-кабинет расположен в Иваново. Вы сможете с легкостью добраться к нему на любом транспорте.'" data-reveal data-reveal-delay="250"></p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Левая колонка: Контакты и Прямая связь -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-brand-cream p-6 sm:p-8 border border-brand-sand/50 shadow-2xl space-y-8 relative">
+                        <h3 class="text-xl font-light font-serif text-brand-charcoal uppercase tracking-wider border-b border-brand-sand/50 pb-4">
+                            Контакты
+                        </h3>
+                        
+                        <!-- Адрес и время работы -->
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4" x-show="!hiddenElements.contacts_address">
+                                <div class="w-10 h-10 bg-white flex items-center justify-center border border-brand-sand/60 text-brand-rose shadow-sm shrink-0">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-bold mb-0.5">Адрес кабинета</p>
+                                    <p class="text-xs text-brand-charcoal font-medium" x-text="contacts.address"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4" x-show="!hiddenElements.contacts_workingHours">
+                                <div class="w-10 h-10 bg-white flex items-center justify-center border border-brand-sand/60 text-brand-rose shadow-sm shrink-0">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div class="space-y-1 text-left">
+                                    <p class="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-bold">Время работы</p>
+                                    <p class="text-xs text-brand-charcoal font-medium leading-relaxed" x-text="contacts.workingHours"></p>
+                                    <!-- Dynamic working status badge -->
+                                    <div class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[8px] font-bold tracking-wider uppercase border mt-1"
+                                         :class="workingStatus.isOpen ? 'bg-emerald-50 text-emerald-700 border-emerald-200/50' : 'bg-rose-50 text-rose-700 border-rose-200/50'">
+                                        <span class="w-1 h-1 rounded-full" :class="workingStatus.isOpen ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'"></span>
+                                        <span x-text="workingStatus.text"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Прямая связь -->
+                        <div class="border-t border-brand-sand/50 pt-6 space-y-4 text-left" x-show="!hiddenElements.contactsBlock_chatHeading || !hiddenElements.contactsBlock_chatDescription || (socials && socials.some(s => !s.hidden))">
+                            <h4 class="text-xs uppercase tracking-[0.25em] text-brand-gold font-bold">Прямая связь</h4>
+                            <p class="text-[11px] text-brand-charcoal/70 font-light tracking-wide leading-relaxed"
+                               x-show="!hiddenElements.contactsBlock_chatDescription"
+                               x-text="contactsBlock.chatDescription || 'Если у вас есть особые пожелания к процедуре, свяжитесь со мной напрямую в мессенджерах.'"></p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+                                <template x-for="social in socials" :key="social.id">
+                                    <a :href="social.url" target="_blank" 
+                                       x-show="!social.hidden"
+                                       @click="reachMetrikaGoal('click_' + social.id)"
+                                       class="px-3 py-2.5 bg-brand-lightrose border border-brand-sand hover:border-brand-rose hover:bg-white transition-all duration-300 flex items-center justify-center gap-2 group flex-1">
+                                        
+                                        <!-- Custom uploaded thumbnail or default SVG -->
+                                        <template x-if="social.icon && (social.icon.startsWith('/') || social.icon.startsWith('http'))">
+                                            <img :src="social.icon" class="w-4 h-4 object-contain group-hover:scale-110 transition-transform duration-300">
+                                        </template>
+                                        <template x-if="!social.icon || (!social.icon.startsWith('/') && !social.icon.startsWith('http'))">
+                                            <div class="text-brand-charcoal group-hover:text-brand-rose transition-all shrink-0">
+                                                <template x-if="social.icon === 'telegram' || social.id === 'telegram'">
+                                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.89.03-.25.38-.51 1.07-.78 4.2-1.82 7-3.03 8.4-3.61 3.99-1.66 4.82-1.95 5.36-1.96.12 0 .38.03.55.17.14.12.18.28.2.45-.02.07-.02.13-.02.19z"/></svg>
+                                                </template>
+                                                <template x-if="social.icon === 'whatsapp' || social.id === 'whatsapp'">
+                                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.733-1.455L0 24zm6.59-4.846c1.665.989 3.3 1.472 5.353 1.473 5.534 0 10.038-4.505 10.041-10.04.002-2.68-1.038-5.198-2.93-7.09C17.22 1.606 14.71 1.564 12.015 1.564c-5.535 0-10.04 4.505-10.044 10.039-.002 2.122.562 4.13 1.633 5.856L2.61 21.365l4.037-1.054z"/></svg>
+                                                </template>
+                                                <template x-if="social.icon === 'vk' || social.id === 'vk'">
+                                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M15.086 2c5.962 0 6.914.952 6.914 6.914v6.172c0 5.962-.952 6.914-6.914 6.914H8.914C2.952 22 2 21.048 2 15.086V8.914C2 2.952 2.952 2 8.914 2h6.172zm.28 4.5H8.324c-2.484 0-3.324.84-3.324 3.324v6.352c0 2.484.84 3.324 3.324 3.324h1.036c.308 0 .432-.124.432-.432v-1.928c0-.756.248-.992.748-.992.356 0 .616.14.936.432l1.628 1.956c.216.26.408.432.848.432h1.616c.456 0 .548-.224.432-.572l-1.396-1.936c-.464-.624-.532-.828-.156-1.308l2.256-2.904c.264-.328.468-.616.468-1.076a.71.71 0 00-.712-.712h-1.616c-.456 0-.616.14-.936.564l-1.428 1.956c-.344.472-.516.624-.748.624s-.396-.152-.396-.564v-2.316c0-.84-.188-1.064-.936-1.064h-1.5c-.244 0-.348.1-.348.24 0 .224.236.276.324.468.14.308.14.616.14 1.036v1.928c0 .484-.088.616-.368.616s-.464-.132-.78-.564L8.3 9.4c-.212-.296-.344-.44-.728-.44H5.956c-.408 0-.544.152-.432.488 1.252 2.76 2.76 5.252 5.056 7.428v.02c.076.072.176.136.292.136.312 0 .436-.124.436-.436v-1.124c0-.756.248-.992.748-.992.356 0 .616.14.936.432l1.352 1.624c.216.26.408.432.848.432h1.372c.456 0 .548-.224.432-.572l-1.312-1.808c-.464-.624-.532-.828-.156-1.308l1.928-2.484c.264-.328.468-.616.468-1.076a.71.71 0 00-.712-.712h-1.616z"/>
+                                                    </svg>
+                                                </template>
+                                                <template x-if="social.icon !== 'telegram' && social.id !== 'telegram' && social.icon !== 'whatsapp' && social.id !== 'whatsapp' && social.icon !== 'vk' && social.id !== 'vk'">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <span class="text-[9px] font-bold tracking-widest uppercase text-brand-charcoal group-hover:text-brand-rose transition-colors" x-text="social.name"></span>
+                                    </a>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Правая колонка: Карта -->
+                <div class="lg:col-span-7 space-y-6">
+                    <!-- Interactive Yandex Map Frame (Native JS API with pin) -->
+                    <div class="w-full h-80 sm:h-[400px] border-8 border-brand-sand shadow-lg overflow-hidden relative" x-show="!hiddenElements.contacts_map">
+                        <div id="yandex-map" class="w-full h-full z-0"></div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4" x-show="!hiddenElements.contacts_map">
+                        <a :href="contacts.yandexMapsUrl" target="_blank" class="inline-flex items-center gap-3 px-8 py-3.5 bg-brand-charcoal hover:bg-brand-rose text-white text-xs font-bold tracking-[0.2em] uppercase transition-all duration-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            Открыть в Яндекс.Картах
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+    </main>
+
+    <!-- Footer (Vogue Grid Design) -->
+    <footer class="bg-brand-charcoal text-white/50 py-16 relative z-20 border-t border-brand-charcoal/20" data-reveal>
+        <div class="max-w-7xl mx-auto px-8 space-y-12">
+            <!-- New Premium Links Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-12 border-b border-white/10">
+                <!-- FAQ Card -->
+                <a href="/faq.html" class="group block p-8 bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-rose transition-all duration-500 rounded-2xl space-y-4">
+                    <div class="flex justify-end">
+                        <span class="text-white/40 group-hover:text-brand-rose transition-colors duration-500 text-lg">→</span>
+                    </div>
+                    <h4 class="text-2xl sm:text-3xl font-light font-serif tracking-wide text-white group-hover:text-brand-rose transition-colors duration-500 uppercase">FAQ (Вопросы & Ответы)</h4>
+                    <p class="text-xs text-white/50 leading-relaxed font-light font-sans tracking-wide">Подробная информация о стерилизации по СанПиН, гарантии на покрытие и нюансах процедур.</p>
+                </a>
+                
+                <!-- Tips Card -->
+                <a href="/tips.html" class="group block p-8 bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-gold transition-all duration-500 rounded-2xl space-y-4">
+                    <div class="flex justify-end">
+                        <span class="text-white/40 group-hover:text-brand-gold transition-colors duration-500 text-lg">→</span>
+                    </div>
+                    <h4 class="text-2xl sm:text-3xl font-light font-serif tracking-wide text-white group-hover:text-brand-gold transition-colors duration-500 uppercase">Советы & Лайфхаки</h4>
+                    <p class="text-xs text-white/50 leading-relaxed font-light font-sans tracking-wide">Секреты сохранения стойкости покрытия Luxio, домашнего ухода и восстановления ногтевой пластины.</p>
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 pb-12 border-b border-white/10" x-show="!hiddenElements.footerBlock_text || !hiddenElements.footerBlock_legalName || !hiddenElements.footerBlock_inn">
+                <span class="text-3xl font-light font-serif tracking-[0.2em] text-white uppercase" x-show="!hiddenElements.footerBlock_text">Nails<span class="text-brand-rose italic lowercase">vibe</span></span>
+                
+                <!-- Legal Information & Russian Compliance -->
+                <div class="flex flex-col gap-2 text-[9px] tracking-wider text-white/40 text-center md:text-right uppercase" x-show="!hiddenElements.footerBlock_legalName || !hiddenElements.footerBlock_inn">
+                    <p class="font-bold text-white/60" x-show="!hiddenElements.footerBlock_legalName" x-text="contacts.legalName"></p>
+                    <p x-show="!hiddenElements.footerBlock_inn" x-text="'ИНН: ' + contacts.inn"></p>
+                    <div class="flex gap-4 justify-center md:justify-end text-[8px] text-white/30 lowercase mt-1">
+                        <a href="/privacy-policy.html" class="hover:text-white transition-colors underline">Политика конфиденциальности</a>
+                        <span>|</span>
+                        <a href="/personal-data-agreement.html" class="hover:text-white transition-colors underline">Согласие на обработку ПД</a>
+                    </div>
+                    <p class="text-[7px] text-white/20 tracking-wider text-center md:text-right uppercase mt-1">Информация на сайте не является публичной офертой (ст. 437 ГК РФ)</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] tracking-[0.2em] font-bold uppercase">
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-6 text-white/70">
+                    <a href="#about" class="hover:text-brand-rose transition-colors">Обо мне</a>
+                    <a href="#price" class="hover:text-white transition-colors">Меню</a>
+                    <a href="#contacts" class="hover:text-white transition-colors">Контакты</a>
+                </div>
+                <p class="text-white/30" x-show="!hiddenElements.footerBlock_copyright" x-text="footerBlock.copyright || '© 2026 NailsVibe by Marina. Private Nail Studio. All rights reserved.'"></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Mobile CTA Button (Editorial Minimal Styling) -->
+    <div x-show="isStickyCtaVisible"
+         x-transition:enter="transition ease-out duration-300 transform"
+         x-transition:enter-start="translate-y-full opacity-0"
+         x-transition:enter-end="translate-y-0 opacity-100"
+         x-transition:leave="transition ease-in duration-200 transform"
+         x-transition:leave-start="translate-y-0 opacity-100"
+         x-transition:leave-end="translate-y-full opacity-0"
+         class="fixed bottom-0 left-0 right-0 z-40 p-4 md:hidden bg-brand-cream/90 backdrop-blur-md border-t border-brand-sand/50 shadow-[0_-8px_30px_rgba(28,22,21,0.06)] safe-bottom">
+        <div class="flex gap-3">
+            <a :href="footerBlock.stickyCtaLink || bookingUrlApp" target="_blank" @click="reachMetrikaGoal('click_booking')" class="flex-1 inline-flex items-center justify-center py-4 bg-brand-rose text-white text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300">
+                Записаться онлайн ✨
+            </a>
+        </div>
+    </div>
+
+    <!-- Детальный просмотр услуги (Luxury Modal View) -->
+    <div x-show="selectedServiceDetail" 
+         x-data="{ 
+            activeSvcIndex: 0,
+            sliderPosition: 50,
+            isDraggingSlider: false,
+            showBeforeAfterSlider: false,
+            startDrag(e) {
+                this.isDraggingSlider = true;
+                if (typeof window.triggerHaptic === 'function') {
+                    window.triggerHaptic('medium');
+                } else if (navigator.vibrate) {
+                    navigator.vibrate(40);
+                }
+                this.moveSlider(e);
+            },
+            moveSlider(e) {
+                if (!this.isDraggingSlider) return;
+                const rect = e.currentTarget.getBoundingClientRect();
+                let x;
+                if (e.touches && e.touches[0]) {
+                    x = e.touches[0].clientX - rect.left;
+                } else if (e.clientX !== undefined) {
+                    x = e.clientX - rect.left;
+                } else {
+                    return;
+                }
+                let percentage = (x / rect.width) * 100;
+                if (percentage < 0) percentage = 0;
+                if (percentage > 100) percentage = 100;
+                const newPos = Math.round(percentage);
+                if (this.sliderPosition !== newPos) {
+                    const oldStep = Math.floor(this.sliderPosition / 3);
+                    const newStep = Math.floor(newPos / 3);
+                    this.sliderPosition = newPos;
+                    if (oldStep !== newStep) {
+                        if (typeof window.triggerHaptic === 'function') {
+                            window.triggerHaptic('light');
+                        } else if (navigator.vibrate) {
+                            navigator.vibrate(22);
+                        }
+                    }
+                }
+            }
+         }"
+         x-effect="if (selectedServiceDetail) { activeSvcIndex = 0; sliderPosition = 50; showBeforeAfterSlider = false; document.body.style.overflow = 'hidden'; } else { document.body.style.overflow = ''; }"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 backdrop-blur-md overscroll-contain" 
+         style="display: none;"
+         @click.self="selectedServiceDetail = null">
+        
+        <div class="bg-brand-cream border border-brand-sand max-w-4xl w-[92%] overflow-y-auto md:overflow-hidden shadow-2xl relative animate-reveal-up flex flex-col md:flex-row max-h-[85dvh] md:max-h-[90vh] rounded-[2rem] overscroll-contain">
+            
+            <!-- Close Button (Premium Design) -->
+            <button @click="selectedServiceDetail = null" 
+                    class="fixed right-6 top-6 md:absolute md:right-4 md:top-4 z-30 w-8 h-8 rounded-full bg-white/80 hover:bg-brand-charcoal hover:text-white border border-brand-sand flex items-center justify-center text-brand-charcoal transition-all duration-300 cursor-pointer focus:outline-none shadow-md">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <!-- Image/Video Column with slideshow (Premium Aesthetic) -->
+            <div class="md:w-1/2 aspect-square md:aspect-[4/5] bg-brand-sand relative min-h-[300px] md:min-h-0 md:h-auto overflow-hidden group shrink-0">
+                
+                <!-- BEFORE/AFTER SLIDER LAYER -->
+                <template x-if="selectedServiceDetail?.before && selectedServiceDetail?.after && showBeforeAfterSlider">
+                    <div class="absolute inset-0 w-full h-full select-none cursor-ew-resize touch-none"
+                         @mousedown="startDrag($event)"
+                         @touchstart="startDrag($event)"
+                         @mousemove="moveSlider($event)"
+                         @touchmove.prevent="moveSlider($event)"
+                         @mouseup="isDraggingSlider = false"
+                         @mouseleave="isDraggingSlider = false"
+                         @touchend="isDraggingSlider = false"
+                         @touchcancel="isDraggingSlider = false">
+                        <!-- BEFORE IMAGE (Bottom Layer) -->
+                        <div class="absolute inset-0 w-full h-full bg-brand-sand">
+                            <img :src="selectedServiceDetail.before" class="w-full h-full object-cover pointer-events-none" alt="До процедуры">
+                        </div>
+                        
+                        <!-- AFTER IMAGE (Top Layer, dynamic clip-path) -->
+                        <div class="absolute inset-0 w-full h-full bg-brand-cream" 
+                             :style="'clip-path: inset(0 0 0 ' + sliderPosition + '%);'">
+                            <img :src="selectedServiceDetail.after" class="w-full h-full object-cover pointer-events-none" alt="После процедуры">
+                        </div>
+         
+                        <!-- Labels in Luxury Oval Styling -->
+                        <div class="absolute left-6 top-6 bg-brand-charcoal/80 text-white px-5 py-2 text-[10px] tracking-[0.2em] font-bold uppercase rounded-full"
+                             x-text="selectedServiceDetail.beforeText || 'До'">
+                        </div>
+                        <div class="absolute right-6 top-6 bg-brand-rose/90 text-white px-5 py-2 text-[10px] tracking-[0.2em] font-bold uppercase rounded-full"
+                             x-text="selectedServiceDetail.afterText || 'После'">
+                        </div>
+        
+                        <!-- Drag Handle -->
+                        <div class="absolute top-0 bottom-0 w-[2px] bg-white z-30"
+                             :style="'left: ' + sliderPosition + '%;'">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border border-brand-sand cursor-ew-resize">
+                                <svg class="w-5 h-5 text-brand-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                
+                <!-- REGULAR SLIDESHOW LAYER -->
+                <template x-if="!(selectedServiceDetail?.before && selectedServiceDetail?.after) || !showBeforeAfterSlider">
+                    <div class="absolute inset-0 w-full h-full">
+                        <!-- Slideshow Media: Video Player -->
+                        <template x-if="isVideoFile(getSelectedServiceMedia())">
+                            <video :src="getSelectedServiceMedia()" 
+                                   class="w-full h-full object-cover" 
+                                   autoplay 
+                                   muted 
+                                   playsinline 
+                                   controls 
+                                   loop>
+                            </video>
+                        </template>
+                        
+                        <!-- Slideshow Media: Image -->
+                        <template x-if="!isVideoFile(getSelectedServiceMedia())">
+                            <img :src="getSelectedServiceMedia() || '/public/images/work_nude_chic.webp'" 
+                                 class="w-full h-full object-cover transition-all duration-[1s]" 
+                                 :alt="selectedServiceDetail?.name">
+                        </template>
+
+                        <!-- Left Arrow Navigation -->
+                        <template x-if="getSelectedServiceMediaList().length > 1">
+                            <button @click="activeSvcIndex = (activeSvcIndex === 0) ? getSelectedServiceMediaList().length - 1 : activeSvcIndex - 1"
+                                    class="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/45 hover:bg-white/70 backdrop-blur-md border border-white/30 flex items-center justify-center text-brand-charcoal transition-all duration-300 focus:outline-none cursor-pointer z-20">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                        </template>
+
+                        <!-- Right Arrow Navigation -->
+                        <template x-if="getSelectedServiceMediaList().length > 1">
+                            <button @click="activeSvcIndex = (activeSvcIndex === getSelectedServiceMediaList().length - 1) ? 0 : activeSvcIndex + 1"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/45 hover:bg-white/70 backdrop-blur-md border border-white/30 flex items-center justify-center text-brand-charcoal transition-all duration-300 focus:outline-none cursor-pointer z-20">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </template>
+
+                        <!-- Dot Indicators -->
+                        <template x-if="getSelectedServiceMediaList().length > 1">
+                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 bg-black/25 backdrop-blur-md px-3 py-1.5 rounded-full">
+                                <template x-for="(mediaItem, mediaIdx) in getSelectedServiceMediaList()" :key="mediaIdx">
+                                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer"
+                                          @click="activeSvcIndex = mediaIdx"
+                                          :class="mediaIdx === activeSvcIndex ? 'bg-brand-rose scale-125' : 'bg-white/55'"></span>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Content Column -->
+            <div class="md:w-1/2 p-5 pb-8 md:p-10 flex flex-col justify-between md:overflow-y-auto bg-white shrink-0 md:shrink">
+                <div class="space-y-6">
+                    <div class="space-y-1">
+                        <span class="text-[9px] font-bold tracking-[0.25em] text-brand-gold uppercase" 
+                              x-text="categories.find(c => c.id === selectedServiceDetail?.category)?.name"></span>
+                        <h3 class="text-2xl md:text-3xl font-light font-serif text-brand-charcoal uppercase leading-tight break-words" 
+                            x-text="selectedServiceDetail?.name"></h3>
+                    </div>
+
+                    <div class="w-12 h-[1px] bg-brand-rose"></div>
+
+                    <p class="text-xs text-brand-charcoal/70 leading-relaxed font-light tracking-wide" 
+                       x-text="selectedServiceDetail?.description"></p>
+
+                    <div class="flex items-center gap-4 text-xs text-brand-charcoal/60 pt-4 border-t border-brand-sand/50">
+                        <span class="flex items-center gap-1.5 uppercase font-bold tracking-wider text-[10px] text-brand-gold">
+                            <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span x-text="selectedServiceDetail?.duration"></span>
+                        </span>
+                        <span class="text-brand-rose font-serif text-2xl font-bold" x-text="selectedServiceDetail?.price + ' ₽'"></span>
+                    </div>
+                    
+                    <template x-if="selectedServiceDetail?.before && selectedServiceDetail?.after">
+                        <div class="pt-2">
+                            <button @click="showBeforeAfterSlider = !showBeforeAfterSlider"
+                                    class="before-after-toggle-btn inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold tracking-widest uppercase text-brand-rose transition-colors focus:outline-none cursor-pointer">
+                                <svg x-show="!showBeforeAfterSlider" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                <svg x-show="showBeforeAfterSlider" style="display:none;" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                <span x-text="showBeforeAfterSlider ? 'Скрыть До/После' : 'Смотреть До/После'"></span>
+                            </button>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="pt-4 md:pt-6 flex flex-col gap-2 w-full">
+                    <button @click="toggleServiceInCalc(selectedServiceDetail)" 
+                            class="w-full inline-flex items-center justify-center px-4 py-3 sm:py-4 border border-brand-charcoal text-brand-charcoal text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-brand-charcoal hover:text-white cursor-pointer rounded-none"
+                            :class="isServiceSelectedForCalc(selectedServiceDetail) ? 'bg-brand-rose/10 border-brand-rose text-brand-rose' : 'bg-transparent'">
+                        <span x-text="isServiceSelectedForCalc(selectedServiceDetail) ? '✓ Убрать из расчета' : '+ Добавить к расчету'"></span>
+                    </button>
+                    <a :href="priceBlock.buttonLink || bookingUrlApp" target="_blank" 
+                       @click="reachMetrikaGoal('click_booking')"
+                       class="w-full inline-flex items-center justify-center px-6 py-3.5 sm:py-4 bg-brand-rose hover:bg-brand-charcoal text-white text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase transition-all duration-500 hover:shadow-xl shadow-brand-rose/25 rounded-none">
+                        Записаться онлайн →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Price Calculator Floating Toggle Button (Bento Cart Style) -->
+    <button x-show="selectedServicesForCalc.length > 0 && isStickyCtaVisible"
+            x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="scale-0 opacity-0"
+            x-transition:enter-end="scale-100 opacity-100"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="scale-100 opacity-100"
+            x-transition:leave-end="scale-0 opacity-0"
+            @click="isCalcDrawerOpen = !isCalcDrawerOpen; triggerHaptic('medium')"
+            class="fixed bottom-32 right-6 md:bottom-8 md:right-8 z-40 w-14 h-14 rounded-full bg-brand-rose text-white shadow-xl hover:bg-brand-charcoal flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none"
+            title="Посмотреть выбранные услуги"
+            style="display: none;">
+        <span class="absolute -top-1 -right-1 bg-brand-charcoal text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-brand-rose" x-text="selectedServicesForCalc.length"></span>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+        </svg>
+    </button>
+
+    <!-- Price Calculator Drawer (Bottom Sheet Style) -->
+    <div x-show="isCalcDrawerOpen && selectedServicesForCalc.length > 0"
+         x-transition:enter="transition ease-out duration-300 transform"
+         x-transition:enter-start="translate-y-full"
+         x-transition:enter-end="translate-y-0"
+         x-transition:leave="transition ease-in duration-200 transform"
+         x-transition:leave-start="translate-y-0"
+         x-transition:leave-end="translate-y-full"
+         class="fixed bottom-0 left-0 right-0 z-40 bg-brand-cream/95 dark:bg-[#1A1413]/95 backdrop-blur-md border-t border-brand-sand dark:border-[#29201E] shadow-[0_-15px_50px_rgba(28,22,21,0.15)] pt-6 pb-8 px-6 sm:px-8 select-none max-w-xl mx-auto rounded-t-[2.5rem]"
+         style="display: none;"
+         @click.outside="isCalcDrawerOpen = false">
+        
+
+
+        <div class="space-y-6">
+            <!-- Header with Title & Close button -->
+            <div class="flex items-center justify-between border-b border-brand-sand dark:border-[#29201E] pb-3">
+                <div class="flex items-center gap-2">
+                    <h3 class="text-sm font-bold tracking-[0.15em] text-brand-gold uppercase">Выбранные процедуры</h3>
+                    <span class="bg-brand-rose text-white text-[9px] font-bold px-2 py-0.5 rounded-full" x-text="selectedServicesForCalc.length"></span>
+                </div>
+                <button @click="isCalcDrawerOpen = false; triggerHaptic('light')" 
+                        class="text-brand-charcoal/40 hover:text-brand-rose dark:text-white/40 dark:hover:text-brand-rose transition-colors cursor-pointer text-xs uppercase tracking-wider font-semibold">
+                    Свернуть
+                </button>
+            </div>
+
+            <!-- List of Clickable Chips -->
+            <div class="space-y-2">
+                <p class="text-[9px] uppercase tracking-widest text-brand-charcoal/50 dark:text-white/50">Нажмите на крестик для удаления:</p>
+                <div class="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1">
+                    <template x-for="service in selectedServicesForCalc" :key="service.name">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-sand dark:bg-[#29201E] border border-brand-sand/60 dark:border-[#29201E]/60 text-[10px] text-brand-charcoal dark:text-white font-light rounded-none hover:border-brand-rose transition-colors cursor-pointer select-none"
+                              @click="toggleServiceInCalc(service)"
+                              title="Удалить из расчета">
+                            <span x-text="service.name"></span>
+                            <span class="text-brand-rose font-bold text-[10px]">×</span>
+                        </span>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Total price & time -->
+            <div class="grid grid-cols-2 gap-4 bg-brand-sand/30 dark:bg-[#29201E]/30 p-4 border border-brand-sand dark:border-[#29201E]">
+                <div>
+                    <span class="text-[9px] uppercase tracking-widest text-brand-charcoal/50 dark:text-white/50 block">Итого к записи</span>
+                    <span class="text-2xl font-serif text-brand-rose font-bold" x-text="calcTotal + ' ₽'"></span>
+                </div>
+                <div class="text-right">
+                    <span class="text-[9px] uppercase tracking-widest text-brand-charcoal/50 dark:text-white/50 block">Примерное время</span>
+                    <span class="text-sm font-semibold text-brand-charcoal dark:text-white mt-1 block" x-text="calcTotalDurationFormatted"></span>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3 pt-2">
+                <button @click="clearCalc(); triggerHaptic('medium')" 
+                        class="flex-1 py-4 border border-brand-sand dark:border-[#29201E] hover:border-brand-rose text-brand-charcoal dark:text-white text-xs font-bold tracking-widest uppercase hover:bg-brand-rose/10 transition-colors cursor-pointer rounded-none">
+                    Сбросить всё
+                </button>
+                <button @click="bookSelectedServices(); isCalcDrawerOpen = false; triggerHaptic('medium')" 
+                        class="flex-2 py-4 bg-brand-rose text-white text-xs font-bold tracking-widest uppercase hover:bg-brand-charcoal transition-colors shadow-lg shadow-brand-rose/25 hover:shadow-xl cursor-pointer rounded-none">
+                    Записаться онлайн →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div x-show="toast.visible" 
+         x-transition:enter="transition ease-out duration-300 transform"
+         x-transition:enter-start="translate-y-4 opacity-0"
+         x-transition:enter-end="translate-y-0 opacity-100"
+         x-transition:leave="transition ease-in duration-200 transform"
+         x-transition:leave-start="translate-y-0 opacity-100"
+         x-transition:leave-end="translate-y-4 opacity-0"
+         class="fixed bottom-24 right-6 z-50 p-4 border shadow-xl flex items-center gap-3 max-w-md select-none transition-all duration-300"
+         :class="toast.type === 'success' ? 'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-950/90 dark:text-emerald-300 dark:border-emerald-900/50' : 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-[#29201E]/90 dark:text-[#E5A899] dark:border-[#29201E]/50'">
+        <span class="w-2 h-2 rounded-full animate-pulse" :class="toast.type === 'success' ? 'bg-emerald-500' : 'bg-rose-500'"></span>
+        <p class="text-xs font-bold uppercase tracking-wider" x-text="toast.message"></p>
+    </div>
+
+    <!-- Beautiful Booking Confirmation Modal -->
+    <div x-show="bookingModal.open" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-charcoal/60 backdrop-blur-md"
+         style="display: none;"
+         @click.self="bookingModal.open = false">
+        
+        <div class="bg-brand-cream dark:bg-[#1A1413] border border-brand-sand dark:border-[#29201E] max-w-md w-full p-8 space-y-6 shadow-2xl relative text-center"
+             x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="scale-95 translate-y-4"
+             x-transition:enter-end="scale-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-200 transform"
+             x-transition:leave-start="scale-100 translate-y-0"
+             x-transition:leave-end="scale-95 translate-y-4">
+            
+            <!-- Close button -->
+            <button @click="bookingModal.open = false" 
+                    class="absolute top-4 right-4 text-brand-charcoal/40 hover:text-brand-rose dark:text-white/40 dark:hover:text-brand-rose transition-colors focus:outline-none cursor-pointer">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <!-- Header -->
+            <div class="space-y-2">
+                <span class="text-[9px] font-bold tracking-[0.3em] text-brand-rose uppercase">Готово к записи</span>
+                <h3 class="text-2xl font-light font-serif text-brand-charcoal dark:text-white uppercase" x-text="priceHelper?.modalTitle || 'Услуги скопированы'"></h3>
+                <div class="w-12 h-[1px] bg-brand-gold/40 mx-auto mt-2"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="space-y-4">
+                <p class="text-xs text-brand-charcoal/70 dark:text-white/70 leading-relaxed font-light" x-text="priceHelper?.modalDescription || 'Список выбранных процедур успешно скопирован в буфер обмена:'">
+                </p>
+                <div class="bg-brand-sand/50 dark:bg-[#29201E]/50 border border-brand-sand dark:border-[#29201E] p-4 text-xs font-serif italic text-brand-rose dark:text-[#E5A899] font-bold leading-relaxed max-h-24 overflow-y-auto"
+                     x-text="bookingModal.servicesText">
+                </div>
+                <p class="text-[10px] text-brand-charcoal/50 dark:text-white/50 leading-relaxed font-light" x-text="priceHelper?.modalHelpText || 'В открывшемся виджете DIKIDI выберите эти услуги вручную для подтверждения времени и деталей процедуры.'">
+                </p>
+            </div>
+
+            <!-- Actions -->
+            <div class="pt-2">
+                <a :href="priceHelper?.bookingUrl || priceBlock.buttonLink || bookingUrlApp" 
+                   target="_blank"
+                   @click="bookingModal.open = false; reachMetrikaGoal('click_booking')"
+                   class="w-full inline-flex items-center justify-center px-6 py-4 bg-brand-rose hover:bg-brand-charcoal text-white text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-500 shadow-lg shadow-brand-rose/25 hover:shadow-xl cursor-pointer rounded-none">
+                    <span x-text="priceHelper?.modalButtonText || 'Перейти к онлайн-записи'"></span> ↗
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Beautiful Server Error Overlay (Editorial Styling) -->
+    <div x-show="serverError" 
+         x-transition:enter="transition ease-out duration-500"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         class="fixed inset-0 z-50 flex items-center justify-center bg-brand-cream/95 dark:bg-[#120E0D]/95 backdrop-blur-2xl px-6"
+         style="display: none;">
+        <div class="max-w-md w-full text-center space-y-8 p-10 bg-white dark:bg-[#1A1413] border border-brand-sand dark:border-[#29201E] shadow-2xl rounded-[2.5rem] relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-36 h-36 bg-brand-rose/5 rounded-full blur-3xl"></div>
+            
+            <div class="space-y-4">
+                <span class="w-12 h-12 rounded-full border border-brand-rose/40 flex items-center justify-center text-brand-rose text-lg mx-auto font-light font-serif">⚡️</span>
+                <span class="text-[10px] font-bold tracking-[0.3em] text-brand-rose uppercase block">Временные технические работы</span>
+                <h2 class="text-3xl font-light font-serif text-brand-charcoal dark:text-white uppercase leading-tight">Сервер временно <br><span class="italic text-brand-rose lowercase font-serif pl-4">не на связи</span></h2>
+                <div class="w-16 h-[0.5px] bg-brand-gold/50 mx-auto mt-4"></div>
+            </div>
+            
+            <p class="text-xs text-brand-charcoal/70 dark:text-white/70 leading-relaxed font-light tracking-wide">
+                Мы обновляем эстетическое пространство нашего сайта. Запись в студию продолжает работать в штатном режиме через прямые каналы связи.
+            </p>
+            
+            <div class="space-y-3 pt-2">
+                <a :href="bookingUrlApp || 'https://dkd.su/1433946'" target="_blank" class="w-full inline-flex items-center justify-center py-4 bg-brand-rose text-white text-[10px] font-bold tracking-[0.2em] uppercase transition-colors hover:bg-brand-charcoal">
+                    Онлайн-запись DIKIDI ✦
+                </a>
+                <a :href="contacts.telegram || 'https://t.me/marina_nails'" target="_blank" class="w-full inline-flex items-center justify-center py-4 border border-brand-charcoal/20 dark:border-white/10 text-brand-charcoal dark:text-white text-[10px] font-bold tracking-[0.2em] uppercase transition-colors hover:bg-brand-charcoal hover:text-white dark:hover:bg-white dark:hover:text-brand-charcoal">
+                    Написать в Telegram
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button (Centered Minimalist Capsule) -->
+    <button x-show="scrollYOffset > 600"
+            x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="translate-y-10 opacity-0 -translate-x-1/2"
+            x-transition:enter-end="translate-y-0 opacity-100 -translate-x-1/2"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="translate-y-0 opacity-100 -translate-x-1/2"
+            x-transition:leave-end="translate-y-10 opacity-0 -translate-x-1/2"
+            @click="window.scrollTo({ top: 0, behavior: 'smooth' }); triggerHaptic('medium')"
+            class="fixed bottom-32 md:bottom-24 left-1/2 -translate-x-1/2 z-30 w-12 h-12 rounded-full bg-brand-cream/90 dark:bg-[#1A1413]/90 backdrop-blur-md border border-brand-sand dark:border-[#29201E] text-brand-charcoal dark:text-white shadow-lg flex items-center justify-center hover:bg-brand-rose hover:text-white hover:border-brand-rose transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none"
+            title="Наверх"
+            style="display: none;">
+        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+    <!-- Cookie Consent Banner -->
+    <div x-data="{ 
+             showCookie: false,
+             init() {
+                 if (!localStorage.getItem('cookieAccepted')) {
+                     setTimeout(() => { this.showCookie = true; }, 1200);
+                 }
+             },
+             accept() {
+                 localStorage.setItem('cookieAccepted', 'true');
+                 this.showCookie = false;
+             }
+         }"
+         x-show="showCookie"
+         x-transition:enter="transition ease-out duration-500 transform"
+         x-transition:enter-start="translate-y-12 opacity-0"
+         x-transition:enter-end="translate-y-0 opacity-100"
+         x-transition:leave="transition ease-in duration-300 transform"
+         x-transition:leave-start="translate-y-0 opacity-100"
+         x-transition:leave-end="translate-y-12 opacity-0"
+         class="fixed bottom-24 sm:bottom-6 left-6 right-6 md:left-auto md:right-6 md:max-w-xs z-50 p-5 bg-white/90 dark:bg-brand-sand/95 backdrop-blur-md border border-brand-sand dark:border-brand-sand/15 shadow-2xl rounded-2xl flex flex-col gap-3.5 text-left"
+         style="display: none;">
+        <div class="text-[11px] text-brand-charcoal/80 dark:text-white/80 leading-relaxed font-light font-sans">
+            Мы используем файлы cookie для улучшения работы сайта. Продолжая работу, вы соглашаетесь с нашей 
+            <a href="/privacy-policy.html" class="text-brand-rose hover:underline font-normal">Политикой конфиденциальности</a>.
+        </div>
+        <button @click="accept()" class="w-full py-2 bg-brand-charcoal hover:bg-brand-rose dark:bg-brand-rose dark:hover:bg-white text-white dark:text-brand-charcoal dark:hover:text-brand-charcoal transition-all duration-300 text-[9px] font-bold tracking-widest uppercase cursor-pointer text-center rounded-lg shadow-sm">
+            Принять
+        </button>
+    </div>
+
+</body>
+</html>

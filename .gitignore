@@ -1,0 +1,11 @@
+node_modules/
+.env
+data/users.json
+.DS_Store
+temp-restore.json
+*.log
+.agent/
+.system_generated/
+agents.md
+status.md
+status_archive.md

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru" class="select-none overflow-x-hidden w-full max-w-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>Портфолио работ — NailsVibe</title>
+    <meta name="description" content="Галерея безупречных работ и авторского дизайна ногтей от Марины в Иваново. Убедитесь в качестве покрытия и чистоте маникюра.">
+    
+    <!-- Distinctive High-Fashion Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    
+    <!-- Alpine.js Plugins & Core -->
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Premium Styles -->
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        @theme {
+            --color-brand-cream: #FDFBF7;
+            --color-brand-sand: #F5EFEB;
+            --color-brand-rose: #D59C8C;
+            --color-brand-rose-dark: #B57F71;
+            --color-brand-gold: #C5A282;
+            --color-brand-charcoal: #1C1615;
+            --color-brand-lightrose: #F9F1ED;
+            
+            --font-serif: "Cormorant Garamond", Georgia, serif;
+            --font-sans: "Outfit", sans-serif;
+        }
+
+        :root {
+            --color-brand-cream: #FDFBF7;
+            --color-brand-sand: #F5EFEB;
+            --color-brand-rose: #D59C8C;
+            --color-brand-rose-dark: #B57F71;
+            --color-brand-gold: #C5A282;
+            --color-brand-charcoal: #1C1615;
+            --color-brand-lightrose: #F9F1ED;
+        }
+
+        body {
+            background-color: var(--color-brand-cream);
+            color: var(--color-brand-charcoal);
+            font-family: var(--font-sans);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        html.dark {
+            --color-brand-cream: #120E0D;
+            --color-brand-lightrose: #1A1413;
+            --color-brand-sand: #29201E;
+            --color-brand-charcoal: #FDFBF7;
+            --color-brand-rose: #E5A899;
+            --color-brand-gold: #D8B697;
+        }
+
+        h1, h2, h3, h4, .font-serif-custom {
+            font-family: var(--font-serif);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-brand-cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-brand-gold);
+            border-radius: 9999px;
+        }
+
+        body, header, section, footer, div, p, span, a, button, h1, h2, h3, h4, img, svg {
+            transition-property: background-color, border-color, text-color, fill, stroke, box-shadow, opacity;
+            transition-duration: 500ms;
+            transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Bento cards & photos dark overrides */
+        html.dark .bg-white {
+            background-color: #1A1413 !important;
+            color: var(--color-brand-charcoal) !important;
+        }
+
+        html.dark .bg-white\/40 {
+            background-color: rgba(26, 20, 19, 0.45) !important;
+        }
+
+        html.dark .border-white\/60 {
+            border-color: rgba(253, 251, 247, 0.15) !important;
+        }
+    </style>
+
+    <style>
+        /* Fallback CSS to override any Tailwind CDN compiling bugs with dark/light themes */
+        :root {
+            --color-brand-cream: #FDFBF7;
+            --color-brand-sand: #F5EFEB;
+            --color-brand-rose: #D59C8C;
+            --color-brand-rose-dark: #B57F71;
+            --color-brand-gold: #C5A282;
+            --color-brand-charcoal: #1C1615;
+            --color-brand-lightrose: #F9F1ED;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .text-brand-charcoal {
+            color: var(--color-brand-charcoal) !important;
+        }
+
+        /* Fallbacks for charcoal opacity text classes in light theme (RGB: 28, 22, 21) */
+        .text-brand-charcoal\/85 { color: rgba(28, 22, 21, 0.85) !important; }
+        .text-brand-charcoal\/80 { color: rgba(28, 22, 21, 0.80) !important; }
+        .text-brand-charcoal\/75 { color: rgba(28, 22, 21, 0.75) !important; }
+        .text-brand-charcoal\/70 { color: rgba(28, 22, 21, 0.70) !important; }
+        .text-brand-charcoal\/60 { color: rgba(28, 22, 21, 0.60) !important; }
+        .text-brand-charcoal\/50 { color: rgba(28, 22, 21, 0.50) !important; }
+        .text-brand-charcoal\/40 { color: rgba(28, 22, 21, 0.40) !important; }
+
+        /* Fallbacks for charcoal opacity text classes in dark theme (RGB: 253, 251, 247) */
+        html.dark .text-brand-charcoal\/85 { color: rgba(253, 251, 247, 0.85) !important; }
+        html.dark .text-brand-charcoal\/80 { color: rgba(253, 251, 247, 0.80) !important; }
+        html.dark .text-brand-charcoal\/75 { color: rgba(253, 251, 247, 0.75) !important; }
+        html.dark .text-brand-charcoal\/70 { color: rgba(253, 251, 247, 0.70) !important; }
+        html.dark .text-brand-charcoal\/60 { color: rgba(253, 251, 247, 0.60) !important; }
+        html.dark .text-brand-charcoal\/50 { color: rgba(253, 251, 247, 0.50) !important; }
+        html.dark .text-brand-charcoal\/40 { color: rgba(253, 251, 247, 0.40) !important; }
+    </style>
+
+    <!-- Auto Theme Switcher -->
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body x-data="portfolioApp()" x-init="init()" class="relative min-h-screen overflow-x-hidden w-full max-w-full">
+
+    <!-- Top Luxury Announcement Bar -->
+    <div class="w-full bg-[#1C1615] text-[#FDFBF7] dark:bg-brand-sand dark:text-brand-charcoal py-2.5 px-4 text-center text-[8px] sm:text-[9px] tracking-[0.2em] font-bold uppercase relative z-30 flex justify-center items-center gap-1.5" x-show="contacts.phone">
+        <span>Остались вопросы? Позвоните нам:</span>
+        <a :href="'tel:8' + contacts.phoneFormatted.slice(1)" class="text-brand-rose hover:text-white dark:hover:text-brand-rose transition-colors font-extrabold" x-text="contacts.phone"></a>
+    </div>
+
+    <!-- Grain Overlay -->
+    <div id="grain-overlay" class="fixed inset-0 z-50 pointer-events-none opacity-[0.045] dark:opacity-[0.012]" 
+         style="background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');">
+    </div>
+
+    <div class="max-w-7xl w-full mx-auto space-y-12 relative z-10 py-12 px-4 sm:px-8">
+        
+        <!-- Header -->
+        <header class="border-b border-brand-sand/50 dark:border-brand-sand/10 pb-8 relative">
+            <!-- Top Navigation Bar (Back and Theme Toggle) -->
+            <div class="flex justify-between items-center mb-6">
+                <a href="/" class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-brand-rose uppercase hover:text-brand-charcoal dark:hover:text-white transition-colors">
+                    ← На главную
+                </a>
+                
+                <!-- Theme Toggle Button -->
+                <button @click="toggleTheme()" 
+                        class="w-9 h-9 rounded-full border border-brand-sand/60 hover:border-brand-rose flex items-center justify-center text-brand-charcoal hover:text-brand-rose transition-all duration-500 cursor-pointer focus:outline-none">
+                    <svg x-show="isDark" class="w-4 h-4 text-brand-rose" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"/>
+                    </svg>
+                    <svg x-show="!isDark" class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-light font-serif tracking-tight text-brand-charcoal dark:text-white uppercase">
+                    Эстетика & Работы
+                </h1>
+                <p class="text-xs uppercase tracking-widest text-[#9E7A5A] dark:text-brand-gold font-bold mt-2">
+                    Полная галерея работ частной студии NailsVibe
+                </p>
+            </div>
+        </header>
+
+        <!-- Category Tabs -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <button @click="selectedCategory = 'all'"
+                    class="px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider border transition-all duration-300 cursor-pointer"
+                    :class="selectedCategory === 'all' ? 'bg-brand-charcoal text-white dark:bg-brand-rose dark:text-brand-charcoal border-brand-charcoal dark:border-brand-rose shadow-sm' : 'bg-white dark:bg-[#1A1413] text-brand-charcoal/80 dark:text-white/80 border-brand-sand dark:border-[#29201E] hover:border-brand-charcoal dark:hover:border-brand-rose hover:text-brand-charcoal dark:hover:text-brand-rose'">
+                Все работы
+            </button>
+            <template x-for="cat in categories.filter(c => c.id !== 'all' && !c.hidden)" :key="cat.id">
+                <button @click="selectedCategory = cat.id"
+                        class="px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider border transition-all duration-300 cursor-pointer"
+                        :class="selectedCategory === cat.id ? 'bg-brand-charcoal text-white dark:bg-brand-rose dark:text-brand-charcoal border-brand-charcoal dark:border-brand-rose shadow-sm' : 'bg-white dark:bg-[#1A1413] text-brand-charcoal/80 dark:text-white/80 border-brand-sand dark:border-[#29201E] hover:border-brand-charcoal dark:hover:border-brand-rose hover:text-brand-charcoal dark:hover:text-brand-rose'">
+                    <span x-text="cat.name"></span>
+                </button>
+            </template>
+        </div>
+
+        <!-- Masonry Grid -->
+        <main>
+            <template x-if="filteredPortfolio.length === 0">
+                <div class="text-center py-24 border border-brand-sand/50 dark:border-[#29201E]/50">
+                    <p class="text-brand-charcoal/50 dark:text-white/50 font-light italic">Нет доступных работ в этой категории...</p>
+                </div>
+            </template>
+
+            <div class="columns-2 lg:columns-3 gap-3 sm:gap-6 space-y-3 sm:space-y-6 [column-fill:_balance]">
+                <template x-for="(item, index) in filteredPortfolio" :key="index">
+                    <div x-show="!item.hidden" 
+                         x-data="{ activeIndex: 0 }"
+                         @click="openServiceFromPortfolio(item)"
+                         class="break-inside-avoid bg-white dark:bg-[#1A1413] rounded-3xl border border-brand-sand/40 dark:border-[#29201E]/40 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5 group mb-6 relative cursor-pointer">
+                        
+                        <!-- Image Container with Zoom -->
+                        <div class="relative overflow-hidden aspect-auto" :style="index % 3 === 0 ? 'aspect-ratio: 3/4' : index % 3 === 1 ? 'aspect-ratio: 4/5' : 'aspect-ratio: 1/1'">
+                            <img :src="(item.images && item.images.length > 0) ? item.images[activeIndex] : item.image" 
+                                 class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-[1.5s] ease-out pointer-events-none" 
+                                 :alt="item.title">
+
+                            <!-- Floating Before/After Badge -->
+                            <template x-if="hasBeforeAfter(item)">
+                                <div class="absolute top-4 right-4 bg-brand-rose/90 backdrop-blur-md text-white border border-white/20 px-3 py-1.5 text-[8px] sm:text-[9px] font-bold tracking-[0.2em] uppercase rounded-full shadow-md z-20">
+                                    ✦ До / После
+                                </div>
+                            </template>
+
+                            <!-- Left Arrow Navigation -->
+                            <template x-if="item.images && item.images.length > 1">
+                                <button @click.stop="activeIndex = (activeIndex === 0) ? item.images.length - 1 : activeIndex - 1"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none cursor-pointer z-20">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                                </button>
+                            </template>
+
+                            <!-- Right Arrow Navigation -->
+                            <template x-if="item.images && item.images.length > 1">
+                                <button @click.stop="activeIndex = (activeIndex === item.images.length - 1) ? 0 : activeIndex + 1"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none cursor-pointer z-20">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </button>
+                            </template>
+
+                            <!-- Dot Indicators -->
+                            <template x-if="item.images && item.images.length > 1">
+                                <div class="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 bg-black/25 backdrop-blur-md px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <template x-for="(img, imgIdx) in item.images" :key="imgIdx">
+                                        <span class="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                                              :class="imgIdx === activeIndex ? 'bg-brand-rose scale-125' : 'bg-white/55'"></span>
+                                    </template>
+                                </div>
+                            </template>
+                            
+                            <!-- Floating Frosted Glass Action Bar -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
+                                <div class="w-full flex items-center justify-between text-white">
+                                    <div class="space-y-1">
+                                        <p class="text-[10px] uppercase tracking-widest text-brand-rose font-bold" x-text="categories.find(c => c.id === item.category)?.name"></p>
+                                        <h4 class="text-sm font-light font-serif tracking-wide" x-text="item.title"></h4>
+                                    </div>
+                                    <a :href="bookingUrl" target="_blank" @click.stop="" class="hidden md:inline-block px-4 py-2 bg-brand-rose hover:bg-white hover:text-brand-charcoal text-white rounded-full text-[10px] font-bold tracking-widest uppercase transition-all duration-300 shadow-md shadow-brand-rose/25">
+                                        Запись
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </main>
+
+        <footer class="text-center pt-8 border-t border-brand-sand dark:border-brand-sand/10 text-[10px] tracking-[0.2em] uppercase text-brand-charcoal/40 dark:text-white/30">
+            <a href="/" class="hover:text-brand-rose transition-colors">NailsVibe Studio</a>
+        </footer>
+    </div>
+
+    <!-- Script Application -->
+    <script>
+        function portfolioApp() {
+            return {
+                portfolio: [],
+                categories: [],
+                services: [],
+                contacts: {},
+                selectedCategory: 'all',
+                bookingUrl: '',
+                isDark: false,
+
+                init() {
+                    // Инициализация темы
+                    this.isDark = document.documentElement.classList.contains('dark');
+                    
+                    // Сохраняем положение скролла перед перезагрузкой
+                    window.addEventListener('beforeunload', () => {
+                        sessionStorage.setItem('scrollPosition', window.scrollY);
+                    });
+                    
+                    fetch('/data/site_data.json')
+                        .then(res => res.json())
+                        .then(data => {
+                            this.portfolio = data.portfolio || [];
+                            this.categories = data.categories || [];
+                            this.services = data.services || [];
+                            this.contacts = data.contacts || {};
+                            this.bookingUrl = data.bookingUrlApp || data.bookingUrl || 'https://dikidi.app/1433946';
+                            
+                            // Плавная прокрутка к сохраненной позиции после перезагрузки
+                            const savedScroll = sessionStorage.getItem('scrollPosition');
+                            if (savedScroll) {
+                                Alpine.nextTick(() => {
+                                    setTimeout(() => {
+                                        window.scrollTo({
+                                            top: parseInt(savedScroll, 10),
+                                            behavior: 'smooth'
+                                        });
+                                        sessionStorage.removeItem('scrollPosition');
+                                        setTimeout(() => {
+                                            document.documentElement.classList.add('scroll-smooth');
+                                        }, 600);
+                                    }, 150);
+                                });
+                            } else {
+                                Alpine.nextTick(() => {
+                                    window.scrollTo(0, 0);
+                                    setTimeout(() => {
+                                        document.documentElement.classList.add('scroll-smooth');
+                                    }, 100);
+                                });
+                            }
+                        })
+                        .catch(err => console.error('Ошибка загрузки портфолио:', err));
+                },
+
+                hasBeforeAfter(item) {
+                    if (!item.service) return false;
+                    const s = this.services.find(x => x.name === item.service);
+                    return !!(s && s.before && s.after);
+                },
+
+                openServiceFromPortfolio(item) {
+                    if (item.service) {
+                        window.location.href = `/?service=${encodeURIComponent(item.service)}`;
+                    }
+                },
+
+                get filteredPortfolio() {
+                    const activeCategoryIds = this.categories.filter(c => !c.hidden).map(c => c.id);
+                    let list = this.portfolio.filter(item => activeCategoryIds.includes(item.category));
+                    
+                    if (this.selectedCategory === 'all') {
+                        return list;
+                    }
+                    return list.filter(item => item.category === this.selectedCategory);
+                },
+
+                toggleTheme() {
+                    this.isDark = !this.isDark;
+                    if (this.isDark) {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
