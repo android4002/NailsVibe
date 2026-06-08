@@ -15,5 +15,9 @@
     "multer": "^1.4.5-lts.1"
   },
   "author": "NailsVibe Team",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  }
 }

@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-brand-cream: #FDFBF7;
+    --color-brand-sand: #F5EFEB;
+    --color-brand-rose: #D59C8C;
+    --color-brand-rose-dark: #B57F71;
+    --color-brand-gold: #C5A282;
+    --color-brand-charcoal: #1C1615;
+    --color-brand-lightrose: #F9F1ED;
+    
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Outfit", sans-serif;
+}
