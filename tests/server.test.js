@@ -122,6 +122,24 @@ test('validateSiteData', () => {
         masterName: 'Test Master'
     };
     assert.ok(!validateSiteData(invalidType), 'Invalid blocksOrder type should fail');
+
+    const invalidCollectionType = {
+        blocksVisibility: {},
+        blocksOrder: [],
+        salonName: 'Test Salon',
+        masterName: 'Test Master',
+        categories: 'not_an_array'
+    };
+    assert.ok(!validateSiteData(invalidCollectionType), 'Invalid categories type should fail');
+
+    const invalidObjectType = {
+        blocksVisibility: {},
+        blocksOrder: [],
+        salonName: 'Test Salon',
+        masterName: 'Test Master',
+        contacts: 'not_an_object'
+    };
+    assert.ok(!validateSiteData(invalidObjectType), 'Invalid contacts type should fail');
     
     assert.ok(!validateSiteData(null), 'Null should fail');
 });

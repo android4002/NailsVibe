@@ -536,6 +536,9 @@ app.post('/api/change-password', requireAuth(), async (req, res) => {
     if (!currentPassword || !newPassword) {
         return res.status(400).json({ error: 'Укажите текущий и новый пароли' });
     }
+    if (typeof currentPassword !== 'string' || typeof newPassword !== 'string') {
+        return res.status(400).json({ error: 'Пароли должны быть текстовыми строками' });
+    }
     
     // Валидация сложности пароля
     if (!validatePasswordStrength(newPassword)) {
@@ -571,12 +574,30 @@ app.post('/api/change-password', requireAuth(), async (req, res) => {
 // Валидация структуры данных сайта (site_data.json)
 function validateSiteData(data) {
     if (!data || typeof data !== 'object') return false;
+    
+    // Обязательные базовые поля
     const requiredKeys = ['blocksVisibility', 'blocksOrder', 'salonName', 'masterName'];
     for (const key of requiredKeys) {
         if (!(key in data)) return false;
     }
+    
+    // Валидация типов полей
+    if (typeof data.salonName !== 'string' || typeof data.masterName !== 'string') return false;
     if (!Array.isArray(data.blocksOrder)) return false;
-    if (typeof data.blocksVisibility !== 'object') return false;
+    if (typeof data.blocksVisibility !== 'object' || data.blocksVisibility === null) return false;
+    
+    // Проверка необязательных коллекций (если они есть, они должны быть массивами)
+    const arrayKeys = ['categories', 'services', 'portfolio', 'reviews', 'socials', 'beforeAfter', 'cabinetVideos'];
+    for (const key of arrayKeys) {
+        if (key in data && !Array.isArray(data[key])) return false;
+    }
+    
+    // Проверка структуры объектов (если они есть)
+    const objectKeys = ['contacts', 'heroBlock', 'aboutBlock', 'benefitsBlock', 'beforeAfterBlock', 'portfolioBlock', 'priceBlock', 'priceHelper', 'contactsBlock', 'footerBlock', 'cozyCabinet', 'cabinetVideosBlock', 'reviewsBlock'];
+    for (const key of objectKeys) {
+        if (key in data && (typeof data[key] !== 'object' || data[key] === null)) return false;
+    }
+    
     return true;
 }
 

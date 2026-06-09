@@ -1189,7 +1189,7 @@
                                             <div class="p-4 bg-white border transition-colors flex flex-col justify-between space-y-3" :class="service.hidden ? 'opacity-65 border-brand-sand/50' : (service.popular ? 'border-brand-rose/40 shadow-sm' : 'border-brand-sand/50 hover:border-brand-rose')">
                                                 <div class="space-y-1">
                                                     <div class="flex justify-between items-baseline gap-2">
-                                                        <div class="flex items-center gap-1.5 truncate">
+                                                        <div class="flex items-center gap-1.5 min-w-0">
                                                             <h5 class="text-xs font-bold text-brand-charcoal uppercase truncate" x-text="service.name"></h5>
                                                             <template x-if="service.popular">
                                                                 <span class="px-1.5 py-0.5 bg-brand-rose/10 text-brand-rose text-[8px] font-bold tracking-wider uppercase">Хит</span>
@@ -2387,7 +2387,7 @@
                     <div class="space-y-2 max-h-32 overflow-y-auto border border-brand-sand/50 p-2.5 bg-brand-cream">
                         <template x-for="(img, idx) in serviceModal.data.images" :key="idx">
                             <div class="flex items-center justify-between bg-white p-1.5 border border-brand-sand/40">
-                                <div class="flex items-center gap-2 truncate">
+                                <div class="flex items-center gap-2 min-w-0">
                                     <img :src="img" class="w-6 h-6 object-cover border border-brand-sand">
                                     <span class="text-[9px] text-brand-charcoal/65 truncate" x-text="img"></span>
                                 </div>
@@ -2601,7 +2601,7 @@
                     <div class="space-y-2 max-h-40 overflow-y-auto border border-brand-sand/50 p-3 bg-brand-cream">
                         <template x-for="(img, idx) in portfolioModal.data.images" :key="idx">
                             <div class="flex items-center justify-between bg-white p-2 border border-brand-sand/40">
-                                <div class="flex items-center gap-2 truncate">
+                                <div class="flex items-center gap-2 min-w-0">
                                     <img :src="img" class="w-8 h-8 object-cover border border-brand-sand">
                                     <span class="text-[10px] text-brand-charcoal/65 truncate" x-text="img"></span>
                                 </div>

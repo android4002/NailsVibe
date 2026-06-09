@@ -214,8 +214,8 @@ document.addEventListener('alpine:init', () => {
                 }
 
                 // Инициализация нативной Яндекс.Карты, если библиотека загружена
-                if (typeof ymaps !== 'undefined') {
-                    ymaps.ready(() => this.initYandexMap());
+                if (typeof window.ymaps !== 'undefined') {
+                    window.ymaps.ready(() => this.initYandexMap());
                 }
 
                 // Открытие услуги из URL query параметра (например, при переходе из portfolio.html)
@@ -273,13 +273,13 @@ document.addEventListener('alpine:init', () => {
             const mapContainer = document.getElementById('yandex-map');
             if (!mapContainer) return;
 
-            const map = new ymaps.Map("yandex-map", {
+            const map = new window.ymaps.Map("yandex-map", {
                 center: coords,
                 zoom: 16,
                 controls: ['zoomControl']
             });
 
-            const placemark = new ymaps.Placemark(coords, {
+            const placemark = new window.ymaps.Placemark(coords, {
                 balloonContentHeader: `<span style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; color: #1C1615; text-transform: uppercase; letter-spacing: 0.1em; font-size: 14px;">${this.salonName}</span>`,
                 balloonContentBody: `<div style="font-family: 'Outfit', sans-serif; font-size: 11px; color: #1C1615; opacity: 0.8; line-height: 1.5; padding-top: 4px;">
                     <strong>Топ-мастер ${this.masterName}</strong><br>
