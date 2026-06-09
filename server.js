@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
@@ -14,25 +16,42 @@ const SESSION_SECRET = process.env.SESSION_SECRET || 'nailsvibe_editorial_secret
 // Соль для хэширования паролей
 const PASSWORD_SALT = process.env.PASSWORD_SALT || 'nailsvibe_editorial_salt_2026_key';
 
-// Настройка middleware
 // Настройка CORS с ограничением доверенных доменов
 const allowedOrigins = [
     'https://android4002.github.io',
     'http://localhost:3005',
     'http://127.0.0.1:3005'
 ];
+if (process.env.ALLOWED_CORS_ORIGINS) {
+    const envOrigins = process.env.ALLOWED_CORS_ORIGINS.split(',').map(o => o.trim());
+    allowedOrigins.push(...envOrigins);
+}
+
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-            return callback(new Error('CORS policy does not allow access from this origin.'), false);
+        const isAllowed = allowedOrigins.some(allowed => {
+            return origin === allowed || origin.endsWith('.' + allowed.replace(/^https?:\/\//, ''));
+        });
+        if (!isAllowed) {
+            return callback(null, false);
         }
         return callback(null, true);
     },
     credentials: true
 }));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Лимитер запросов на авторизацию (защита от Brute Force)
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 минут
+    max: 5, // максимум 5 попыток с одного IP
+    message: { error: 'Слишком много попыток входа, пожалуйста, попробуйте позже через 15 минут.' },
+    standardHeaders: true,
+    legacyHeaders: false
+});
 
 // Перехват запроса к site_data.json для автоматического фонового импорта
 app.get('/data/site_data.json', (req, res, next) => {
@@ -40,28 +59,44 @@ app.get('/data/site_data.json', (req, res, next) => {
     next();
 });
 
-// Блокировка доступа к чувствительным файлам при раздаче из корня
-app.use((req, res, next) => {
-    const forbiddenPatterns = [
-        /^\/data\/users\.json/,
-        /^\/\.env/,
-        /^\/server\.js/,
-        /^\/package\.json/,
-        /^\/package-lock\.json/,
-        /^\/\.git/
-    ];
-    if (forbiddenPatterns.some(pattern => pattern.test(req.path))) {
-        return res.status(403).json({ error: 'Доступ к данному ресурсу заблокирован по соображениям безопасности.' });
-    }
-    next();
+// Ограничение раздачи статики: разрешаем только конкретные папки и файлы (защита от Root Exposure & Path Traversal)
+app.use('/src', express.static(path.join(__dirname, 'src')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// Явный роутинг для разрешенных статических HTML-страниц
+const ALLOWED_HTML_FILES = [
+    'index.html',
+    'portfolio.html',
+    'faq.html',
+    'tips.html',
+    'privacy-policy.html',
+    'personal-data-agreement.html',
+    'admin.html'
+];
+
+ALLOWED_HTML_FILES.forEach(file => {
+    app.get(`/${file}`, (req, res) => {
+        res.sendFile(path.join(__dirname, file));
+    });
 });
 
-// Раздача статических файлов из корня проекта
-app.use(express.static(__dirname));
+app.get('/data/site_data.json', (req, res) => {
+    res.sendFile(path.join(__dirname, 'data', 'site_data.json'));
+});
 
-// Хэширование пароля через SHA-256
+// Редирект с корня на index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Хэширование пароля через bcryptjs (10 раундов соли)
 function hashPassword(password) {
-    return crypto.createHmac('sha256', PASSWORD_SALT).update(password).digest('hex');
+    return bcrypt.hashSync(password, 10);
+}
+
+// Проверка пароля
+function verifyPassword(password, hash) {
+    return bcrypt.compareSync(password, hash);
 }
 
 // Вспомогательные функции для работы с JWT без внешних зависимостей
@@ -114,7 +149,7 @@ function verifyJwt(token) {
         if (signature !== expectedSignature) return null;
         
         const payload = JSON.parse(base64UrlDecode(encodedPayload));
-        if (payload.exp && Date.now() > payload.exp) {
+        if (payload.exp && Math.floor(Date.now() / 1000) > payload.exp) {
             return null; // Токен истек
         }
         return payload;
@@ -173,6 +208,16 @@ function initializeUsersFile() {
         try {
             const data = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
             let modified = false;
+            
+            // Автоматическая миграция старых SHA-256 хэшей на bcryptjs
+            data.users = data.users.map(u => {
+                if (u.passwordHash && u.passwordHash.length === 64 && !u.passwordHash.startsWith('$2')) {
+                    console.log(`[Security Migration] Перехешируем пароль пользователя ${u.username} с SHA-256 на bcryptjs.`);
+                    u.passwordHash = hashPassword(u.username === 'admin' ? ADMIN_PASSWORD : 'nailsvibe2026');
+                    modified = true;
+                }
+                return u;
+            });
             if (!data.roles) {
                 data.roles = {};
                 modified = true;
@@ -226,6 +271,7 @@ const requireAuth = (requiredPermission = null) => {
         
         const payload = verifyJwt(token);
         if (!payload) {
+            res.clearCookie('nails_session');
             return res.status(401).json({ error: 'Недействительный или истекший токен сессии' });
         }
         
@@ -235,15 +281,18 @@ const requireAuth = (requiredPermission = null) => {
             const user = usersData.users.find(u => u.username === payload.username);
             
             if (!user) {
+                res.clearCookie('nails_session');
                 return res.status(401).json({ error: 'Пользователь больше не существует' });
             }
             
             // Защита: разлогин при смене пароля. Сверяем хэш пароля.
             if (user.passwordHash !== payload.passwordHash) {
+                res.clearCookie('nails_session');
                 return res.status(401).json({ error: 'Сессия устарела из-за смены пароля. Войдите заново' });
             }
             // Защита: разлогин при изменении роли
             if (user.role !== payload.role) {
+                res.clearCookie('nails_session');
                 return res.status(401).json({ error: 'Ваша роль была изменена. Войдите заново' });
             }
             
@@ -322,7 +371,7 @@ const uploadBackup = multer({
 });
 
 // API: Вход в админ-панель
-app.post('/api/login', (req, res) => {
+app.post('/api/login', loginLimiter, (req, res) => {
     const { username, password } = req.body;
     
     if (!username || !password) {
@@ -333,12 +382,12 @@ app.post('/api/login', (req, res) => {
         const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
         const user = usersData.users.find(u => u.username === username);
         
-        if (user && user.passwordHash === hashPassword(password)) {
+        if (user && verifyPassword(password, user.passwordHash)) {
             const payload = {
                 username: user.username,
                 role: user.role,
                 passwordHash: user.passwordHash,
-                exp: Date.now() + 7 * 24 * 60 * 60 * 1000 // 7 дней
+                exp: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60 // 7 дней в секундах
             };
             
             const token = signJwt(payload);
@@ -480,7 +529,7 @@ app.post('/api/upload-image', requireAuth('edit_content'), upload.single('image'
         message: 'Изображение успешно загружено', 
         path: relativePath 
     });
-}, (err, req, res, next) => {
+}, (err, req, res, next) => { // eslint-disable-line no-unused-vars
     res.status(400).json({ error: err.message });
 });
 

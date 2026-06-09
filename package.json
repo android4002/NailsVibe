@@ -6,12 +6,14 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "sync": "node .agent/scripts/sync.js"
+    "sync": "node scripts/sync.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-rate-limit": "^8.5.2",
     "multer": "^1.4.5-lts.1"
   },
   "author": "NailsVibe Team",
