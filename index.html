@@ -39,10 +39,9 @@
     <!-- NailsVibe Main Logic -->
     <script defer src="src/main.js?v=2.6.0"></script>
     
-    <!-- Alpine.js Plugins -->
-    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <!-- Alpine.js CDN -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js Plugins & Core (Local Offline Mode) -->
+    <script defer src="src/collapse.min.js"></script>
+    <script defer src="src/alpine.min.js"></script>
     
     <!-- High-End Theme Styles -->
     <style>
@@ -1236,7 +1235,7 @@
                 }
             }
          }"
-         x-effect="if (selectedServiceDetail) { activeSvcIndex = 0; sliderPosition = 50; showBeforeAfterSlider = false; document.body.style.overflow = 'hidden'; } else { document.body.style.overflow = ''; }"
+         x-effect="if (selectedServiceDetail) { activeSvcIndex = 0; sliderPosition = 50; showBeforeAfterSlider = false; if (document.body.style.position !== 'fixed') { const scrollY = window.scrollY; document.body.style.position = 'fixed'; document.body.style.top = '-' + scrollY + 'px'; document.body.style.width = '100%'; document.body.style.overflow = 'hidden'; document.body.dataset.scrollY = scrollY; } } else { if (document.body.style.position === 'fixed') { const scrollY = parseInt(document.body.dataset.scrollY || '0'); document.body.style.position = ''; document.body.style.top = ''; document.body.style.width = ''; document.body.style.overflow = ''; document.documentElement.classList.remove('scroll-smooth'); window.scrollTo(0, scrollY); setTimeout(() => { document.documentElement.classList.add('scroll-smooth'); }, 20); } }"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"

@@ -182,20 +182,25 @@ document.addEventListener('alpine:init', () => {
                 
                 this.isLoading = false;
 
-                // Плавная прокрутка к сохраненной позиции после перезагрузки
-                const savedScroll = sessionStorage.getItem('scrollPosition');
+                // Мгновенная прокрутка к сохраненной позиции после перезагрузки (с учетом асинхронного рендеринга)
+                const savedScroll = sessionStorage.getItem('scrollPosition_main');
                 if (savedScroll && !window.location.hash) {
                     Alpine.nextTick(() => {
-                        setTimeout(() => {
+                        const targetScroll = parseInt(savedScroll, 10);
+                        let attempts = 0;
+                        const restoreInterval = setInterval(() => {
                             window.scrollTo({
-                                top: parseInt(savedScroll, 10),
-                                behavior: 'smooth'
+                                top: targetScroll,
+                                behavior: 'auto'
                             });
-                            sessionStorage.removeItem('scrollPosition');
-                            setTimeout(() => {
+                            // Если успешно докрутили или превысили 15 попыток (1.5 сек)
+                            if (Math.abs(window.scrollY - targetScroll) < 10 || attempts > 15) {
+                                clearInterval(restoreInterval);
+                                sessionStorage.removeItem('scrollPosition_main');
                                 document.documentElement.classList.add('scroll-smooth');
-                            }, 600); // даем время на плавную прокрутку
-                        }, 150);
+                            }
+                            attempts++;
+                        }, 80);
                     });
                 } else if (!window.location.hash) {
                     Alpine.nextTick(() => {
@@ -240,7 +245,8 @@ document.addEventListener('alpine:init', () => {
                 this.isLoading = false;
             }
 
-            // Слушатель скролла для показа Sticky CTA и параллакса
+            // Слушатель скролла для показа Sticky CTA, параллакса и сохранения позиции
+            let scrollStoreTimeout;
             window.addEventListener('scroll', () => {
                 const scrollY = window.scrollY;
                 this.scrollYOffset = scrollY;
@@ -256,12 +262,20 @@ document.addEventListener('alpine:init', () => {
                 
                 // Кнопка видна, если прокрутили ниже первого экрана и не дошли до футера (отступ 350px)
                 this.isStickyCtaVisible = (scrollY > heroHeight - 100) && (distanceToBottom > 350);
+
+                // Сохраняем позицию скролла с дебаунсом (для надежности на мобильных)
+                clearTimeout(scrollStoreTimeout);
+                scrollStoreTimeout = setTimeout(() => {
+                    sessionStorage.setItem('scrollPosition_main', window.scrollY);
+                }, 100);
             });
 
-            // Сохраняем положение скролла перед перезагрузкой
-            window.addEventListener('beforeunload', () => {
-                sessionStorage.setItem('scrollPosition', window.scrollY);
-            });
+            // Дополнительное сохранение перед уходом со страницы (для iOS Safari)
+            const saveMainScroll = () => {
+                sessionStorage.setItem('scrollPosition_main', window.scrollY);
+            };
+            window.addEventListener('pagehide', saveMainScroll);
+            window.addEventListener('beforeunload', saveMainScroll);
 
             // Инициализация кастомного курсора и интерактивного фона
             this.initInteractiveExperience();

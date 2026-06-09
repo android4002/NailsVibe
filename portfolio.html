@@ -15,9 +15,9 @@
     <!-- NailsVibe Compiled Tailwind Styles -->
     <link rel="stylesheet" href="src/style.css">
     
-    <!-- Alpine.js Plugins & Core -->
-    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js Plugins & Core (Local Offline Mode) -->
+    <script defer src="src/collapse.min.js"></script>
+    <script defer src="src/alpine.min.js"></script>
     
     <!-- Premium Styles -->
     <style>
@@ -284,10 +284,19 @@
                     // Инициализация темы
                     this.isDark = document.documentElement.classList.contains('dark');
                     
-                    // Сохраняем положение скролла перед перезагрузкой
-                    window.addEventListener('beforeunload', () => {
-                        sessionStorage.setItem('scrollPosition', window.scrollY);
+                    // Сохраняем положение скролла с дебаунсом при прокрутке и при уходе со страницы
+                    let scrollStoreTimeout;
+                    window.addEventListener('scroll', () => {
+                        clearTimeout(scrollStoreTimeout);
+                        scrollStoreTimeout = setTimeout(() => {
+                            sessionStorage.setItem('scrollPosition_portfolio', window.scrollY);
+                        }, 100);
                     });
+                    const savePortfolioScroll = () => {
+                        sessionStorage.setItem('scrollPosition_portfolio', window.scrollY);
+                    };
+                    window.addEventListener('pagehide', savePortfolioScroll);
+                    window.addEventListener('beforeunload', savePortfolioScroll);
                     
                     fetch('data/site_data.json')
                         .then(res => res.json())
@@ -298,27 +307,31 @@
                             this.contacts = data.contacts || {};
                             this.bookingUrl = data.bookingUrlApp || data.bookingUrl || 'https://dikidi.app/1433946';
                             
-                            // Плавная прокрутка к сохраненной позиции после перезагрузки
-                            const savedScroll = sessionStorage.getItem('scrollPosition');
+                            // Мгновенная прокрутка к сохраненной позиции после перезагрузки (с учетом асинхронного рендеринга)
+                            const savedScroll = sessionStorage.getItem('scrollPosition_portfolio');
                             if (savedScroll) {
                                 Alpine.nextTick(() => {
-                                    setTimeout(() => {
+                                    const targetScroll = parseInt(savedScroll, 10);
+                                    let attempts = 0;
+                                    const restoreInterval = setInterval(() => {
                                         window.scrollTo({
-                                            top: parseInt(savedScroll, 10),
-                                            behavior: 'smooth'
+                                            top: targetScroll,
+                                            behavior: 'auto'
                                         });
-                                        sessionStorage.removeItem('scrollPosition');
-                                        setTimeout(() => {
+                                        if (Math.abs(window.scrollY - targetScroll) < 10 || attempts > 15) {
+                                            clearInterval(restoreInterval);
+                                            sessionStorage.removeItem('scrollPosition_portfolio');
                                             document.documentElement.classList.add('scroll-smooth');
-                                        }, 600);
-                                    }, 150);
+                                        }
+                                        attempts++;
+                                    }, 80);
                                 });
                             } else {
                                 Alpine.nextTick(() => {
                                     window.scrollTo(0, 0);
                                     setTimeout(() => {
                                         document.documentElement.classList.add('scroll-smooth');
-                                    }, 100);
+                                    }, 50);
                                 });
                             }
                         })

@@ -20,8 +20,8 @@
     
     <!-- NailsVibe Compiled Tailwind Styles -->
     <link rel="stylesheet" href="src/style.css">
-    <!-- Alpine.js CDN -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js Core (Local Offline Mode) -->
+    <script defer src="src/alpine.min.js"></script>
     
     <style>
 
@@ -519,7 +519,8 @@
                                                 type="button"
                                                 class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 focus:outline-none"
                                                 :class="siteData.blocksVisibility[key] ? 'bg-brand-rose' : 'bg-brand-charcoal/10'">
-                                            <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-300"
+                                            <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full shadow-sm ring-0 transition duration-300"
+                                                  style="background-color: #ffffff !important;"
                                                   :class="siteData.blocksVisibility[key] ? 'translate-x-5' : 'translate-x-0'"></span>
                                         </button>
                                     </div>
@@ -2924,7 +2925,11 @@
                             document.body.style.left = '';
                             document.body.style.width = '';
                             document.body.style.overflow = '';
+                            document.documentElement.classList.remove('scroll-smooth');
                             window.scrollTo(0, this.savedScrollY);
+                            setTimeout(() => {
+                                document.documentElement.classList.add('scroll-smooth');
+                            }, 20);
                         }
                     }
                 },

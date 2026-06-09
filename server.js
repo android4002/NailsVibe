@@ -28,11 +28,8 @@ if (process.env.ALLOWED_CORS_ORIGINS) {
 
 app.use(cors({
     origin: function (origin, callback) {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin)) {
-            return callback(null, true);
-        }
-        return callback(new Error('Not allowed by CORS'));
+        // Разрешаем вход с абсолютно любого хоста/домена
+        return callback(null, true);
     },
     credentials: true
 }));
@@ -441,7 +438,7 @@ const uploadBackup = multer({
 });
 
 // API: Вход в админ-панель
-app.post('/api/login', loginLimiter, async (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     
     if (!username || !password) {
