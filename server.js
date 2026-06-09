@@ -10,13 +10,12 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3005;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'nailsvibe2026';
-const SESSION_SECRET = process.env.SESSION_SECRET || 'nailsvibe_editorial_secret_2026_key';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === 'production' ? (() => {
+    throw new Error('ADMIN_PASSWORD must be defined in production env');
+})() : 'nailsvibe2026');
+const SESSION_SECRET = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
 
-// Соль для хэширования паролей
-const PASSWORD_SALT = process.env.PASSWORD_SALT || 'nailsvibe_editorial_salt_2026_key';
-
-// Настройка CORS с ограничением доверенных доменов
+// Настройка CORS с ограничением доверенных доменов (строгое соответствие)
 const allowedOrigins = [
     'https://android4002.github.io',
     'http://localhost:3005',
@@ -30,13 +29,10 @@ if (process.env.ALLOWED_CORS_ORIGINS) {
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin) return callback(null, true);
-        const isAllowed = allowedOrigins.some(allowed => {
-            return origin === allowed || origin.endsWith('.' + allowed.replace(/^https?:\/\//, ''));
-        });
-        if (!isAllowed) {
-            return callback(null, false);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
         }
-        return callback(null, true);
+        return callback(new Error('Not allowed by CORS'));
     },
     credentials: true
 }));
@@ -63,7 +59,7 @@ app.get('/data/site_data.json', (req, res, next) => {
 app.use('/src', express.static(path.join(__dirname, 'src')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-// Явный роутинг для разрешенных статических HTML-страниц
+// Явный роутинг для разрешенных статических HTML-страниц с валидацией путей
 const ALLOWED_HTML_FILES = [
     'index.html',
     'portfolio.html',
@@ -76,18 +72,32 @@ const ALLOWED_HTML_FILES = [
 
 ALLOWED_HTML_FILES.forEach(file => {
     app.get(`/${file}`, (req, res) => {
-        res.sendFile(path.join(__dirname, file));
+        const safePath = path.resolve(__dirname, file);
+        if (!safePath.startsWith(__dirname)) {
+            return res.status(403).json({ error: 'Доступ запрещен' });
+        }
+        res.sendFile(safePath);
     });
 });
 
 app.get('/data/site_data.json', (req, res) => {
-    res.sendFile(path.join(__dirname, 'data', 'site_data.json'));
+    const safePath = path.resolve(__dirname, 'data', 'site_data.json');
+    if (!safePath.startsWith(__dirname)) {
+        return res.status(403).json({ error: 'Доступ запрещен' });
+    }
+    res.sendFile(safePath);
 });
 
 // Редирект с корня на index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'index.html'));
 });
+
+// Валидация сложности пароля (минимум 8 символов, хотя бы одна буква и одна цифра)
+function validatePasswordStrength(password) {
+    if (!password || password.length < 8) return false;
+    return /[a-zA-Zа-яА-Я]/.test(password) && /\d/.test(password);
+}
 
 // Хэширование пароля через bcryptjs (10 раундов соли)
 function hashPassword(password) {
@@ -97,6 +107,21 @@ function hashPassword(password) {
 // Проверка пароля
 function verifyPassword(password, hash) {
     return bcrypt.compareSync(password, hash);
+}
+
+// Асинхронное чтение JSON-файлов
+async function readJsonFile(filePath, defaultValue = {}) {
+    try {
+        const content = await fs.promises.readFile(filePath, 'utf8');
+        return JSON.parse(content);
+    } catch (e) {
+        return defaultValue;
+    }
+}
+
+// Асинхронное сохранение JSON-файлов
+async function writeJsonFile(filePath, data) {
+    await fs.promises.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
 }
 
 // Вспомогательные функции для работы с JWT без внешних зависимостей
@@ -133,10 +158,13 @@ function signJwt(payload) {
 
 function verifyJwt(token) {
     try {
+        if (typeof token !== 'string') return null;
         const parts = token.split('.');
         if (parts.length !== 3) return null;
         
         const [encodedHeader, encodedPayload, signature] = parts;
+        if (!encodedHeader || !encodedPayload || !signature) return null;
+        
         const signatureInput = `${encodedHeader}.${encodedPayload}`;
         const expectedSignature = crypto
             .createHmac('sha256', SESSION_SECRET)
@@ -148,7 +176,12 @@ function verifyJwt(token) {
             
         if (signature !== expectedSignature) return null;
         
-        const payload = JSON.parse(base64UrlDecode(encodedPayload));
+        const decodedPayload = base64UrlDecode(encodedPayload);
+        if (!decodedPayload) return null;
+        
+        const payload = JSON.parse(decodedPayload);
+        if (!payload || typeof payload !== 'object') return null;
+        
         if (payload.exp && Math.floor(Date.now() / 1000) > payload.exp) {
             return null; // Токен истек
         }
@@ -165,7 +198,7 @@ function parseCookies(req) {
     if (rc) {
         rc.split(';').forEach(cookie => {
             const parts = cookie.split('=');
-            list[parts.shift().trim()] = decodeURI(parts.join('='));
+            list[parts.shift().trim()] = decodeURI(parts.join('=')).trim();
         });
     }
     return list;
@@ -173,90 +206,120 @@ function parseCookies(req) {
 
 // Инициализация файла пользователей users.json
 const USERS_PATH = path.join(__dirname, 'data', 'users.json');
-function initializeUsersFile() {
-    const dir = path.dirname(USERS_PATH);
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-    }
-    if (!fs.existsSync(USERS_PATH)) {
-        const defaultUsers = {
-            roles: {
-                admin: [
-                    "manage_users", "system_settings", "backup_restore", "manage_layout",
-                    "edit_content", "delete_content",
-                    "section_hero", "section_about", "section_benefits", "section_beforeafter",
-                    "section_portfolio", "section_services", "section_cabinet", "section_contacts", "section_footer", "section_reviews"
-                ],
-                editor: [
-                    "manage_layout", "edit_content", "delete_content",
-                    "section_hero", "section_about", "section_benefits", "section_beforeafter",
-                    "section_portfolio", "section_services", "section_cabinet", "section_contacts", "section_footer", "section_reviews"
-                ]
-            },
-            users: [
-                {
-                    username: 'admin',
-                    passwordHash: hashPassword(ADMIN_PASSWORD),
-                    role: 'admin'
-                }
-            ]
-        };
-        fs.writeFileSync(USERS_PATH, JSON.stringify(defaultUsers, null, 2), 'utf8');
-        console.log('Инициализирован файл пользователей users.json с дефолтными ролями и пользователем admin.');
-    } else {
-        // Миграция старого формата и обновление системных разрешений
-        try {
-            const data = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
-            let modified = false;
-            
-            // Автоматическая миграция старых SHA-256 хэшей на bcryptjs
-            data.users = data.users.map(u => {
-                if (u.passwordHash && u.passwordHash.length === 64 && !u.passwordHash.startsWith('$2')) {
-                    console.log(`[Security Migration] Перехешируем пароль пользователя ${u.username} с SHA-256 на bcryptjs.`);
-                    u.passwordHash = hashPassword(u.username === 'admin' ? ADMIN_PASSWORD : 'nailsvibe2026');
-                    modified = true;
-                }
-                return u;
-            });
-            if (!data.roles) {
-                data.roles = {};
-                modified = true;
-            }
-            const fullAdminPerms = [
+
+function getDefaultUsersData() {
+    return {
+        roles: {
+            admin: [
                 "manage_users", "system_settings", "backup_restore", "manage_layout",
                 "edit_content", "delete_content",
                 "section_hero", "section_about", "section_benefits", "section_beforeafter",
                 "section_portfolio", "section_services", "section_cabinet", "section_contacts", "section_footer", "section_reviews"
-            ];
-            const fullEditorPerms = [
+            ],
+            editor: [
                 "manage_layout", "edit_content", "delete_content",
                 "section_hero", "section_about", "section_benefits", "section_beforeafter",
                 "section_portfolio", "section_services", "section_cabinet", "section_contacts", "section_footer", "section_reviews"
-            ];
+            ]
+        },
+        users: [
+            {
+                username: 'admin',
+                passwordHash: hashPassword(ADMIN_PASSWORD),
+                role: 'admin'
+            }
+        ]
+    };
+}
 
-            if (!data.roles.admin || data.roles.admin.length < fullAdminPerms.length) {
-                data.roles.admin = fullAdminPerms;
-                modified = true;
+function migrateUsersData(data) {
+    let modified = false;
+    
+    // Автоматическая миграция старых SHA-256 хэшей на bcryptjs
+    data.users = data.users.map(u => {
+        if (u.passwordHash && u.passwordHash.length === 64 && !u.passwordHash.startsWith('$2')) {
+            if (process.env.NODE_ENV !== 'production') {
+                console.log(`[Security Migration] Перехешируем пароль пользователя ${u.username} с SHA-256 на bcryptjs.`);
             }
-            if (!data.roles.editor || data.roles.editor.length < fullEditorPerms.length) {
-                data.roles.editor = fullEditorPerms;
-                modified = true;
-            }
+            u.passwordHash = hashPassword(u.username === 'admin' ? ADMIN_PASSWORD : 'nailsvibe2026');
+            modified = true;
+        }
+        return u;
+    });
 
-            if (modified) {
-                fs.writeFileSync(USERS_PATH, JSON.stringify(data, null, 2), 'utf8');
-                console.log('Выполнена автоматическая миграция структуры users.json на новые 16 прав (добавлено section_reviews).');
-            }
+    if (!data.roles) {
+        data.roles = {};
+        modified = true;
+    }
+
+    const fullAdminPerms = [
+        "manage_users", "system_settings", "backup_restore", "manage_layout",
+        "edit_content", "delete_content",
+        "section_hero", "section_about", "section_benefits", "section_beforeafter",
+        "section_portfolio", "section_services", "section_cabinet", "section_contacts", "section_footer", "section_reviews"
+    ];
+    const fullEditorPerms = [
+        "manage_layout", "edit_content", "delete_content",
+        "section_hero", "section_about", "section_benefits", "section_beforeafter",
+        "section_portfolio", "section_services", "section_cabinet", "section_contacts", "section_footer", "section_reviews"
+    ];
+
+    if (!data.roles.admin || data.roles.admin.length < fullAdminPerms.length) {
+        data.roles.admin = fullAdminPerms;
+        modified = true;
+    }
+    if (!data.roles.editor || data.roles.editor.length < fullEditorPerms.length) {
+        data.roles.editor = fullEditorPerms;
+        modified = true;
+    }
+
+    return modified;
+}
+
+async function initializeUsersFile() {
+    const dir = path.dirname(USERS_PATH);
+    try {
+        await fs.promises.mkdir(dir, { recursive: true });
+        
+        let fileExists = false;
+        try {
+            await fs.promises.access(USERS_PATH);
+            fileExists = true;
         } catch (e) {
-            console.error('Ошибка миграции users.json:', e);
+            // Файл не существует
+        }
+
+        if (!fileExists) {
+            const defaultUsers = getDefaultUsersData();
+            await writeJsonFile(USERS_PATH, defaultUsers);
+            if (process.env.NODE_ENV !== 'production') {
+                console.log('Инициализирован файл пользователей users.json с дефолтными ролями и пользователем admin.');
+            }
+        } else {
+            const data = await readJsonFile(USERS_PATH);
+            const modified = migrateUsersData(data);
+            if (modified) {
+                await writeJsonFile(USERS_PATH, data);
+                if (process.env.NODE_ENV !== 'production') {
+                    console.log('Выполнена автоматическая миграция структуры users.json.');
+                }
+            }
+        }
+    } catch (e) {
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('Ошибка инициализации users.json:', e);
         }
     }
 }
-initializeUsersFile();
+initializeUsersFile().catch(err => {
+    if (process.env.NODE_ENV !== 'production') {
+        console.error('Ошибка инициализации пользователей при запуске:', err);
+    }
+});
 
 // Проверка авторизации, сессии и прав доступа (ролей и разрешений)
 const requireAuth = (requiredPermission = null) => {
-    return (req, res, next) => {
+    return async (req, res, next) => {
         const cookies = parseCookies(req);
         let token = cookies['nails_session'];
         
@@ -277,7 +340,7 @@ const requireAuth = (requiredPermission = null) => {
         
         // Проверяем пользователя в базе
         try {
-            const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+            const usersData = await readJsonFile(USERS_PATH, { users: [], roles: {} });
             const user = usersData.users.find(u => u.username === payload.username);
             
             if (!user) {
@@ -320,14 +383,16 @@ const requireAuth = (requiredPermission = null) => {
     };
 };
 
-// Настройка multer для загрузки изображений портфолио
+// Настройка multer для загрузки изображений портфолио (асинхронно)
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: async (req, file, cb) => {
         const dir = path.join(__dirname, 'public', 'images');
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
+        try {
+            await fs.promises.mkdir(dir, { recursive: true });
+            cb(null, dir);
+        } catch (err) {
+            cb(err);
         }
-        cb(null, dir);
     },
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -350,12 +415,17 @@ const upload = multer({
     }
 });
 
-// Настройка multer для загрузки файлов резервных копий
+// Настройка multer для загрузки файлов резервных копий (асинхронно)
 const uploadBackup = multer({
     storage: multer.diskStorage({
-        destination: (req, file, cb) => {
+        destination: async (req, file, cb) => {
             const dir = path.join(__dirname, 'data');
-            cb(null, dir);
+            try {
+                await fs.promises.mkdir(dir, { recursive: true });
+                cb(null, dir);
+            } catch (err) {
+                cb(err);
+            }
         },
         filename: (req, file, cb) => {
             cb(null, 'temp-restore.json');
@@ -371,7 +441,7 @@ const uploadBackup = multer({
 });
 
 // API: Вход в админ-панель
-app.post('/api/login', loginLimiter, (req, res) => {
+app.post('/api/login', loginLimiter, async (req, res) => {
     const { username, password } = req.body;
     
     if (!username || !password) {
@@ -379,7 +449,7 @@ app.post('/api/login', loginLimiter, (req, res) => {
     }
     
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [], roles: {} });
         const user = usersData.users.find(u => u.username === username);
         
         if (user && verifyPassword(password, user.passwordHash)) {
@@ -392,10 +462,10 @@ app.post('/api/login', loginLimiter, (req, res) => {
             
             const token = signJwt(payload);
             
-            // Устанавливаем куку
+            // Устанавливаем куку (всегда secure в целях безопасности)
             res.cookie('nails_session', token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production', // true в продакшене (требуется HTTPS)
+                secure: true,
                 sameSite: 'strict',
                 maxAge: 7 * 24 * 60 * 60 * 1000 // 7 дней
             });
@@ -417,7 +487,7 @@ app.post('/api/login', loginLimiter, (req, res) => {
 });
 
 // API: Проверка валидности токена
-app.get('/api/verify-token', (req, res) => {
+app.get('/api/verify-token', async (req, res) => {
     const cookies = parseCookies(req);
     let token = cookies['nails_session'];
     
@@ -435,7 +505,7 @@ app.get('/api/verify-token', (req, res) => {
     }
     
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [], roles: {} });
         const user = usersData.users.find(u => u.username === payload.username);
         
         if (user && user.passwordHash === payload.passwordHash) {
@@ -461,14 +531,19 @@ app.post('/api/logout', (req, res) => {
 });
 
 // API: Изменение собственного пароля
-app.post('/api/change-password', requireAuth(), (req, res) => {
+app.post('/api/change-password', requireAuth(), async (req, res) => {
     const { currentPassword, newPassword } = req.body;
     if (!currentPassword || !newPassword) {
         return res.status(400).json({ error: 'Укажите текущий и новый пароли' });
     }
     
+    // Валидация сложности пароля
+    if (!validatePasswordStrength(newPassword)) {
+        return res.status(400).json({ error: 'Новый пароль должен содержать не менее 8 символов, включая как минимум одну букву и одну цифру' });
+    }
+    
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [] });
         const userIndex = usersData.users.findIndex(u => u.username === req.user.username);
         
         if (userIndex === -1) {
@@ -476,15 +551,15 @@ app.post('/api/change-password', requireAuth(), (req, res) => {
         }
         
         const user = usersData.users[userIndex];
-        if (user.passwordHash !== hashPassword(currentPassword)) {
+        if (!verifyPassword(currentPassword, user.passwordHash)) {
             return res.status(400).json({ error: 'Неверный текущий пароль' });
         }
         
         // Перезаписываем хэш
         user.passwordHash = hashPassword(newPassword);
-        fs.writeFileSync(USERS_PATH, JSON.stringify(usersData, null, 2), 'utf8');
+        await writeJsonFile(USERS_PATH, usersData);
         
-        // Так как хэш пароля изменился, при следующем запросе middlewarerequireAuth 
+        // Так как хэш пароля изменился, при следующем запросе middleware requireAuth 
         // увидит несовпадение payload.passwordHash с базой и автоматически сбросит сессию!
         res.json({ success: true, message: 'Пароль успешно изменен' });
     } catch (e) {
@@ -493,15 +568,37 @@ app.post('/api/change-password', requireAuth(), (req, res) => {
     }
 });
 
+// Валидация структуры данных сайта (site_data.json)
+function validateSiteData(data) {
+    if (!data || typeof data !== 'object') return false;
+    const requiredKeys = ['blocksVisibility', 'blocksOrder', 'salonName', 'masterName'];
+    for (const key of requiredKeys) {
+        if (!(key in data)) return false;
+    }
+    if (!Array.isArray(data.blocksOrder)) return false;
+    if (typeof data.blocksVisibility !== 'object') return false;
+    return true;
+}
+
 // API: Сохранение site_data.json (доступно с правами edit_content)
-app.post('/api/save-data', requireAuth('edit_content'), (req, res) => {
+app.post('/api/save-data', requireAuth('edit_content'), async (req, res) => {
     const dataPath = path.join(__dirname, 'data', 'site_data.json');
     const newData = req.body;
     
+    if (!validateSiteData(newData)) {
+        return res.status(400).json({ error: 'Некорректная структура данных сайта' });
+    }
+    
     try {
         // Проверка прав на изменение структуры (layout)
-        if (fs.existsSync(dataPath)) {
-            const currentData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+        let dataExists = false;
+        try {
+            await fs.promises.access(dataPath);
+            dataExists = true;
+        } catch (e) {}
+
+        if (dataExists) {
+            const currentData = await readJsonFile(dataPath);
             const orderChanged = JSON.stringify(currentData.blocksOrder) !== JSON.stringify(newData.blocksOrder);
             const visibilityChanged = JSON.stringify(currentData.blocksVisibility) !== JSON.stringify(newData.blocksVisibility);
             
@@ -510,7 +607,7 @@ app.post('/api/save-data', requireAuth('edit_content'), (req, res) => {
             }
         }
         
-        fs.writeFileSync(dataPath, JSON.stringify(newData, null, 2), 'utf8');
+        await writeJsonFile(dataPath, newData);
         res.json({ success: true, message: 'Данные успешно сохранены' });
     } catch (error) {
         console.error('Ошибка записи site_data.json:', error);
@@ -534,41 +631,43 @@ app.post('/api/upload-image', requireAuth('edit_content'), upload.single('image'
 });
 
 // API: Скачивание резервной копии (доступно с правами backup_restore)
-app.get('/api/backup', requireAuth('backup_restore'), (req, res) => {
+app.get('/api/backup', requireAuth('backup_restore'), async (req, res) => {
     const dataPath = path.join(__dirname, 'data', 'site_data.json');
-    if (!fs.existsSync(dataPath)) {
+    try {
+        await fs.promises.access(dataPath);
+        res.download(dataPath, 'site_data_backup.json');
+    } catch (e) {
         return res.status(404).json({ error: 'Файл данных не найден' });
     }
-    res.download(dataPath, 'site_data_backup.json');
 });
 
 // API: Восстановление резервной копии (доступно с правами backup_restore)
-app.post('/api/restore', requireAuth('backup_restore'), uploadBackup.single('backupFile'), (req, res) => {
+app.post('/api/restore', requireAuth('backup_restore'), uploadBackup.single('backupFile'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'Файл бэкапа не предоставлен' });
     }
     
     try {
-        const backupContent = fs.readFileSync(req.file.path, 'utf8');
+        const backupContent = await fs.promises.readFile(req.file.path, 'utf8');
         const parsedData = JSON.parse(backupContent);
         
-        if (typeof parsedData !== 'object' || parsedData === null) {
-            throw new Error('Данные должны быть валидным JSON-объектом');
-        }
-        
-        const hasRequiredKeys = ['hiddenElements', 'blocksVisibility', 'blocksOrder'].some(key => key in parsedData);
-        if (!hasRequiredKeys) {
-            throw new Error('Некорректная структура бэкапа NailsVibe (отсутствуют системные ключи)');
+        if (!validateSiteData(parsedData)) {
+            throw new Error('Некорректная структура бэкапа NailsVibe (отсутствуют обязательные разделы)');
         }
         
         const dataPath = path.join(__dirname, 'data', 'site_data.json');
-        fs.writeFileSync(dataPath, JSON.stringify(parsedData, null, 2), 'utf8');
+        await writeJsonFile(dataPath, parsedData);
         
-        fs.unlinkSync(req.file.path);
+        await fs.promises.unlink(req.file.path);
         res.json({ success: true, message: 'Данные успешно восстановлены' });
     } catch (error) {
-        if (req.file && fs.existsSync(req.file.path)) {
-            fs.unlinkSync(req.file.path);
+        let fileExists = false;
+        try {
+            await fs.promises.access(req.file.path);
+            fileExists = true;
+        } catch (e) {}
+        if (req.file && fileExists) {
+            await fs.promises.unlink(req.file.path);
         }
         console.error('Ошибка восстановления бэкапа:', error);
         res.status(400).json({ error: `Недействительный файл бэкапа: ${error.message}` });
@@ -576,9 +675,9 @@ app.post('/api/restore', requireAuth('backup_restore'), uploadBackup.single('bac
 });
 
 // API: Получить список пользователей (только для manage_users)
-app.get('/api/users', requireAuth('manage_users'), (req, res) => {
+app.get('/api/users', requireAuth('manage_users'), async (req, res) => {
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [] });
         const sanitizedUsers = usersData.users.map(u => ({ username: u.username, role: u.role }));
         res.json(sanitizedUsers);
     } catch (e) {
@@ -587,14 +686,19 @@ app.get('/api/users', requireAuth('manage_users'), (req, res) => {
 });
 
 // API: Добавить пользователя (только для manage_users)
-app.post('/api/users', requireAuth('manage_users'), (req, res) => {
+app.post('/api/users', requireAuth('manage_users'), async (req, res) => {
     const { username, password, role } = req.body;
     if (!username || !password || !role) {
         return res.status(400).json({ error: 'Укажите имя пользователя, пароль и роль' });
     }
     
+    // Валидация сложности пароля
+    if (!validatePasswordStrength(password)) {
+        return res.status(400).json({ error: 'Пароль должен содержать не менее 8 символов, включая как минимум одну букву и одну цифру' });
+    }
+    
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [], roles: {} });
         
         // Проверяем валидность роли (роль должна быть в списке ролей)
         if (role !== 'admin' && (!usersData.roles || !usersData.roles[role])) {
@@ -611,7 +715,7 @@ app.post('/api/users', requireAuth('manage_users'), (req, res) => {
             role
         });
         
-        fs.writeFileSync(USERS_PATH, JSON.stringify(usersData, null, 2), 'utf8');
+        await writeJsonFile(USERS_PATH, usersData);
         res.json({ success: true, message: 'Пользователь успешно добавлен' });
     } catch (e) {
         console.error('Ошибка добавления пользователя:', e);
@@ -620,7 +724,7 @@ app.post('/api/users', requireAuth('manage_users'), (req, res) => {
 });
 
 // API: Изменить роль пользователя (только для manage_users)
-app.put('/api/users/:username', requireAuth('manage_users'), (req, res) => {
+app.put('/api/users/:username', requireAuth('manage_users'), async (req, res) => {
     const usernameToUpdate = req.params.username;
     const { role } = req.body;
     
@@ -632,7 +736,7 @@ app.put('/api/users/:username', requireAuth('manage_users'), (req, res) => {
     }
     
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [], roles: {} });
         const user = usersData.users.find(u => u.username === usernameToUpdate);
         
         if (!user) {
@@ -645,7 +749,7 @@ app.put('/api/users/:username', requireAuth('manage_users'), (req, res) => {
         }
         
         user.role = role;
-        fs.writeFileSync(USERS_PATH, JSON.stringify(usersData, null, 2), 'utf8');
+        await writeJsonFile(USERS_PATH, usersData);
         res.json({ success: true, message: 'Роль пользователя успешно обновлена' });
     } catch (e) {
         console.error('Ошибка изменения роли пользователя:', e);
@@ -654,14 +758,14 @@ app.put('/api/users/:username', requireAuth('manage_users'), (req, res) => {
 });
 
 // API: Удалить пользователя (только для manage_users)
-app.delete('/api/users/:username', requireAuth('manage_users'), (req, res) => {
+app.delete('/api/users/:username', requireAuth('manage_users'), async (req, res) => {
     const usernameToDelete = req.params.username;
     if (usernameToDelete === 'admin') {
         return res.status(400).json({ error: 'Нельзя удалить главного администратора admin' });
     }
     
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [] });
         const initialLength = usersData.users.length;
         usersData.users = usersData.users.filter(u => u.username !== usernameToDelete);
         
@@ -669,7 +773,7 @@ app.delete('/api/users/:username', requireAuth('manage_users'), (req, res) => {
             return res.status(404).json({ error: 'Пользователь не найден' });
         }
         
-        fs.writeFileSync(USERS_PATH, JSON.stringify(usersData, null, 2), 'utf8');
+        await writeJsonFile(USERS_PATH, usersData);
         res.json({ success: true, message: 'Пользователь успешно удален' });
     } catch (e) {
         console.error('Ошибка удаления пользователя:', e);
@@ -678,9 +782,9 @@ app.delete('/api/users/:username', requireAuth('manage_users'), (req, res) => {
 });
 
 // API: Получить все роли (доступно manage_users)
-app.get('/api/roles', requireAuth('manage_users'), (req, res) => {
+app.get('/api/roles', requireAuth('manage_users'), async (req, res) => {
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { roles: {} });
         res.json(usersData.roles || {});
     } catch (e) {
         res.status(500).json({ error: 'Не удалось получить роли' });
@@ -688,7 +792,7 @@ app.get('/api/roles', requireAuth('manage_users'), (req, res) => {
 });
 
 // API: Создать или обновить кастомную роль (доступно manage_users)
-app.post('/api/roles', requireAuth('manage_users'), (req, res) => {
+app.post('/api/roles', requireAuth('manage_users'), async (req, res) => {
     const { name, permissions } = req.body;
     if (!name || !Array.isArray(permissions)) {
         return res.status(400).json({ error: 'Неверные параметры запроса' });
@@ -710,11 +814,11 @@ app.post('/api/roles', requireAuth('manage_users'), (req, res) => {
     }
     
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [], roles: {} });
         if (!usersData.roles) usersData.roles = {};
         
         usersData.roles[cleanName] = permissions;
-        fs.writeFileSync(USERS_PATH, JSON.stringify(usersData, null, 2), 'utf8');
+        await writeJsonFile(USERS_PATH, usersData);
         res.json({ success: true, message: 'Роль успешно создана/обновлена' });
     } catch (e) {
         res.status(500).json({ error: 'Не удалось сохранить роль' });
@@ -722,14 +826,14 @@ app.post('/api/roles', requireAuth('manage_users'), (req, res) => {
 });
 
 // API: Удалить роль (доступно manage_users)
-app.delete('/api/roles/:roleName', requireAuth('manage_users'), (req, res) => {
+app.delete('/api/roles/:roleName', requireAuth('manage_users'), async (req, res) => {
     const roleToDelete = req.params.roleName.trim().toLowerCase();
     if (roleToDelete === 'admin' || roleToDelete === 'editor') {
         return res.status(400).json({ error: 'Системные роли не могут быть удалены' });
     }
     
     try {
-        const usersData = JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+        const usersData = await readJsonFile(USERS_PATH, { users: [], roles: {} });
         if (!usersData.roles || !usersData.roles[roleToDelete]) {
             return res.status(404).json({ error: 'Роль не найдена' });
         }
@@ -743,26 +847,157 @@ app.delete('/api/roles/:roleName', requireAuth('manage_users'), (req, res) => {
             }
         });
         
-        fs.writeFileSync(USERS_PATH, JSON.stringify(usersData, null, 2), 'utf8');
+        await writeJsonFile(USERS_PATH, usersData);
         res.json({ success: true, message: 'Роль успешно удалена' });
     } catch (e) {
         res.status(500).json({ error: 'Не удалось удалить роль' });
     }
 });
 
+function decodeHtmlEntities(str) {
+    return str
+        .replace(/&amp;/g, '&')
+        .replace(/&quot;/g, '"')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&#39;/g, "'")
+        .replace(/&apos;/g, "'");
+}
+
+function normalizeAppDate(dateStr) {
+    if (!dateStr) return new Date().toISOString().split('T')[0];
+    const months = {
+        jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06',
+        jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12',
+        янв: '01', фев: '02', мар: '03', апр: '04', май: '05', июн: '06',
+        июл: '07', авг: '08', сен: '09', окт: '10', ноя: '11', дек: '12'
+    };
+    const clean = dateStr.toLowerCase().replace(/[^a-zа-я0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+    const parts = clean.split(' ');
+    if (parts.length >= 3) {
+        const day = parts[0].padStart(2, '0');
+        const monthName = parts[1].substring(0, 3);
+        const year = parts[2];
+        const month = months[monthName] || '05';
+        return `${year}-${month}-${day}`;
+    }
+    return dateStr;
+}
+
+function parseDikidiAppReviews(html) {
+    const reviewsList = [];
+    const optionsMatch = html.match(/data-options\s*=\s*(['"])([\s\S]*?)\1/);
+    if (!optionsMatch) return reviewsList;
+
+    try {
+        const decodedJson = decodeHtmlEntities(optionsMatch[2]);
+        const dataOptions = JSON.parse(decodedJson);
+        const viewHtml = dataOptions.step_data?.view || '';
+        
+        if (viewHtml) {
+            const parts = viewHtml.split(/<div class="review\s+/);
+            for (let i = 1; i < parts.length; i++) {
+                const part = parts[i];
+                
+                const nameMatch = part.match(/<span class="username">([\s\S]*?)<\/span>/);
+                const name = nameMatch ? nameMatch[1].trim() : 'Клиент DIKIDI';
+                if (name === 'iVan' || name === 'Service' || name === 'Название') continue;
+
+                const dateMatch = part.match(/<div class="date">([\s\S]*?)<\/div>/);
+                const rawDateStr = dateMatch ? dateMatch[1].replace(/\s+/g, ' ').trim() : '';
+                const date = normalizeAppDate(rawDateStr);
+
+                const ratingMatch = part.match(/style="--stars:\s*(\d+)px;"/);
+                let rating = 5;
+                if (ratingMatch) {
+                    rating = Math.round(parseInt(ratingMatch[1], 10) / 26);
+                }
+
+                const textBlockIndex = part.indexOf('<div class="text">');
+                let text = '';
+                if (textBlockIndex !== -1) {
+                    const textSub = part.substring(textBlockIndex + '<div class="text">'.length);
+                    const boundaryIndex = textSub.search(/<(?:div class="images"|div class="toolbar"|div class="images-gallery")/);
+                    const textContent = boundaryIndex !== -1 ? textSub.substring(0, boundaryIndex) : textSub;
+                    text = textContent.replace(/<[^>]*>/g, '').trim();
+                }
+
+                if (text) {
+                    reviewsList.push({
+                        id: 'imported_dkd_' + Math.random().toString(36).substr(2, 9),
+                        name,
+                        text,
+                        rating,
+                        date,
+                        source: 'dikidi',
+                        hidden: false
+                    });
+                }
+            }
+        }
+    } catch (jsonErr) {
+        console.error('[Auto-Import] Ошибка разбора JSON-настроек из DIKIDI App:', jsonErr);
+    }
+    return reviewsList;
+}
+
+function parseDikidiNetReviews(html) {
+    const reviewsList = [];
+    const reviewBlockRegex = /<div class="nr-review">([\s\S]*?)<\/div>\s*<\/div>/g;
+    let blockMatch;
+    
+    while ((blockMatch = reviewBlockRegex.exec(html)) !== null) {
+        const blockHtml = blockMatch[1];
+        
+        const nameMatch = blockHtml.match(/<span class="nr-name">([\s\S]*?)<\/span>/);
+        const name = nameMatch ? nameMatch[1].trim() : 'Клиент DIKIDI';
+        if (name === 'iVan' || name === 'Service' || name === 'Название') continue;
+
+        const dateMatch = blockHtml.match(/<div class="nr-datetime">([\s\S]*?)<\/div>/);
+        let dateStr = dateMatch ? dateMatch[1].trim() : '';
+        let date = new Date().toISOString().split('T')[0];
+        if (dateStr) {
+            date = dateStr.replace(/ в.*$/, '');
+        }
+
+        const ratingMatch = blockHtml.match(/<div class="nr-rating-stars-value"\s+style="width:\s*(\d+)%;"/);
+        let rating = 5;
+        if (ratingMatch) {
+            const widthPercent = parseInt(ratingMatch[1], 10);
+            rating = Math.round(widthPercent / 20);
+        }
+
+        const textMatch = blockHtml.match(/<div class="nr-review-text">([\s\S]*?)<\/div>/);
+        const text = textMatch ? textMatch[1].replace(/<[^>]*>/g, '').trim() : '';
+        
+        if (text) {
+            reviewsList.push({
+                id: 'imported_dkd_' + Math.random().toString(36).substr(2, 9),
+                name,
+                text,
+                rating,
+                date,
+                source: 'dikidi',
+                hidden: false
+            });
+        }
+    }
+    return reviewsList;
+}
+
 // Вспомогательная функция для скрейпинга и сохранения отзывов DIKIDI
 async function fetchAndSaveDikidiReviews(dikidiId) {
     const SITE_DATA_PATH = path.join(__dirname, 'data', 'site_data.json');
     let siteData;
     try {
-        siteData = JSON.parse(fs.readFileSync(SITE_DATA_PATH, 'utf8'));
+        siteData = await readJsonFile(SITE_DATA_PATH);
     } catch (e) {
         throw new Error('Не удалось прочитать site_data.json');
     }
 
     const appUrl = `https://dikidi.app/${dikidiId}?p=1.pi-pr`;
     const netUrl = `https://dikidi.net/${dikidiId}`;
-    const reviewsList = [];
+    let reviewsList = [];
 
     try {
         console.log(`[Auto-Import] Попытка импорта отзывов DIKIDI (App-виджет) с URL: ${appUrl}`);
@@ -780,89 +1015,7 @@ async function fetchAndSaveDikidiReviews(dikidiId) {
 
         if (response.ok) {
             const html = await response.text();
-            
-            function decodeHtmlEntities(str) {
-                return str
-                    .replace(/&amp;/g, '&')
-                    .replace(/&quot;/g, '"')
-                    .replace(/&lt;/g, '<')
-                    .replace(/&gt;/g, '>')
-                    .replace(/&#39;/g, "'")
-                    .replace(/&apos;/g, "'");
-            }
-
-            function normalizeAppDate(dateStr) {
-                if (!dateStr) return new Date().toISOString().split('T')[0];
-                const months = {
-                    jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06',
-                    jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12',
-                    янв: '01', фев: '02', мар: '03', апр: '04', май: '05', июн: '06',
-                    июл: '07', авг: '08', сен: '09', окт: '10', ноя: '11', дек: '12'
-                };
-                const clean = dateStr.toLowerCase().replace(/[^a-zа-я0-9]/g, ' ').replace(/\s+/g, ' ').trim();
-                const parts = clean.split(' ');
-                if (parts.length >= 3) {
-                    const day = parts[0].padStart(2, '0');
-                    const monthName = parts[1].substring(0, 3);
-                    const year = parts[2];
-                    const month = months[monthName] || '05';
-                    return `${year}-${month}-${day}`;
-                }
-                return dateStr;
-            }
-
-            const optionsMatch = html.match(/data-options\s*=\s*(['"])([\s\S]*?)\1/);
-            if (optionsMatch) {
-                try {
-                    const decodedJson = decodeHtmlEntities(optionsMatch[2]);
-                    const dataOptions = JSON.parse(decodedJson);
-                    const viewHtml = dataOptions.step_data?.view || '';
-                    
-                    if (viewHtml) {
-                        const parts = viewHtml.split(/<div class="review\s+/);
-                        for (let i = 1; i < parts.length; i++) {
-                            const part = parts[i];
-                            
-                            const nameMatch = part.match(/<span class="username">([\s\S]*?)<\/span>/);
-                            const name = nameMatch ? nameMatch[1].trim() : 'Клиент DIKIDI';
-                            if (name === 'iVan' || name === 'Service' || name === 'Название') continue;
-
-                            const dateMatch = part.match(/<div class="date">([\s\S]*?)<\/div>/);
-                            const rawDateStr = dateMatch ? dateMatch[1].replace(/\s+/g, ' ').trim() : '';
-                            const date = normalizeAppDate(rawDateStr);
-
-                            const ratingMatch = part.match(/style="--stars:\s*(\d+)px;"/);
-                            let rating = 5;
-                            if (ratingMatch) {
-                                rating = Math.round(parseInt(ratingMatch[1], 10) / 26);
-                            }
-
-                            const textBlockIndex = part.indexOf('<div class="text">');
-                            let text = '';
-                            if (textBlockIndex !== -1) {
-                                const textSub = part.substring(textBlockIndex + '<div class="text">'.length);
-                                const boundaryIndex = textSub.search(/<(?:div class="images"|div class="toolbar"|div class="images-gallery")/);
-                                const textContent = boundaryIndex !== -1 ? textSub.substring(0, boundaryIndex) : textSub;
-                                text = textContent.replace(/<[^>]*>/g, '').trim();
-                            }
-
-                            if (text) {
-                                reviewsList.push({
-                                    id: 'imported_dkd_' + Math.random().toString(36).substr(2, 9),
-                                    name,
-                                    text,
-                                    rating,
-                                    date,
-                                    source: 'dikidi',
-                                    hidden: false
-                                });
-                            }
-                        }
-                    }
-                } catch (jsonErr) {
-                    console.error('[Auto-Import] Ошибка разбора JSON-настроек из DIKIDI App:', jsonErr);
-                }
-            }
+            reviewsList = parseDikidiAppReviews(html);
         }
     } catch (e) {
         console.warn('[Auto-Import] Не удалось загрузить отзывы через DIKIDI App-виджет, пробуем fallback на Net-каталог:', e.message);
@@ -885,45 +1038,7 @@ async function fetchAndSaveDikidiReviews(dikidiId) {
 
             if (response.ok) {
                 const html = await response.text();
-                const reviewBlockRegex = /<div class="nr-review">([\s\S]*?)<\/div>\s*<\/div>/g;
-                let blockMatch;
-                
-                while ((blockMatch = reviewBlockRegex.exec(html)) !== null) {
-                    const blockHtml = blockMatch[1];
-                    
-                    const nameMatch = blockHtml.match(/<span class="nr-name">([\s\S]*?)<\/span>/);
-                    const name = nameMatch ? nameMatch[1].trim() : 'Клиент DIKIDI';
-                    if (name === 'iVan' || name === 'Service' || name === 'Название') continue;
-
-                    const dateMatch = blockHtml.match(/<div class="nr-datetime">([\s\S]*?)<\/div>/);
-                    let dateStr = dateMatch ? dateMatch[1].trim() : '';
-                    let date = new Date().toISOString().split('T')[0];
-                    if (dateStr) {
-                        date = dateStr.replace(/ в.*$/, '');
-                    }
-
-                    const ratingMatch = blockHtml.match(/<div class="nr-rating-stars-value"\s+style="width:\s*(\d+)%;"/);
-                    let rating = 5;
-                    if (ratingMatch) {
-                        const widthPercent = parseInt(ratingMatch[1], 10);
-                        rating = Math.round(widthPercent / 20);
-                    }
-
-                    const textMatch = blockHtml.match(/<div class="nr-review-text">([\s\S]*?)<\/div>/);
-                    const text = textMatch ? textMatch[1].replace(/<[^>]*>/g, '').trim() : '';
-                    
-                    if (text) {
-                        reviewsList.push({
-                            id: 'imported_dkd_' + Math.random().toString(36).substr(2, 9),
-                            name,
-                            text,
-                            rating,
-                            date,
-                            source: 'dikidi',
-                            hidden: false
-                        });
-                    }
-                }
+                reviewsList = parseDikidiNetReviews(html);
             }
         } catch (fallbackErr) {
             console.error('[Auto-Import] Ошибка резервного импорта DIKIDI:', fallbackErr);
@@ -945,7 +1060,7 @@ async function fetchAndSaveDikidiReviews(dikidiId) {
     });
 
     if (addedCount > 0) {
-        fs.writeFileSync(SITE_DATA_PATH, JSON.stringify(siteData, null, 2), 'utf8');
+        await writeJsonFile(SITE_DATA_PATH, siteData);
         console.log(`[Auto-Import] Успешно импортировано новых отзывов: ${addedCount}`);
     } else {
         console.log(`[Auto-Import] Новых отзывов не найдено.`);
@@ -968,10 +1083,8 @@ async function autoImportDikidiReviews() {
     
     try {
         const SITE_DATA_PATH = path.join(__dirname, 'data', 'site_data.json');
-        let siteData;
-        try {
-            siteData = JSON.parse(fs.readFileSync(SITE_DATA_PATH, 'utf8'));
-        } catch (e) {
+        const siteData = await readJsonFile(SITE_DATA_PATH);
+        if (!siteData || !siteData.blocksOrder) {
             console.error('[Auto-Import] Не удалось прочитать site_data.json для автоимпорта');
             return;
         }
@@ -994,10 +1107,8 @@ app.post('/api/import-reviews', requireAuth('edit_content'), async (req, res) =>
 
     if (source === 'dikidi') {
         const SITE_DATA_PATH = path.join(__dirname, 'data', 'site_data.json');
-        let siteData;
-        try {
-            siteData = JSON.parse(fs.readFileSync(SITE_DATA_PATH, 'utf8'));
-        } catch (e) {
+        const siteData = await readJsonFile(SITE_DATA_PATH);
+        if (!siteData || !siteData.blocksOrder) {
             return res.status(500).json({ error: 'Не удалось прочитать site_data.json' });
         }
         const dikidiId = siteData.dikidiId || '1433946';
@@ -1031,19 +1142,39 @@ app.get('*', (req, res, next) => {
 });
 
 // Запуск сервера
-app.listen(PORT, () => {
-    console.log(`=======================================================`);
-    console.log(`  NailsVibe Server запущен и доступен по адресу:`);
-    console.log(`  http://localhost:${PORT}`);
-    console.log(`=======================================================`);
-    
-    // Запуск автоимпорта отзывов DIKIDI при старте сервера с небольшой задержкой
-    setTimeout(() => {
-        autoImportDikidiReviews().catch(err => console.error('[Auto-Import] Ошибка автоимпорта при старте:', err));
-    }, 2000);
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`=======================================================`);
+        console.log(`  NailsVibe Server запущен и доступен по адресу:`);
+        console.log(`  http://localhost:${PORT}`);
+        console.log(`=======================================================`);
+        
+        // Запуск автоимпорта отзывов DIKIDI при старте сервера с небольшой задержкой
+        setTimeout(() => {
+            autoImportDikidiReviews().catch(err => console.error('[Auto-Import] Ошибка автоимпорта при старте:', err));
+        }, 2000);
+    });
+}
 
 // Игнорируем SIGHUP для корректной работы в фоне при закрытии сессии терминала
 process.on('SIGHUP', () => {
     console.log('[Server] Получен SIGHUP, игнорируем для продолжения работы в фоне.');
 });
+
+if (process.env.NODE_ENV === 'test') {
+    module.exports = {
+        hashPassword,
+        verifyPassword,
+        base64UrlEncode,
+        base64UrlDecode,
+        signJwt,
+        verifyJwt,
+        parseCookies,
+        validatePasswordStrength,
+        validateSiteData,
+        decodeHtmlEntities,
+        normalizeAppDate,
+        parseDikidiAppReviews,
+        parseDikidiNetReviews
+    };
+}

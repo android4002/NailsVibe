@@ -1,3 +1,16 @@
+// Отключение отладочных логов в продакшене
+if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    const noop = () => {};
+    window.console = {
+        ...window.console,
+        log: noop,
+        error: noop,
+        warn: noop,
+        info: noop,
+        debug: noop
+    };
+}
+
 document.addEventListener('alpine:init', () => {
     Alpine.data('nailsApp', () => ({
         // Данные сайта
