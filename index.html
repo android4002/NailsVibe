@@ -523,7 +523,8 @@
                     </div>
 
                     <!-- Bottom luxury features layout -->
-                    <div class="space-y-6 z-10 border-t border-brand-sand/60 pt-6" x-show="!hiddenElements.heroBlock_posterBadge1 || !hiddenElements.heroBlock_posterBadge2 || !hiddenElements.heroBlock_posterBadge3 || !hiddenElements.heroBlock_posterStatus">
+                    <div class="flex flex-col gap-6 z-10" x-show="!hiddenElements.heroBlock_posterBadge1 || !hiddenElements.heroBlock_posterBadge2 || !hiddenElements.heroBlock_posterBadge3 || !hiddenElements.heroBlock_posterStatus">
+                        <div class="w-20 h-[0.5px] bg-brand-gold/50 group-hover:w-28 transition-all duration-700"></div>
                         <div class="flex flex-wrap gap-2" x-show="!hiddenElements.heroBlock_posterBadge1 || !hiddenElements.heroBlock_posterBadge2 || !hiddenElements.heroBlock_posterBadge3">
                             <span class="px-3 py-1.5 bg-brand-cream/80 border border-brand-sand text-[9px] font-bold tracking-widest text-brand-charcoal/70 uppercase"
                                   x-show="!hiddenElements.heroBlock_posterBadge1"
@@ -593,44 +594,38 @@
                 <!-- Bento Card 1: 100% Стерильность (Double Column on Large) -->
                 <div class="lg:col-span-2 bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden" x-show="benefits[0] && !benefits[0].hidden" data-reveal>
                     <div class="absolute -right-16 -top-16 w-48 h-48 bg-brand-rose/5 rounded-full blur-3xl group-hover:bg-brand-rose/10 transition-all duration-700"></div>
-                    <div class="space-y-6 z-10">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-brand-gold/60 font-serif">01.</span>
-                            <div x-show="benefits[0]?.icon && benefits[0]?.icon !== 'none'"
-                                 x-html="getBenefitIconSvg(benefits[0]?.icon)"
-                                 class="w-12 h-12 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
-                            </div>
+                    <div class="space-y-6 z-10 flex-grow">
+                        <div x-show="benefits[0]?.icon && benefits[0]?.icon !== 'none'"
+                             x-html="getBenefitIconSvg(benefits[0]?.icon)"
+                             class="w-16 h-16 mx-auto lg:mx-0 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
                         </div>
                         <h3 class="text-2xl font-light font-serif text-brand-charcoal uppercase text-center lg:text-left" x-text="benefits[0]?.title"></h3>
                         <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light tracking-wide max-w-xl text-center lg:text-left mx-auto lg:mx-0" x-text="benefits[0]?.description"></p>
-                        
-                        <!-- Extra Aesthetic Sterile Timeline Visual -->
-                        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-brand-sand/40 text-[10px] tracking-wider text-brand-charcoal/60 font-bold uppercase text-center">
-                            <div class="space-y-1 flex flex-col items-center">
-                                <div class="w-2 h-2 rounded-full bg-brand-rose shrink-0"></div>
-                                <p>Дезинфекция</p>
-                            </div>
-                            <div class="space-y-1 flex flex-col items-center">
-                                <div class="w-2 h-2 rounded-full bg-brand-gold shrink-0"></div>
-                                <p>Очистка</p>
-                            </div>
-                            <div class="space-y-1 flex flex-col items-center">
-                                <div class="w-2 h-2 rounded-full bg-brand-charcoal shrink-0"></div>
-                                <p>Сухожар (ГП-10)</p>
-                            </div>
+                    </div>
+                    
+                    <!-- Extra Aesthetic Sterile Timeline Visual -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 mt-8 border-t border-brand-sand/40 text-[10px] tracking-wider text-brand-charcoal/60 font-bold uppercase text-center z-10">
+                        <div class="space-y-1 flex flex-col items-center">
+                            <div class="w-2 h-2 rounded-full bg-brand-rose shrink-0"></div>
+                            <p>Дезинфекция</p>
+                        </div>
+                        <div class="space-y-1 flex flex-col items-center">
+                            <div class="w-2 h-2 rounded-full bg-brand-gold shrink-0"></div>
+                            <p>Очистка</p>
+                        </div>
+                        <div class="space-y-1 flex flex-col items-center">
+                            <div class="w-2 h-2 rounded-full bg-brand-rose shrink-0"></div>
+                            <p>Сухожар (ГП-10)</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Bento Card 2: Премиум материалы (Single Column) -->
-                <div class="bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden" x-show="benefits[1] && !benefits[1].hidden" data-reveal data-reveal-delay="100">
+                <div class="bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-start group relative overflow-hidden" x-show="benefits[1] && !benefits[1].hidden" data-reveal data-reveal-delay="100">
                     <div class="space-y-6 z-10">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-brand-gold/60 font-serif">02.</span>
-                            <div x-show="benefits[1]?.icon && benefits[1]?.icon !== 'none'"
-                                 x-html="getBenefitIconSvg(benefits[1]?.icon)"
-                                 class="w-12 h-12 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
-                            </div>
+                        <div x-show="benefits[1]?.icon && benefits[1]?.icon !== 'none'"
+                             x-html="getBenefitIconSvg(benefits[1]?.icon)"
+                             class="w-16 h-16 mx-auto lg:mx-0 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
                         </div>
                         <h3 class="text-2xl font-light font-serif text-brand-charcoal uppercase text-center lg:text-left" x-text="benefits[1]?.title"></h3>
                         <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light tracking-wide text-center lg:text-left mx-auto lg:mx-0" x-text="benefits[1]?.description"></p>
@@ -638,14 +633,11 @@
                 </div>
                 
                 <!-- Bento Card 3: Гарантия 14 дней (Single Column) -->
-                <div class="bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden" x-show="benefits[2] && !benefits[2].hidden" data-reveal data-reveal-delay="200">
+                <div class="bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-start group relative overflow-hidden" x-show="benefits[2] && !benefits[2].hidden" data-reveal data-reveal-delay="200">
                     <div class="space-y-6 z-10">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-brand-gold/60 font-serif">03.</span>
-                            <div x-show="benefits[2]?.icon && benefits[2]?.icon !== 'none'"
-                                 x-html="getBenefitIconSvg(benefits[2]?.icon)"
-                                 class="w-12 h-12 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
-                            </div>
+                        <div x-show="benefits[2]?.icon && benefits[2]?.icon !== 'none'"
+                             x-html="getBenefitIconSvg(benefits[2]?.icon)"
+                             class="w-16 h-16 mx-auto lg:mx-0 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
                         </div>
                         <h3 class="text-2xl font-light font-serif text-brand-charcoal uppercase text-center lg:text-left" x-text="benefits[2]?.title"></h3>
                         <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light tracking-wide text-center lg:text-left mx-auto lg:mx-0" x-text="benefits[2]?.description"></p>
@@ -653,15 +645,12 @@
                 </div>
                 
                 <!-- Bento Card 4: Уютная атмосфера (Double Column on Large) -->
-                <div class="lg:col-span-2 bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden" x-show="benefits[3] && !benefits[3].hidden" data-reveal data-reveal-delay="300">
+                <div class="lg:col-span-2 bg-brand-cream p-6 sm:p-10 rounded-3xl border border-brand-sand/50 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-start group relative overflow-hidden" x-show="benefits[3] && !benefits[3].hidden" data-reveal data-reveal-delay="300">
                     <div class="absolute -left-16 -bottom-16 w-48 h-48 bg-brand-gold/5 rounded-full blur-3xl group-hover:bg-brand-gold/10 transition-all duration-700"></div>
                     <div class="space-y-6 z-10">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-brand-gold/60 font-serif">04.</span>
-                            <div x-show="benefits[3]?.icon && benefits[3]?.icon !== 'none'"
-                                 x-html="getBenefitIconSvg(benefits[3]?.icon)"
-                                 class="w-12 h-12 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
-                            </div>
+                        <div x-show="benefits[3]?.icon && benefits[3]?.icon !== 'none'"
+                             x-html="getBenefitIconSvg(benefits[3]?.icon)"
+                             class="w-16 h-16 mx-auto lg:mx-0 rounded-full bg-brand-lightrose flex items-center justify-center text-brand-rose group-hover:bg-brand-rose group-hover:text-white transition-all duration-500">
                         </div>
                         <h3 class="text-2xl font-light font-serif text-brand-charcoal uppercase text-center lg:text-left" x-text="benefits[3]?.title"></h3>
                         <p class="text-sm text-brand-charcoal/70 leading-relaxed font-light tracking-wide max-w-xl text-center lg:text-left mx-auto lg:mx-0" x-text="benefits[3]?.description"></p>
@@ -820,36 +809,42 @@
                         <div class="transition-all duration-300 group relative flex flex-col justify-between" 
                              :data-reveal-delay="(idx % 6) * 100"
                              data-reveal 
-                             :class="service.popular ? 'p-3 sm:p-6 bg-white border border-brand-rose/35 shadow-md scale-[1.01] z-10' : 'p-1.5 sm:p-2 border border-transparent'"
+                             :class="service.popular ? 'p-3 sm:p-6 bg-white border border-brand-rose/35 shadow-md scale-[1.01] z-10' : 'p-3 sm:p-6 border border-transparent'"
                              x-show="!service.hidden">
                             
-                            <div class="space-y-2 cursor-pointer" @click="selectedServiceDetail = service" title="Нажмите для подробного просмотра услуги">
-                                <template x-if="service.popular">
-                                    <div class="text-[8px] font-bold tracking-[0.25em] text-brand-rose uppercase flex items-center gap-1.5 mb-1.5">
-                                        <span>✦</span>
-                                        <span>Популярный выбор</span>
-                                    </div>
-                                </template>
-                                <template x-if="service.before && service.after">
-                                    <div class="text-[8px] font-bold tracking-[0.25em] text-brand-rose uppercase flex items-center gap-1.5 mb-1.5">
-                                        <span x-show="!service.popular">✦</span>
-                                        <span class="border border-brand-rose/35 px-1.5 py-0.5 rounded-full bg-brand-rose/10 font-bold">Слайдер До/После</span>
-                                    </div>
-                                </template>
-                                
-                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                                    <h3 class="text-base sm:text-xl font-normal font-serif text-brand-charcoal dark:text-white group-hover:text-brand-rose transition-colors duration-300 uppercase tracking-wide break-words" x-text="service.name"></h3>
+                            <div class="space-y-3 cursor-pointer" @click="selectedServiceDetail = service" title="Нажмите для подробного просмотра услуги">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 w-full">
+                                    <h3 class="text-sm sm:text-xl font-normal font-serif text-brand-charcoal dark:text-white group-hover:text-brand-rose transition-colors duration-300 uppercase tracking-wide break-words" x-text="service.name"></h3>
                                     <div class="hidden sm:block flex-1 border-b border-dotted border-brand-gold/30 mx-2"></div>
-                                    <span class="text-xs sm:text-lg font-light font-serif text-brand-rose font-bold shrink-0" x-text="service.price + ' ₽'"></span>
+                                    <span class="hidden sm:block text-xl md:text-2xl font-serif text-brand-rose font-bold shrink-0" x-text="service.price + ' ₽'"></span>
                                 </div>
+
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5" x-show="service.popular || (service.before && service.after)">
+                                    <template x-if="service.popular">
+                                        <div class="text-[8px] font-bold tracking-[0.25em] text-brand-rose uppercase flex items-center gap-1.5">
+                                            <span>✦</span>
+                                            <span>Популярный выбор</span>
+                                        </div>
+                                    </template>
+                                    <template x-if="service.before && service.after">
+                                        <div class="text-[8px] font-bold tracking-[0.25em] text-brand-rose uppercase flex items-center gap-1.5">
+                                            <span x-show="!service.popular">✦</span>
+                                            <span class="border border-brand-rose/35 px-1.5 py-0.5 rounded-full bg-brand-rose/10 font-bold">Слайдер До/После</span>
+                                        </div>
+                                    </template>
+                                </div>
+
                                 <p class="hidden sm:block text-xs text-brand-charcoal/60 font-light tracking-wide leading-relaxed" x-text="service.description"></p>
                             </div>
                             
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-3 mt-2 border-t border-brand-sand/40 gap-2">
-                                <span class="flex items-center gap-1 text-[8px] sm:text-[10px] text-brand-gold font-bold tracking-widest uppercase">
-                                    <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    <span x-text="service.duration"></span>
-                                </span>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-3 mt-2 border-t border-brand-sand/40 gap-3 sm:gap-2">
+                                <div class="flex flex-col gap-1.5 sm:gap-1">
+                                    <span class="block sm:hidden text-lg font-serif text-brand-rose font-bold" x-text="service.price + ' ₽'"></span>
+                                    <span class="flex items-center gap-1 text-[8px] sm:text-[10px] text-brand-gold font-bold tracking-widest uppercase">
+                                        <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-brand-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        <span x-text="service.duration"></span>
+                                    </span>
+                                </div>
                                 <div class="flex items-center gap-2 sm:gap-3 justify-between w-full sm:w-auto">
                                     <!-- Кнопка выбора для калькулятора -->
                                     <button @click.stop="toggleServiceInCalc(service)" 
@@ -893,8 +888,8 @@
                 </div>
                 
                 <div class="lg:col-span-7 space-y-8 order-1 lg:order-2 text-center lg:text-left" :class="hiddenElements.cozyCabinet_image ? 'lg:col-span-12' : ''" data-reveal data-reveal-delay="200">
-                    <p class="text-base text-brand-charcoal/70 leading-relaxed font-light tracking-wide" x-show="!hiddenElements.cozyCabinet_description" x-text="cozyCabinet.description"></p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 text-xs tracking-wider max-w-md mx-auto lg:mx-0 lg:max-w-none text-left">
+                    <p class="text-lg md:text-xl text-brand-charcoal/70 leading-relaxed font-light tracking-wide" x-show="!hiddenElements.cozyCabinet_description" x-text="cozyCabinet.description"></p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 text-sm md:text-base tracking-wider max-w-md mx-auto lg:mx-0 lg:max-w-none text-left">
                         <template x-for="(feat, idx) in cozyCabinet.features" :key="idx">
                             <div class="flex items-start justify-start gap-4 text-left" x-show="!hiddenElements['cozyCabinet_feature_' + idx]">
                                 <span class="w-2 h-2 rounded-full shrink-0 mt-1.5" :class="idx % 2 === 0 ? 'bg-brand-rose' : 'bg-brand-gold'"></span>
@@ -1080,14 +1075,17 @@
                                         <template x-if="!social.icon || (!social.icon.startsWith('/') && !social.icon.startsWith('http'))">
                                             <div class="text-brand-charcoal group-hover:text-brand-rose transition-all shrink-0">
                                                 <template x-if="social.icon === 'telegram' || social.id === 'telegram'">
-                                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.89.03-.25.38-.51 1.07-.78 4.2-1.82 7-3.03 8.4-3.61 3.99-1.66 4.82-1.95 5.36-1.96.12 0 .38.03.55.17.14.12.18.28.2.45-.02.07-.02.13-.02.19z"/></svg>
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                                    </svg>
                                                 </template>
                                                 <template x-if="social.icon === 'whatsapp' || social.id === 'whatsapp'">
                                                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.733-1.455L0 24zm6.59-4.846c1.665.989 3.3 1.472 5.353 1.473 5.534 0 10.038-4.505 10.041-10.04.002-2.68-1.038-5.198-2.93-7.09C17.22 1.606 14.71 1.564 12.015 1.564c-5.535 0-10.04 4.505-10.044 10.039-.002 2.122.562 4.13 1.633 5.856L2.61 21.365l4.037-1.054z"/></svg>
                                                 </template>
                                                 <template x-if="social.icon === 'vk' || social.id === 'vk'">
                                                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M15.086 2c5.962 0 6.914.952 6.914 6.914v6.172c0 5.962-.952 6.914-6.914 6.914H8.914C2.952 22 2 21.048 2 15.086V8.914C2 2.952 2.952 2 8.914 2h6.172zm.28 4.5H8.324c-2.484 0-3.324.84-3.324 3.324v6.352c0 2.484.84 3.324 3.324 3.324h1.036c.308 0 .432-.124.432-.432v-1.928c0-.756.248-.992.748-.992.356 0 .616.14.936.432l1.628 1.956c.216.26.408.432.848.432h1.616c.456 0 .548-.224.432-.572l-1.396-1.936c-.464-.624-.532-.828-.156-1.308l2.256-2.904c.264-.328.468-.616.468-1.076a.71.71 0 00-.712-.712h-1.616c-.456 0-.616.14-.936.564l-1.428 1.956c-.344.472-.516.624-.748.624s-.396-.152-.396-.564v-2.316c0-.84-.188-1.064-.936-1.064h-1.5c-.244 0-.348.1-.348.24 0 .224.236.276.324.468.14.308.14.616.14 1.036v1.928c0 .484-.088.616-.368.616s-.464-.132-.78-.564L8.3 9.4c-.212-.296-.344-.44-.728-.44H5.956c-.408 0-.544.152-.432.488 1.252 2.76 2.76 5.252 5.056 7.428v.02c.076.072.176.136.292.136.312 0 .436-.124.436-.436v-1.124c0-.756.248-.992.748-.992.356 0 .616.14.936.432l1.352 1.624c.216.26.408.432.848.432h1.372c.456 0 .548-.224.432-.572l-1.312-1.808c-.464-.624-.532-.828-.156-1.308l1.928-2.484c.264-.328.468-.616.468-1.076a.71.71 0 00-.712-.712h-1.616z"/>
+                                                        <path transform="translate(1.5, 0)" d="M21.547 7.008c.18-.6.031-1.047-.822-1.047h-2.653c-.718 0-1.037.382-1.211.805 0 0-1.353 3.305-3.262 5.438-.616.616-.897.808-1.263.808-.184 0-.441-.192-.441-.74V7.008c0-.718-.21-.1047-.821-1.047H8.381c-.45 0-.722.333-.722.647 0 .666 1 .821 1.103 2.712v4.095c0 .908-.164 1.071-.518 1.071-.951 0-3.26-3.232-4.632-6.932-.268-.756-.538-1.06-1.263-1.06H-.318C-.59 6.503-.7 6.772-.7 7.022c0 .448.572 2.655 2.665 5.575C4.048 15.65 6.757 18.28 9.186 18.28c1.458 0 1.64-.326 1.64-.888v-2.046c0-.643.136-.773.63-.773.364 0 .99.183 2.443 1.587 1.664 1.664 1.938 2.414 3.012 2.414h2.652c.718 0 .956-.358.746-1.063-.24-.703-1.118-1.729-2.272-3.014-.608-.716-1.517-1.478-1.79-1.859-.364-.455-.26-.645 0-1.068 0 0 3.153-4.444 3.686-5.968z"/>
                                                     </svg>
                                                 </template>
                                                 <template x-if="social.icon !== 'telegram' && social.id !== 'telegram' && social.icon !== 'whatsapp' && social.id !== 'whatsapp' && social.icon !== 'vk' && social.id !== 'vk'">
